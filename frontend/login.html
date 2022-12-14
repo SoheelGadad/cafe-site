@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign-In</title>
+    <script src="LoginForm.js"></script>
+    <link rel="stylesheet" href="LoginFrom.css">
+    <link rel="stylesheet" href="bootstrap.min.css">
+</head>
+
+<body>
+    <header>
+        <a href="#" class="logo">
+            <img  src="logo1.png" alt="Avater Logo" style="width: 50px;">
+            <i></i>CafeERA
+        </a>
+        <div class='bx bx-menu' id="menu-icon"></div>
+
+<ul class="navbar">
+    <a href="#home" class="home-active"><b>Home</b></a>
+    <a href="#newsletter"><b>About us</b></a>
+</ul>
+<a href="login.html" class="btn"><b>Register</b></a>
+    </header><br><br><br><br><br>
+
+    <div class="container-lg" align="center">
+        
+        <form class="was-validated">
+            
+            <h1 style="color: white; font-family: 'Times New Roman', Times, serif;">Sign-In</h1>
+            <div class="form-floating col-lg-2">
+                <input type="email" class="form-control" id="email" placeholder="Enter email" name="email" required>
+                <label for="email">Email</label>
+            </div><br>
+            <div class="form-floating col-lg-2">        
+                <input type="Password" class="form-control" id="pass" placeholder="Enter password" name="Password" required>
+                <label for="password">Password</label>
+
+            </div>
+            <div class="check">
+                <label for="checkbox" class="form-label">
+                <input type="checkbox" class="form-input-check">Show Password</label>
+            </div>
+            <div>
+                <button type="submit" class="btn btn-primary">Login-In</button>
+            </div><br>
+            <div class="noacc">
+                <label style="color: white;">Forgot Password <a href="#">Click Here</a></label>
+             </div>
+        </form>
+    </div>
+</body>
+
+</html>
