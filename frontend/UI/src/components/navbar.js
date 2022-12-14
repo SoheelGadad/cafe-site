@@ -2,6 +2,7 @@ import React from "react";
 import { NavbarBrand } from "reactstrap";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
+import { NavLink } from "react-router-dom";
 
 export default (props) => {
   return (
@@ -23,8 +24,8 @@ export default (props) => {
         >
           <Nav className="me-auto">
             <Nav.Link href="main">Home</Nav.Link>
-            <Nav.Link href="main">About Us</Nav.Link>
-            <Nav.Link href="main">Login/signup</Nav.Link>
+            <Nav.Link href="Main">About Us</Nav.Link>
+            <Nav.Link href="/login">Login/signup</Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Navbar>
