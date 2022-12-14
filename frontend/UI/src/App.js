@@ -5,8 +5,6 @@ import Book from "./components/book";
 import ThankYou from "./components/thankYou";
 import Navbar from "./components/navbar";
 import Login from "./components/login";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import main from "./components/main";
 
 export default (_) => {
   const [page, setPage] = useState(0);
