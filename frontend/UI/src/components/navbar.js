@@ -24,7 +24,13 @@ export default (props) => {
           <Nav className="me-auto">
             <Nav.Link href="main">Home</Nav.Link>
             <Nav.Link href="Main">About Us</Nav.Link>
-            <Nav.Link href="/login">Login/signup</Nav.Link>
+            <Nav.Link
+              onClick={(_) => {
+                props.setPage(3);
+              }}
+            >
+              Login/signup
+            </Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Navbar>
