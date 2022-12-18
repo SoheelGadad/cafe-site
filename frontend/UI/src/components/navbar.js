@@ -1,5 +1,5 @@
 import React from "react";
-import { NavbarBrand } from "reactstrap";
+import { NavbarBrand, Button } from "reactstrap";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 
@@ -22,14 +22,41 @@ export default (props) => {
           id="responsive-navbar-nav"
         >
           <Nav className="me-auto">
-            <Nav.Link href="main">Home</Nav.Link>
-            <Nav.Link href="Main">About Us</Nav.Link>
-            <Nav.Link
-              onClick={(_) => {
-                props.setPage(3);
-              }}
-            >
-              Login/signup
+            <Nav.Link>
+              <Button
+                onClick={(_) => {
+                  props.setPage(0);
+                }}
+              >
+                Home
+              </Button>
+            </Nav.Link>
+            <Nav.Link>
+              <Button
+                onClick={(_) => {
+                  props.setPage(5);
+                }}
+              >
+                profile
+              </Button>
+            </Nav.Link>
+            <Nav.Link>
+              <Button
+                onClick={(_) => {
+                  props.setPage(3);
+                }}
+              >
+                Login
+              </Button>
+            </Nav.Link>
+            <Nav.Link>
+              <Button
+                onClick={(_) => {
+                  props.setPage(4);
+                }}
+              >
+                Register
+              </Button>
             </Nav.Link>
           </Nav>
         </Navbar.Collapse>
