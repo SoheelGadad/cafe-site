@@ -1,67 +1,54 @@
-import React from "react";
-import { NavbarBrand, Button } from "reactstrap";
+import React, { useContext } from "react";
+import { NavbarBrand } from "reactstrap";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
+import { Link } from "react-router-dom";
+import { UserContext } from "../App";
 
-export default (props) => {
+const Headers = () => {
+  const { state, dispatch } = useContext(UserContext);
+  const Rendermenu = () => {
+    if (state) {
+      return (
+        <>
+          <Link to="/">Home</Link>
+
+          <Link to="/Dashboard">Profile</Link>
+
+          <Link to="/Logout">Logout</Link>
+        </>
+      );
+    } else {
+      return (
+        <>
+          <Link to="/">Home</Link>
+
+          <Link to="/Register">Register</Link>
+
+          <Link to="/Login">Login</Link>
+        </>
+      );
+    }
+  };
   return (
     <div className="container">
-      <Navbar color="light" light expand="md">
-        <NavbarBrand
-          className="nav-brand"
-          onClick={(_) => {
-            props.setPage(0);
-          }}
-        >
-          cafe shop
-        </NavbarBrand>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
-
-        <Navbar.Collapse
-          className="justify-content-end"
-          id="responsive-navbar-nav"
-        >
-          <Nav className="me-auto">
-            <Nav.Link>
-              <Button
-                onClick={(_) => {
-                  props.setPage(0);
-                }}
-              >
-                Home
-              </Button>
-            </Nav.Link>
-            <Nav.Link>
-              <Button
-                onClick={(_) => {
-                  props.setPage(5);
-                }}
-              >
-                profile
-              </Button>
-            </Nav.Link>
-            <Nav.Link>
-              <Button
-                onClick={(_) => {
-                  props.setPage(3);
-                }}
-              >
-                Login
-              </Button>
-            </Nav.Link>
-            <Nav.Link>
-              <Button
-                onClick={(_) => {
-                  props.setPage(4);
-                }}
-              >
-                Register
-              </Button>
-            </Nav.Link>
-          </Nav>
-        </Navbar.Collapse>
-      </Navbar>
+      <Nav>
+        <Navbar color="light" light expand="md">
+          <NavbarBrand className="nav-brand">
+            <Link to="/">cafe shop</Link>
+          </NavbarBrand>
+          <Navbar.Toggle aria-controls="basic-navbar-nav" />
+          <Navbar.Collapse
+            className="justify-content-end"
+            id="responsive-navbar-nav"
+          >
+            <Rendermenu />
+          </Navbar.Collapse>
+        </Navbar>
+      </Nav>
       <hr></hr>
     </div>
   );
 };
+
+export default Headers;

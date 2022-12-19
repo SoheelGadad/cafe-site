@@ -1,7 +1,12 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import "./login.css";
+import { UserContext } from "../../App";
+import { useNavigate, Link } from "react-router-dom";
 
 function App() {
+  const navigate = useNavigate();
+  const { state, dispatch } = useContext(UserContext);
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -24,7 +29,8 @@ function App() {
     if (data.user) {
       localStorage.setItem("token", data.user);
       alert("Login successful");
-      props.setPage(6);
+      dispatch({ type: "USER", payload: true });
+      navigate("/Dashboard");
     } else {
       alert("Please check your username and password");
     }
@@ -49,6 +55,12 @@ function App() {
         />
         <br />
         <input type="submit" value="Login" />
+        <Link
+          style={{ textAlign: "center", display: "block", marginTop: "5px" }}
+          to={"/ForgetPassword"}
+        >
+          Forget Password
+        </Link>
       </form>
     </div>
   );

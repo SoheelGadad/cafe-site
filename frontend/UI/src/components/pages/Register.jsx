@@ -1,8 +1,8 @@
 import { useState } from "react";
-//import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function App() {
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -28,7 +28,7 @@ function App() {
 
     if (data.status === "ok") {
       alert("sucessfull login");
-      props.setPage(3);
+      navigate("/login");
     }
   }
 

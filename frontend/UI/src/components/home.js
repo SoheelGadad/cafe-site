@@ -17,13 +17,7 @@ export default (props) => {
               <p className="looking-for-cafe">
                 If you're looking for morring cafe
               </p>
-              <Button
-                color="none"
-                className="book-table-btn"
-                onClick={(_) => {
-                  props.setPage(1);
-                }}
-              >
+              <Button color="none" className="book-table-btn" href="/Book">
                 Book a Table
               </Button>
             </div>
