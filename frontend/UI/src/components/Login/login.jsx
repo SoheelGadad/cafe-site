@@ -23,7 +23,6 @@ const Login = () => {
         password,
       }),
     });
-
     const data = await response.json();
 
     if (data.user) {
@@ -35,29 +34,27 @@ const Login = () => {
       alert("Please check your username and password");
     }
   }
-
   return (
     <div>
-<<<<<<< Updated upstream:frontend/UI/src/components/Login/login.jsx
-      
-      <form onSubmit={loginUser} className={Styles.formsub}>
-        <div className={Styles.h3}><h3>Login</h3></div><input
-=======
+      <div className={Styles.h3}>
+        <h3>Login</h3>
+      </div>
       <h1>Login</h1>
       <form onSubmit={loginUser} className style={form}>
         <input
->>>>>>> Stashed changes:frontend/UI/src/components/pages/Login/login.jsx
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           type="email"
-          placeholder="Email" className={Styles.input}
+          placeholder="Email"
+          className={Styles.input}
         />
         <br />
         <input
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           type="password"
-          placeholder="Password" className={Styles.input}
+          placeholder="Password"
+          className={Styles.input}
         />
         <br />
         <input type="submit" value="Login" className={Styles.button} />
@@ -68,8 +65,12 @@ const Login = () => {
           Forget Password
         </Link>
         <div className={Styles.social}>
-          <div className={Styles.go}><i class="fab fa-google"></i>  Google</div>
-          <div className={Styles.fb}><i class="fab fa-facebook"></i>  Facebook</div>
+          <div className={Styles.go}>
+            <i class="fab fa-google"></i> Google
+          </div>
+          <div className={Styles.fb}>
+            <i class="fab fa-facebook"></i> Facebook
+          </div>
         </div>
       </form>
     </div>
