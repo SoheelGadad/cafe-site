@@ -63,8 +63,8 @@ const Login = () => {
           Forget Password
         </Link>
         <div className={Styles.social}>
-          <div class="go"><i class="fab fa-google"></i>  Google</div>
-          <div class="fb"><i class="fab fa-facebook"></i>  Facebook</div>
+          <div className={Styles.go}><i class="fab fa-google"></i>  Google</div>
+          <div className={Styles.fb}><i class="fab fa-facebook"></i>  Facebook</div>
         </div>
       </form>
     </div>
