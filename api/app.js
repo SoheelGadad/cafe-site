@@ -28,6 +28,8 @@ app.use(cookieParser());
 app.use("/availability", require("./routes/availabilityRoute"));
 app.use("/reserve", require("./routes/reservationRoute"));
 
+//controller
+
 //register Api
 app.post("/api/register", async (req, res) => {
   console.log(req.body);

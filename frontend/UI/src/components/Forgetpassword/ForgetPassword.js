@@ -28,11 +28,8 @@ function ForgetPassword() {
 
   return (
     <>
-      <h1 className style={{ center }}>
-        {" "}
-        Forget Password
-      </h1>
-      <div className style={{ outcard }}>
+      <h1 className={styles.h1}>Forget Password</h1>
+      <div className={styles.email}>
         Email
         <input
           value={email}
