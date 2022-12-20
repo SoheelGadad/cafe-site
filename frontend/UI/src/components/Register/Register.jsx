@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Styles from "./styles.module.css";
 
 function App() {
   const navigate = useNavigate();
@@ -34,27 +35,28 @@ function App() {
 
   return (
     <div>
-      <h1>Register</h1>
-      <form onSubmit={registerUser}>
+      <div className={Styles.h3}>
+      <h1>Register</h1></div>
+      <form onSubmit={registerUser} className Style={form}>
         <input
           value={name}
           onChange={(e) => setName(e.target.value)}
           type="text"
-          placeholder="Name"
+          placeholder="Name" className={Styles.input}
         />
         <br />
         <input
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           type="email"
-          placeholder="Email"
+          placeholder="Email" className={Styles.input}
         />
         <br />
         <input
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           type="password"
-          placeholder="Password"
+          placeholder="Password" className={Styles.input}
         />
         <br />
         <input type="submit" value="Register" />
