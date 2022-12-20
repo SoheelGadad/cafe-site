@@ -13,6 +13,7 @@ import {
 } from "mdb-react-ui-kit";
 
 import { Button } from "reactstrap";
+import { UserContext } from "../../App";
 
 const Dashboard = () => {
   return (
@@ -38,7 +39,7 @@ const Dashboard = () => {
                     style={{ width: "80px" }}
                     fluid
                   />
-                  <MDBTypography tag="h5">Marie Horwitz</MDBTypography>
+                  <MDBTypography tag="h5">{User.name}</MDBTypography>
                   <MDBCardText>Web Designer</MDBCardText>
                   <MDBIcon far icon="edit mb-5" />
                   <Button>Edit profile</Button>

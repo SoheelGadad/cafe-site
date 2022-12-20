@@ -36,11 +36,11 @@ const Login = () => {
   }
   return (
     <div>
-      <div className={Styles.h3}>
-        <h3>Login</h3>
-      </div>
-      <h1>Login</h1>
-      <form onSubmit={loginUser} className style={form}>
+      <form onSubmit={loginUser} className={Styles.formsub}>
+        <div className={Styles.h3}>
+          <h3>Login</h3>
+        </div>
+        <h1>Login</h1>
         <input
           value={email}
           onChange={(e) => setEmail(e.target.value)}
