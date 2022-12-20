@@ -15,13 +15,6 @@ import {
 import { Button } from "reactstrap";
 
 const Dashboard = () => {
-  const navigate = useNavigate();
-  useEffect(() => {
-    const token = localStorage.getItem("TOKEN");
-    if (!token) {
-      navigate("/login");
-    }
-  }, []);
   return (
     <section className="vh-100" style={{ backgroundColor: "#f4f5f7" }}>
       <MDBContainer className="py-5 h-100">

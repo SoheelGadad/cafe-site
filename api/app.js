@@ -29,7 +29,7 @@ app.use("/availability", require("./routes/availabilityRoute"));
 app.use("/reserve", require("./routes/reservationRoute"));
 
 //controller
-app.use("/send-otp", request("./controller/User"));
+
 //register Api
 app.post("/api/register", async (req, res) => {
   console.log(req.body);
