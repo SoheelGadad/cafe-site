@@ -1,6 +1,6 @@
 import { useState, useContext } from "react";
 import "./login.css";
-import { UserContext } from "../../../App";
+import { UserContext } from "../../App";
 import { useNavigate, Link } from "react-router-dom";
 import styles from "./styles.module.css";
 

@@ -5,11 +5,11 @@ import Home from "./components/home";
 import Book from "./components/book";
 import ThankYou from "./components/thankYou";
 
-import Login from "./components/pages/Login/login";
-import Logout from "./components/pages/Logout/logout";
-import Register from "./components/pages/Register/Register";
-import Dashboard from "./components/pages/userdashbord/Dashboard";
-import ForgetPassword from "./components/pages/Forgetpassword/ForgetPassword";
+import Login from "./components/Login/login";
+import Logout from "./components/Logout/logout";
+import Register from "./components/Register/Register";
+import Dashboard from "./components/userdashbord/Dashboard";
+import ForgetPassword from "./components/Forgetpassword/ForgetPassword";
 
 //import UserDes from "./components/pages/main";
 
