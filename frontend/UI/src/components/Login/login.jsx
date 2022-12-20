@@ -38,9 +38,15 @@ const Login = () => {
 
   return (
     <div>
+<<<<<<< Updated upstream:frontend/UI/src/components/Login/login.jsx
       
       <form onSubmit={loginUser} className={Styles.formsub}>
         <div className={Styles.h3}><h3>Login</h3></div><input
+=======
+      <h1>Login</h1>
+      <form onSubmit={loginUser} className style={form}>
+        <input
+>>>>>>> Stashed changes:frontend/UI/src/components/pages/Login/login.jsx
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           type="email"
