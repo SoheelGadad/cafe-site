@@ -2,7 +2,7 @@ import { useState, useContext } from "react";
 import "./login.css";
 import { UserContext } from "../../App";
 import { useNavigate, Link } from "react-router-dom";
-import styles from "./styles.module.css";
+import Styles from "./styles.module.css";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -39,29 +39,33 @@ const Login = () => {
 
   return (
     <div>
-      <h1>Login</h1>
-      <form onSubmit={loginUser} className="formsub">
-        <input
+      
+      <form onSubmit={loginUser} className={Styles.formsub}>
+        <div className={Styles.h3}><h3>Login</h3></div><input
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           type="email"
-          placeholder="Email"
+          placeholder="Email" className={Styles.input}
         />
         <br />
         <input
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           type="password"
-          placeholder="Password"
+          placeholder="Password" className={Styles.input}
         />
         <br />
-        <input type="submit" value="Login" />
+        <input type="submit" value="Login" className={Styles.button} />
         <Link
           style={{ textAlign: "center", display: "block", marginTop: "5px" }}
           to={"/ForgetPassword"}
         >
           Forget Password
         </Link>
+        <div className={Styles.social}>
+          <div class="go"><i class="fab fa-google"></i>  Google</div>
+          <div class="fb"><i class="fab fa-facebook"></i>  Facebook</div>
+        </div>
       </form>
     </div>
   );
