@@ -3,7 +3,7 @@ import "./login.css";
 import { UserContext } from "../../App";
 import { useNavigate, Link } from "react-router-dom";
 
-function App() {
+const Login = () => {
   const navigate = useNavigate();
   const { state, dispatch } = useContext(UserContext);
 
@@ -64,6 +64,6 @@ function App() {
       </form>
     </div>
   );
-}
+};
 
-export default App;
+export default Login;

@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   MDBCol,
   MDBContainer,
@@ -10,13 +11,17 @@ import {
   MDBTypography,
   MDBIcon,
 } from "mdb-react-ui-kit";
+
 import { Button } from "reactstrap";
 
 const Dashboard = () => {
-  const handleLogout = () => {
-    localStorage.removeItem("token");
-    window.location.reload();
-  };
+  const navigate = useNavigate();
+  useEffect(() => {
+    const token = localStorage.getItem("TOKEN");
+    if (!token) {
+      navigate("/login");
+    }
+  }, []);
   return (
     <section className="vh-100" style={{ backgroundColor: "#f4f5f7" }}>
       <MDBContainer className="py-5 h-100">
