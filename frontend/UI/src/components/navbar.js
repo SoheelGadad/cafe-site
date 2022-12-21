@@ -1,8 +1,7 @@
 import React, { useContext } from "react";
-import { NavbarBrand } from "reactstrap";
+import { NavbarBrand, NavLink } from "reactstrap";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
-import { Link } from "react-router-dom";
 import { UserContext } from "../App";
 
 const Headers = () => {
@@ -11,31 +10,31 @@ const Headers = () => {
     if (state) {
       return (
         <>
-          <Link to="/">Home</Link>
+          <NavLink href="/">Home</NavLink>
 
-          <Link to="/Dashboard">Profile</Link>
+          <NavLink href="/Register">Register</NavLink>
 
-          <Link to="/Logout">Logout</Link>
+          <NavLink href="/Logout">Logout</NavLink>
         </>
       );
     } else {
       return (
         <>
-          <Link to="/">Home</Link>
+          <NavLink href="/">Home</NavLink>
 
-          <Link to="/Register">Register</Link>
+          <NavLink href="/Register">Register</NavLink>
 
-          <Link to="/Login">Login</Link>
+          <NavLink href="/Login">Login</NavLink>
         </>
       );
     }
   };
   return (
-    <div className="container">
+    <div className="header">
       <Nav>
-        <Navbar color="light" light expand="md">
+        <Navbar>
           <NavbarBrand className="nav-brand">
-            <Link to="/">cafe shop</Link>
+            <NavLink href="/">cafe shop</NavLink>
           </NavbarBrand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse

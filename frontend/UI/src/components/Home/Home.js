@@ -1,5 +1,5 @@
 import styles from "./styles.module.css";
-const Main = () => {
+const Home = () => {
   const handleLogout = () => {
     localStorage.removeItem("token");
     window.location.reload();

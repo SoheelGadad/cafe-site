@@ -28,21 +28,23 @@ function ForgetPassword() {
 
   return (
     <>
-      <h1 className={styles.h1}>Forget Password</h1>
-      <div className={styles.email}>
-        Email
-        <input
-          value={email}
-          onChange={(e) => {
-            setEmail(e.target.value);
-          }}
-          className="inputs"
-          type="text"
-        />
-        <button onClick={handleSubmit} className="btns">
-          SEND OTP
-        </button>
-      </div>
+      <form className={styles.form}>
+        <h1 className={styles.h1}>Forget Password</h1>
+        <div className={styles.email}>
+          Email
+          <input
+            value={email}
+            onChange={(e) => {
+              setEmail(e.target.value);
+            }}
+            className={styles.input}
+            type="text"
+          />
+          <button onClick={handleSubmit} className={styles.button}>
+            SEND OTP
+          </button>
+        </div>
+      </form>
     </>
   );
 }
