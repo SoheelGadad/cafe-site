@@ -39,7 +39,9 @@ const Dashboard = () => {
                     style={{ width: "80px" }}
                     fluid
                   />
-                  <MDBTypography tag="h5">{User.name}</MDBTypography>
+                  <MDBTypography tag="h5">
+                    {/*{User.name}*/}soheel
+                  </MDBTypography>
                   <MDBCardText>Web Designer</MDBCardText>
                   <MDBIcon far icon="edit mb-5" />
                   <Button>Edit profile</Button>
@@ -77,6 +79,7 @@ const Dashboard = () => {
                         <MDBCardText className="text-muted">
                           123 456 789
                         </MDBCardText>
+                        <Button href="/logout">logout</Button>
                       </MDBCol>
                     </MDBRow>
 

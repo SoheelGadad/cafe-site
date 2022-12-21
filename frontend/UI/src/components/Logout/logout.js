@@ -8,7 +8,7 @@ const logout = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const token = localStorage.getItem("TOKEN");
+    const token = localStorage.getItem("userinfo");
     if (!token) {
       dispatch({ type: "USER", payload: false });
       navigate("/login");
@@ -19,7 +19,7 @@ const logout = () => {
     <div className="card">
       <div>HOME</div>
       <div>
-        <span> {localStorage.getItem("EMAIL")} </span>
+        <span> {localStorage.getItem("userinfo")} </span>
         <button
           onClick={() => {
             localStorage.clear();

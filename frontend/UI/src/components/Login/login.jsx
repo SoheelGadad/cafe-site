@@ -26,7 +26,7 @@ const Login = () => {
     const data = await response.json();
 
     if (data.user) {
-      localStorage.setItem("token", data.user);
+      localStorage.setItem("userinfo", data.user);
       alert("Login successful");
       dispatch({ type: "USER", payload: true });
       navigate("/Dashboard");

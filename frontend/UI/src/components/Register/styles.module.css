@@ -52,7 +52,7 @@
   border-radius: 5px;
   cursor: pointer;
 }
-:hover {
+.button:hover {
   background-color: #ffffff;
   color: #080710;
 }
