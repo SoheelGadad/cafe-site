@@ -43,13 +43,17 @@
 .button {
   margin-top: 50px;
   width: 100%;
-  background-color: #ffffff;
-  color: #080710;
+  background-color: #1f1919;
+  color: #f3f3f7;
   padding: 15px 0;
   font-size: 18px;
   font-weight: 600;
   border-radius: 5px;
   cursor: pointer;
+}
+:hover {
+  background-color: #ffffff;
+  color: #080710;
 }
 .social {
   margin-top: 30px;

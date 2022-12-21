@@ -36,7 +36,7 @@ function App() {
   return (
     <div className="register-continer">
       <div className="container">
-        <form onSubmit={registerUser} className={Styles.form}>
+        <form onSubmit={registerUser} className={Styles.formsub}>
           <h1 className={Styles.h3}>Register</h1>
           <input
             value={name}
@@ -63,6 +63,11 @@ function App() {
           />
           <br />
           <input type="submit" value="Register" className={Styles.button} />
+          <div
+            style={{ textAlign: "center", display: "block", marginTop: "5px" }}
+          >
+            Already have an account?<a href="/Login">Sign In.</a>
+          </div>
         </form>
       </div>
     </div>
