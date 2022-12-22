@@ -18,7 +18,7 @@ const Headers = () => {
               </li>
               <li>
             <a href='/Logout"' className='navlink'>
-              <i></i>Logout</a>
+            <i class="fa-sharp fa-solid fa-right-to-bracket"></i>Logout</a>
               </li>
         </>
       );
@@ -32,12 +32,12 @@ const Headers = () => {
 
               <li>
             <a href='/Register' className='navlink'>
-              <i class='fa-solid fa-house-user'></i>Register</a>
+            <i class="fa-solid fa-file-signature"></i>Register</a>
              </li>
 
               <li>
             <a href='/Login' className='navlink'>
-              <i class='fa-solid fa-house-user'></i>Login</a>
+            <i class="fa-solid fa-key"></i>Login</a>
               </li>
         </>
       );
