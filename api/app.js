@@ -8,7 +8,6 @@ var jwt = require("jsonwebtoken");
 var bcrypt = require("bcryptjs");
 var User = require("./models/user.module");
 var generateToken = require("./utils/generateToken");
-
 // MongoDB
 var mongoose = require("mongoose");
 mongoose.connect(process.env.MONGO_URL, {
