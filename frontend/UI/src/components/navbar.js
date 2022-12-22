@@ -10,9 +10,9 @@ const Headers = () => {
     if (state) {
       return (
         <>
-          <NavLink href="/">Home</NavLink>
+          <NavLink href="/UserHome">Home</NavLink>
 
-          <NavLink href="/Register">Register</NavLink>
+          <NavLink href="/Dashboard">Profile</NavLink>
 
           <NavLink href="/Logout">Logout</NavLink>
         </>

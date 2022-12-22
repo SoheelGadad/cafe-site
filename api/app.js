@@ -7,6 +7,7 @@ var cors = require("cors");
 var jwt = require("jsonwebtoken");
 var bcrypt = require("bcryptjs");
 var User = require("./models/user.module");
+var generateToken = require("./utils/generateToken");
 
 // MongoDB
 var mongoose = require("mongoose");
@@ -52,27 +53,20 @@ app.post("/api/login", async (req, res) => {
     email: req.body.email,
   });
 
-  if (!user) {
-    return { status: "error", error: "Invalid login" };
-  }
-
   const isPasswordValid = await bcrypt.compare(
     req.body.password,
     user.password
   );
-
-  if (isPasswordValid) {
-    const token = jwt.sign(
-      {
-        name: user.name,
-        email: user.email,
-      },
-      "secret123"
-    );
-
-    return res.json({ status: "ok", user: token });
+  if (user && (await user.password(isPasswordValid))) {
+    res.json({
+      _id: user._id,
+      name: user.name,
+      email: user.email,
+      token: generateToken(user._id),
+    });
   } else {
-    return res.json({ status: "error", user: false });
+    res.status(401);
+    throw new Error("Invalid Email or Password");
   }
 });
 

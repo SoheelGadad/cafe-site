@@ -10,8 +10,7 @@ import Logout from "./components/Logout/logout";
 import Register from "./components/Register/Register";
 import Dashboard from "./components/userdashbord/Dashboard";
 import ForgetPassword from "./components/Forgetpassword/ForgetPassword";
-
-//import UserDes from "./components/pages/main";
+import UserHome from "./components/Home/userHome";
 
 import { initialState, reducer } from "./reducer/useReducer";
 
@@ -29,6 +28,7 @@ const Routing = () => {
       <Route exact path="/ThankYou" element={<ThankYou />} />
       <Route exact path="/Dashboard" element={<Dashboard />} />
       <Route exact path="/ForgetPassword" element={<ForgetPassword />} />
+      <Route exact path="/userHome" element={<UserHome />} />
     </Routes>
   );
 };

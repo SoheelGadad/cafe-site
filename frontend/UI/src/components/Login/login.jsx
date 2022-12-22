@@ -2,6 +2,7 @@ import { useState, useContext } from "react";
 import { UserContext } from "../../App";
 import { useNavigate, Link } from "react-router-dom";
 import Styles from "./styles.module.css";
+import axios from "axios";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -9,31 +10,34 @@ const Login = () => {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState(false);
+  const [loading, setLoading] = useState(false);
 
-  async function loginUser(event) {
-    event.preventDefault();
+  const loginUser = async (e) => {
+    e.preventDefault();
+    try {
+      const config = {
+        header: {
+          "Content-type": "application/json",
+        },
+      };
+      setLoading(true);
 
-    const response = await fetch("http://localhost:3005/api/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        email,
-        password,
-      }),
-    });
-    const data = await response.json();
-
-    if (data.user) {
-      localStorage.setItem("userinfo", data.user);
-      alert("Login successful");
-      dispatch({ type: "USER", payload: true });
-      navigate("/Dashboard");
-    } else {
-      alert("Please check your username and password");
+      const { data } = await axios.post(
+        "http://localhost:3005/api/login",
+        {
+          email,
+          password,
+        },
+        config
+      );
+      console.log(data);
+      localStorage.setItem("userinfo", JSON.stringify(data));
+      setLoading(false);
+    } catch (error) {
+      setError(error.response.data.message);
     }
-  }
+  };
   return (
     <div>
       <form onSubmit={loginUser} className={Styles.formsub}>
