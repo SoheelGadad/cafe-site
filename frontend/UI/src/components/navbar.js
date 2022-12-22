@@ -34,7 +34,7 @@ const Headers = () => {
       <Nav>
         <Navbar>
           <NavbarBrand className="nav-brand">
-            <NavLink href="/">cafe shop</NavLink>
+            <NavLink href="/">CafeEra</NavLink>
           </NavbarBrand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse
