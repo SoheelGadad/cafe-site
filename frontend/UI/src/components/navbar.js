@@ -1,9 +1,6 @@
 import React, { useContext } from "react";
-import { NavbarBrand } from "reactstrap";
-import Nav from "react-bootstrap/Nav";
-import Navbar from "react-bootstrap/Navbar";
-import { Link } from "react-router-dom";
 import { UserContext } from "../App";
+import './navbar.css'
 
 const Headers = () => {
   const { state, dispatch } = useContext(UserContext);
@@ -11,43 +8,49 @@ const Headers = () => {
     if (state) {
       return (
         <>
-          <Link to="/">Home</Link>
-
-          <Link to="/Dashboard">Profile</Link>
-
-          <Link to="/Logout">Logout</Link>
+         <li>
+            <a href='/' className='navlink'>
+              <i></i>Home</a>
+              </li>
+              <li>
+            <a href='/Dashboard' className='navlink'>
+              <i></i>Profile</a>
+              </li>
+              <li>
+            <a href='/Logout"' className='navlink'>
+              <i></i>Logout</a>
+              </li>
         </>
       );
     } else {
       return (
         <>
-          <Link to="/">Home</Link>
+        <li>
+            <a href='/' className='navlink'>
+              <i class='fa-solid fa-house-user'></i>Home</a>
+              </li>
 
-          <Link to="/Register">Register</Link>
+              <li>
+            <a href='/Register' className='navlink'>
+              <i class='fa-solid fa-house-user'></i>Register</a>
+             </li>
 
-          <Link to="/Login">Login</Link>
+              <li>
+            <a href='/Login' className='navlink'>
+              <i class='fa-solid fa-house-user'></i>Login</a>
+              </li>
         </>
       );
     }
   };
   return (
-    <div className="container">
-      <Nav>
-        <Navbar color="light" light expand="md">
-          <NavbarBrand className="nav-brand">
-            <Link to="/">cafe shop</Link>
-          </NavbarBrand>
-          <Navbar.Toggle aria-controls="basic-navbar-nav" />
-          <Navbar.Collapse
-            className="justify-content-end"
-            id="responsive-navbar-nav"
-          >
+        <nav className="NavbarItems">
+           <a href='/' className='navbar-logo'>
+            <h1 >CafeEra</h1></a>
+            <ul className= "nav-menu">
             <Rendermenu />
-          </Navbar.Collapse>
-        </Navbar>
-      </Nav>
-      <hr></hr>
-    </div>
+            </ul>
+        </nav>
   );
 };
 

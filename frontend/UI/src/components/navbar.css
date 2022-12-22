@@ -1,3 +1,4 @@
+
 .NavbarItems{
     background-color: white;
     display: flex;
@@ -13,16 +14,19 @@
     left: 50%;
     transform: translate(-50%);
     z-index: 9999;
+    text-decoration: none;
 }
 .navbar-logo{
     color: black;
     font-size: 2rem;
     cursor: pointer;
+    text-decoration: none;
+
 }
 .nav-menu{
     display: grid;
     grid-template-columns: repeat(5,auto);
-    grid-gap: 10px;
+    grid-gap: 20px;
     list-style: none;
     align-items: center;
 }
@@ -31,12 +35,9 @@
     color: black;
     font-size: 1.2rem;
     font-weight: 600;
-    padding: 0.7rem 1rem;
     white-space: nowrap;
 }
-.navlink  {
-    padding-right: 10px;
-}
+
 .navlink:hover{
     background-color: rgb(58, 231, 194);
     color: white;
