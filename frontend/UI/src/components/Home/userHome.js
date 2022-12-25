@@ -1,7 +1,12 @@
 import styles from "./styles.module.css";
+
+import { UserContext } from "../../App";
 const Home = () => {
+  const { state, dispatch } = useContext(UserContext);
   const handleLogout = () => {
     localStorage.removeItem("token");
+
+    dispatch({ type: "USER", payload: false });
     window.location.reload();
   };
 

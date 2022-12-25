@@ -9,9 +9,6 @@ const Login = () => {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState(false);
-  const [loading, setLoading] = useState(false);
-
   async function loginUser(event) {
     event.preventDefault();
 
@@ -28,11 +25,11 @@ const Login = () => {
     const data = await response.json();
 
     if (data.user) {
+      dispatch({ type: "USER", payload: true });
       localStorage.setItem("token", data.user);
       alert("Login successful");
-      dispatch({ type: "USER", payload: true });
+
       window.location.href = "/Dashboard";
-      //navigate("/Dashboard");
     } else {
       alert("Please check your username and password");
     }

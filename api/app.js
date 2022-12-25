@@ -6,7 +6,7 @@ var logger = require("morgan");
 var cors = require("cors");
 var jwt = require("jsonwebtoken");
 var bcrypt = require("bcryptjs");
-var User = require("./models/user.module");
+var User = require("./models/userModel");
 var generateToken = require("./utils/generateToken");
 // MongoDB
 var mongoose = require("mongoose");
