@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import {
   Row,
   Col,
@@ -9,10 +9,21 @@ import {
   Input,
   Button,
 } from "reactstrap";
-
+import { UserContext } from "../App";
 import Table from "./table";
+import { useNavigate } from "react-router-dom";
 
 export default (props) => {
+  const navigate = useNavigate();
+  const { state, dispatch } = useContext(UserContext);
+  dispatch({ type: "USER", payload: true });
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      dispatch({ type: "USER", payload: false });
+      navigate("/login");
+    }
+  }, []);
   const [totalTables, setTotalTables] = useState([]);
 
   // User's selections
@@ -136,7 +147,7 @@ export default (props) => {
       });
       res = await res.text();
       console.log("Reserved: " + res);
-      props.setPage(2);
+      navigate("/UserHome");
     }
   };
 

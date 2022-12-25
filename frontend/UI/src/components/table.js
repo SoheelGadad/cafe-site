@@ -1,8 +1,19 @@
-import React from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { Row, Col } from "reactstrap";
+import { useNavigate } from "react-router-dom";
+import { UserContext } from "../App";
 
-export default props => {
-  const getRow1 = _ => {
+export default (props) => {
+  const navigate = useNavigate();
+  const { state, dispatch } = useContext(UserContext);
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      dispatch({ type: "USER", payload: false });
+      navigate("/login");
+    }
+  }, []);
+  const getRow1 = (_) => {
     let chairs = [];
     for (var i = 0; i < Math.ceil(props.chairs / 2); i++) {
       chairs.push(
@@ -14,7 +25,7 @@ export default props => {
     }
     return chairs;
   };
-  const getRow2 = _ => {
+  const getRow2 = (_) => {
     let chairs2 = [];
     for (var i = 0; i < Math.floor(props.chairs / 2); i++) {
       chairs2.push(
@@ -31,7 +42,7 @@ export default props => {
     <div className="table-container">
       <Col
         className={props.empty ? "table selectable-table" : "table"}
-        onClick={_ => {
+        onClick={(_) => {
           props.empty
             ? props.selectTable(props.name, props.id)
             : console.log("Tried to select a full table");

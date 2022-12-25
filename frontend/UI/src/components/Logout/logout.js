@@ -1,36 +1,13 @@
-import { useEffect, useContext } from "react";
-import { useNavigate } from "react-router-dom";
+import { useState, useContext } from "react";
 import { UserContext } from "../../App";
-//import styles from "./styles.module.css";
 
+import { useNavigate } from "react-router-dom";
 const logout = () => {
-  const { state, dispatch } = useContext(UserContext);
   const navigate = useNavigate();
-
-  useEffect(() => {
-    const token = localStorage.getItem("userinfo");
-    if (!token) {
-      dispatch({ type: "USER", payload: false });
-      navigate("/login");
-    }
-  }, []);
-
-  return (
-    <div className="card">
-      <div>HOME</div>
-      <div>
-        <span> {localStorage.getItem("userinfo")} </span>
-        <button
-          onClick={() => {
-            localStorage.clear();
-            navigate("/login");
-          }}
-        >
-          LOGOUT
-        </button>
-      </div>
-    </div>
-  );
+  const { state, dispatch } = useContext(UserContext);
+  localStorage.clear();
+  dispatch({ type: "USER", payload: false });
+  navigate("/");
 };
 
 export default logout;

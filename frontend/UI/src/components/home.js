@@ -18,7 +18,7 @@ export default (props) => {
                 If you're looking for morring cafe
               </p>
               <Button color="none" className="book-table-btn" href="/Book">
-                Book a Table
+                Login
               </Button>
             </div>
           </div>

@@ -29,7 +29,7 @@ const Login = () => {
       localStorage.setItem("token", data.user);
       alert("Login successful");
 
-      window.location.href = "/Dashboard";
+      window.location.href = "/UserHome";
     } else {
       alert("Please check your username and password");
     }

@@ -1,25 +1,43 @@
-import styles from "./styles.module.css";
-
+import { useState, useContext, useEffect } from "react";
+import Button from "react-bootstrap/Button";
 import { UserContext } from "../../App";
-const Home = () => {
+
+import { useNavigate } from "react-router-dom";
+export default (props) => {
+  const navigate = useNavigate();
   const { state, dispatch } = useContext(UserContext);
-  const handleLogout = () => {
-    localStorage.removeItem("token");
 
-    dispatch({ type: "USER", payload: false });
-    window.location.reload();
-  };
-
+  dispatch({ type: "USER", payload: true });
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      dispatch({ type: "USER", payload: false });
+      navigate("/login");
+    }
+  }, []);
   return (
-    <div className={styles.main_container}>
-      <nav className={styles.navbar}>
-        <h1>Wellcome</h1>
-        <button className={styles.white_btn} onClick={handleLogout}>
-          Logout
-        </button>
-      </nav>
+    <div>
+      <div class="home swiper" id="home">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide container">
+            <img
+              src={require("../Home/1.jpg")}
+              alt="cafe"
+              className="big-img"
+            />
+            <div class="home-text">
+              <h1>CafeERAA</h1>
+              <p className="looking-for-cafe">
+                If you're looking for morring cafe
+              </p>
+              <Button color="none" className="book-table-btn" href="/Book">
+                Book a Table
+              </Button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="swiper"></div>
     </div>
   );
 };
-
-export default Home;

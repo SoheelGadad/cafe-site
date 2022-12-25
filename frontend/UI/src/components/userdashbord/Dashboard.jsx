@@ -1,5 +1,4 @@
-import React, { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useState, useContext, useEffect } from "react";
 import {
   MDBCol,
   MDBContainer,
@@ -16,6 +15,16 @@ import { Button } from "reactstrap";
 import { UserContext } from "../../App";
 
 const Dashboard = () => {
+  const { state, dispatch } = useContext(UserContext);
+
+  dispatch({ type: "USER", payload: true });
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      dispatch({ type: "USER", payload: false });
+      navigate("/login");
+    }
+  }, []);
   return (
     <section className="vh-100" style={{ backgroundColor: "#f4f5f7" }}>
       <MDBContainer className="py-5 h-100">
@@ -79,7 +88,6 @@ const Dashboard = () => {
                         <MDBCardText className="text-muted">
                           123 456 789
                         </MDBCardText>
-                        <Button href="/logout">logout</Button>
                       </MDBCol>
                     </MDBRow>
 

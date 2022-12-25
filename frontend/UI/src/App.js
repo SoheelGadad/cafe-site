@@ -20,7 +20,7 @@ const Routing = () => {
   return (
     <Routes>
       <Route exact path={"/"} element={<Home />} />
-      <Route exact path={"/home"} element={<Home />} />
+      <Route exact path={"/UserHome"} element={<UserHome />} />
       <Route exact path="/login" element={<Login />} />
       <Route exact path="/logout" element={<Logout />} />
       <Route exact path="/register" element={<Register />} />
@@ -28,7 +28,6 @@ const Routing = () => {
       <Route exact path="/ThankYou" element={<ThankYou />} />
       <Route exact path="/Dashboard" element={<Dashboard />} />
       <Route exact path="/ForgetPassword" element={<ForgetPassword />} />
-      <Route exact path="/userHome" element={<UserHome />} />
     </Routes>
   );
 };
