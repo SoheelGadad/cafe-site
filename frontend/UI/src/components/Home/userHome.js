@@ -10,6 +10,7 @@ export default (props) => {
   dispatch({ type: "USER", payload: true });
   useEffect(() => {
     const token = localStorage.getItem("token");
+    console.log(token);
     if (!token) {
       dispatch({ type: "USER", payload: false });
       navigate("/login");
