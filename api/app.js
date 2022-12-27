@@ -9,7 +9,7 @@ var bcrypt = require("bcryptjs");
 var User = require("./models/userModel");
 // MongoDB
 var mongoose = require("mongoose");
-mongoose.connect(process.env.MONGO_URI, {
+mongoose.connect(process.env.MONGO_URL, {
   useUnifiedTopology: true,
   useNewUrlParser: true,
 });
