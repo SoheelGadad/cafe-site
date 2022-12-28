@@ -1,33 +1,38 @@
-import React, { useContext } from "react";
+import React, { useEffect } from "react";
 import { NavbarBrand, NavLink } from "reactstrap";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
-import { UserContext } from "../App";
+import { useDispatch, useSelector } from "react-redux";
 
-const Headers = () => {
-  const { state, dispatch } = useContext(UserContext);
+import { logout } from "../actions/userActions";
+const Headers = (setSearch) => {
+  const dispatch = useDispatch();
+
+  const userLogin = useSelector((state) => state.userLogin);
+  const { userInfo } = userLogin;
+
+  const logoutHandler = () => {
+    dispatch(logout());
+  };
+
+  useEffect(() => {}, [userInfo]);
+
   const Rendermenu = () => {
-    if (state) {
-      return (
-        <>
-          <NavLink href="/UserHome">Home</NavLink>
+    return (
+      <Nav>
+        <NavLink href="/">Home</NavLink>
+        {userInfo ? (
+          <>
+            <NavLink href="/Book">Book A Table</NavLink>
+            <NavLink href="/userprofile">{`${userInfo.name}`}</NavLink>
 
-          <NavLink href="/Dashboard">Profile</NavLink>
-
-          <NavLink href="/Logout">Logout</NavLink>
-        </>
-      );
-    } else {
-      return (
-        <>
-          <NavLink href="/">Home</NavLink>
-
-          <NavLink href="/Register">Register</NavLink>
-
+            <NavLink onClick={logoutHandler}>Logout</NavLink>
+          </>
+        ) : (
           <NavLink href="/Login">Login</NavLink>
-        </>
-      );
-    }
+        )}
+      </Nav>
+    );
   };
   return (
     <div className="header">
