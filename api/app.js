@@ -6,8 +6,7 @@ var logger = require("morgan");
 var cors = require("cors");
 var jwt = require("jsonwebtoken");
 var bcrypt = require("bcryptjs");
-var User = require("./models/user.module");
-
+var User = require("./models/userModel");
 // MongoDB
 var mongoose = require("mongoose");
 mongoose.connect(process.env.MONGO_URL, {
@@ -48,32 +47,40 @@ app.post("/api/register", async (req, res) => {
 
 //login page Api
 app.post("/api/login", async (req, res) => {
-  const user = await User.findOne({
-    email: req.body.email,
-  });
+  const { email, password } = req.body;
 
+  const user = await User.findOne({ email });
   if (!user) {
-    return { status: "error", error: "Invalid login" };
+    return res.json({ status: "error", error: "user Not found" });
   }
+  if (await bcrypt.compare(password, user.password)) {
+    const token = jwt.sign({ email: user.email }, JWT_SECRET);
 
-  const isPasswordValid = await bcrypt.compare(
-    req.body.password,
-    user.password
-  );
-
-  if (isPasswordValid) {
-    const token = jwt.sign(
-      {
-        name: user.name,
-        email: user.email,
-      },
-      "secret123"
-    );
-
-    return res.json({ status: "ok", user: token });
-  } else {
-    return res.json({ status: "error", user: false });
+    if (res.status(200)) {
+      return res.json({ status: "ok", data: token });
+    } else {
+      return res.json({ status: "error" });
+    }
   }
+  res.json({ status: "error", error: "Invalid login" });
+});
+
+//user Api
+app.post("/api/user", async (req, res) => {
+  const { token } = req.body;
+  try {
+    const user = jwt.verify(token, JWT_SECRET);
+    console.log(user);
+
+    const uemail = user.email;
+    User.findOne({ email: uemail })
+      .then((data) => {
+        res.send({ status: "ok", data: data });
+      })
+      .catch((error) => {
+        res.send({ status: "ok", data: error });
+      });
+  } catch (error) {}
 });
 
 //Homepage after login Api

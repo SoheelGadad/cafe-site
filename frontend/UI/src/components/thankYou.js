@@ -1,7 +1,18 @@
-import React from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { Row, Col } from "reactstrap";
+import { useNavigate } from "react-router-dom";
+import { UserContext } from "../App";
 
-export default _ => {
+export default (_) => {
+  const navigate = useNavigate();
+  const { state, dispatch } = useContext(UserContext);
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      dispatch({ type: "USER", payload: false });
+      navigate("/login");
+    }
+  }, []);
   return (
     <div>
       <Row noGutters className="text-center">

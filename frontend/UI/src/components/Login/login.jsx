@@ -1,79 +1,78 @@
-import { useState, useContext } from "react";
-import { UserContext } from "../../App";
-import { useNavigate, Link } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import Styles from "./styles.module.css";
+import { useDispatch, useSelector } from "react-redux";
 
-const Login = () => {
-  const navigate = useNavigate();
-  const { state, dispatch } = useContext(UserContext);
+import { useNavigate } from "react-router-dom";
+import { login } from "../../actions/userActions";
+import MainScreen from "../../components/MainScreen";
 
+import Loading from "../../components/Loading";
+import ErrorMessage from "../../components/ErrorMessage";
+
+function loginpage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
-  async function loginUser(event) {
-    event.preventDefault();
+  const userLogin = useSelector((state) => state.userLogin);
+  const { loading, error, userInfo } = userLogin;
 
-    const response = await fetch("http://localhost:3005/api/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        email,
-        password,
-      }),
-    });
-    const data = await response.json();
-
-    if (data.user) {
-      localStorage.setItem("token", data.user);
-      alert("Login successful");
-      dispatch({ type: "USER", payload: true });
-      navigate("/Dashboard");
-    } else {
-      alert("Please check your username and password");
+  useEffect(() => {
+    if (userInfo) {
+      navigate("/");
     }
-  }
-  return (
-    <div>
-      <form onSubmit={loginUser} className={Styles.formsub}>
-        <div className={Styles.h3}>
-          <h3>Login</h3>
-        </div>
-        <input
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          type="email"
-          placeholder="Email"
-          className={Styles.input}
-        />
-        <br />
-        <input
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          type="password"
-          placeholder="Password"
-          className={Styles.input}
-        />
-        <br />
-        <input type="submit" value="Login" className={Styles.button} />
-        <Link
-          style={{ textAlign: "center", display: "block", marginTop: "5px" }}
-          to={"/ForgetPassword"}
-        >
-          Forget Password
-        </Link>
-        <div className={Styles.social}>
-          <div className={Styles.go}>
-            <i class="fab fa-google"></i> Google
-          </div>
-          <div className={Styles.fb}>
-            <i class="fab fa-facebook"></i> Facebook
-          </div>
-        </div>
-      </form>
-    </div>
-  );
-};
+  }, [userInfo]);
 
-export default Login;
+  const submitHandler = (e) => {
+    e.preventDefault();
+    dispatch(login(email, password));
+  };
+
+  return (
+    <MainScreen>
+      <div className="Loginpage">
+        <form onSubmit={submitHandler} className={Styles.formsub}>
+          {error && <ErrorMessage variant="danger">{error}</ErrorMessage>}
+          {loading && <Loading />}
+          <div className={Styles.h3}>
+            <h3>Login</h3>
+          </div>
+          <input
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            type="email"
+            placeholder="Email"
+            className={Styles.input}
+          />
+          <br />
+          <input
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            type="password"
+            placeholder="Password"
+            className={Styles.input}
+          />
+          <br />
+          <input type="submit" value="Login" className={Styles.button} />
+          <Link
+            style={{ textAlign: "center", display: "block", marginTop: "5px" }}
+            to={"/ForgetPassword"}
+          >
+            Forget Password
+          </Link>
+          <br />
+          <Link
+            style={{ textAlign: "center", display: "block", marginTop: "5px" }}
+            to={"/register"}
+          >
+            become a new member
+          </Link>
+        </form>
+      </div>
+    </MainScreen>
+  );
+}
+
+export default loginpage;
