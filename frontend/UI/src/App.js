@@ -7,7 +7,7 @@ import ThankYou from "./components/thankYou";
 
 import Login from "./components/Login/login";
 import Register from "./components/Register/Register";
-import Dashboard from "./components/Home/wellcome";
+import Dashboard from "./components/Home/userHome";
 import ForgetPassword from "./components/Forgetpassword/ForgetPassword";
 import Userprofile from "./components/ProfileScreen/ProfileScreen";
 
