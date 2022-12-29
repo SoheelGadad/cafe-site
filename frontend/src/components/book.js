@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Row,
   Col,
@@ -9,21 +9,22 @@ import {
   Input,
   Button,
 } from "reactstrap";
-import { UserContext } from "../App";
 import Table from "./table";
+
+import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 export default (props) => {
   const navigate = useNavigate();
-  const { state, dispatch } = useContext(UserContext);
-  dispatch({ type: "USER", payload: true });
+  const userLogin = useSelector((state) => state.userLogin);
+  const { userInfo } = userLogin;
+
   useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (!token) {
-      dispatch({ type: "USER", payload: false });
+    if (!userInfo) {
       navigate("/login");
     }
-  }, []);
+  }, [userInfo]);
+
   const [totalTables, setTotalTables] = useState([]);
 
   // User's selections
@@ -453,9 +454,7 @@ export default (props) => {
               <Button
                 color="none"
                 className="book-table-btn"
-                onClick={(_) => {
-                  reserve();
-                }}
+                onClick="/ThankYou"
               >
                 Book Now
               </Button>

@@ -1,18 +1,19 @@
 import React, { useState, useContext, useEffect } from "react";
 import { Row, Col } from "reactstrap";
 import { useNavigate } from "react-router-dom";
-import { UserContext } from "../App";
 
+import { useSelector } from "react-redux";
 export default (_) => {
   const navigate = useNavigate();
-  const { state, dispatch } = useContext(UserContext);
+
+  const userLogin = useSelector((state) => state.userLogin);
+  const { userInfo } = userLogin;
   useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (!token) {
-      dispatch({ type: "USER", payload: false });
+    if (!userInfo) {
       navigate("/login");
     }
   }, []);
+
   return (
     <div>
       <Row noGutters className="text-center">

@@ -9,7 +9,7 @@ import MainScreen from "../../components/MainScreen";
 import Loading from "../../components/Loading";
 import ErrorMessage from "../../components/ErrorMessage";
 
-function loginpage() {
+function Loginpage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
@@ -74,4 +74,4 @@ function loginpage() {
   );
 }
 
-export default loginpage;
+export default Loginpage;

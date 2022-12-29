@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import { NavbarBrand, NavLink } from "reactstrap";
-import Nav from "react-bootstrap/Nav";
-import Navbar from "react-bootstrap/Navbar";
+import { Nav, Navbar, NavDropdown } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 
 import { logout } from "../actions/userActions";
@@ -24,9 +23,26 @@ const Headers = (setSearch) => {
         {userInfo ? (
           <>
             <NavLink href="/Book">Book A Table</NavLink>
-            <NavLink href="/userprofile">{`${userInfo.name}`}</NavLink>
+            <NavDropdown
+              title={`${userInfo.name}`}
+              id="collasible-nav-dropdown"
+            >
+              <NavDropdown.Item href="/userprofile">
+                {/* <img
+                      alt=""
+                      src={`${userInfo.pic}`}
+                      width="25"
+                      height="25"
+                      style={{ marginRight: 10 }}
+                    /> */}
+                My Profile
+              </NavDropdown.Item>
 
-            <NavLink onClick={logoutHandler}>Logout</NavLink>
+              <NavDropdown.Divider />
+              <NavDropdown.Item onClick={logoutHandler}>
+                Logout
+              </NavDropdown.Item>
+            </NavDropdown>
           </>
         ) : (
           <NavLink href="/Login">Login</NavLink>
