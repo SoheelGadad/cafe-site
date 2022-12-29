@@ -43,7 +43,6 @@ app.post("/api/login", async (req, res) => {
       _id: user._id,
       name: user.name,
       email: user.email,
-      isAdmin: user.isAdmin,
       pic: user.pic,
       token: generateToken(user._id),
     });
@@ -77,6 +76,7 @@ app.post("/api/register", async (req, res) => {
       _id: user._id,
       name: user.name,
       email: user.email,
+      pic: user.pic,
       token: generateToken(user._id),
     });
   } else {
@@ -94,6 +94,7 @@ app.post("/api/profile", async (req, res) => {
   if (user) {
     user.name = req.body.name || user.name;
     user.email = req.body.email || user.email;
+    user.pic = req.body.pic || user.pic;
     if (req.body.password) {
       user.password = req.body.password;
     }
@@ -104,6 +105,7 @@ app.post("/api/profile", async (req, res) => {
       _id: updatedUser._id,
       name: updatedUser.name,
       email: updatedUser.email,
+      pic: updatedUser.pic,
       token: generateToken(updatedUser._id),
     });
   } else {

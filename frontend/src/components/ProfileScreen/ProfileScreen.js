@@ -7,11 +7,17 @@ import { updateProfile } from "../../actions/userActions";
 import Loading from "../../components/Loading";
 import ErrorMessage from "../../components/ErrorMessage";
 
+import { useNavigate } from "react-router-dom";
+
 const ProfileScreen = ({ location, history }) => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
+  const [pic, setPic] = useState();
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [picMessage, setPicMessage] = useState();
 
+  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const userLogin = useSelector((state) => state.userLogin);
@@ -22,17 +28,40 @@ const ProfileScreen = ({ location, history }) => {
 
   useEffect(() => {
     if (!userInfo) {
-      history.push("/");
+      navigate("/");
     } else {
       setName(userInfo.name);
       setEmail(userInfo.email);
+      setPic(userInfo.pic);
     }
   }, [history, userInfo]);
-
+  const postDetails = (pics) => {
+    setPicMessage(null);
+    if (pics.type === "image/jpeg" || pics.type === "image/png") {
+      const data = new FormData();
+      data.append("file", pics);
+      data.append("upload_preset", "cafewesite");
+      data.append("cloud_name", " soheelgadad");
+      fetch("https://api.cloudinary.com/v1_1/soheelgadad/image/upload/", {
+        method: "post",
+        body: data,
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          setPic(data.url.toString());
+          console.log(pic);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else {
+      return setPicMessage("Please Select an Image");
+    }
+  };
   const submitHandler = (e) => {
     e.preventDefault();
 
-    dispatch(updateProfile({ name, email, password }));
+    dispatch(updateProfile({ name, email, password, pic }));
   };
 
   return (
@@ -75,7 +104,36 @@ const ProfileScreen = ({ location, history }) => {
                   onChange={(e) => setPassword(e.target.value)}
                 ></Form.Control>
               </Form.Group>
-
+              <Form.Group controlId="confirmPassword">
+                <Form.Label>Confirm Password</Form.Label>
+                <Form.Control
+                  type="password"
+                  placeholder="Confirm Password"
+                  value={confirmPassword}
+                  onChange={(e) => setConfirmPassword(e.target.value)}
+                ></Form.Control>
+              </Form.Group>{" "}
+              {picMessage && (
+                <ErrorMessage variant="danger">{picMessage}</ErrorMessage>
+              )}
+              <Form.Group controlId="pic">
+                <Form.Label>Change Profile Picture</Form.Label>
+                <Form.Group
+                  onChange={(e) => postDetails(e.target.files[0])}
+                  id="custom-file"
+                  type="file"
+                  label="Upload Profile Picture"
+                  custom
+                />
+              </Form.Group>
+              <Form.Group controlId="formFileMultiple" className="mb-3">
+                <Form.Label>Multiple files input example</Form.Label>
+                <Form.Control
+                  type="file"
+                  onChange={(e) => postDetails(e.target.files[0])}
+                  multiple
+                />
+              </Form.Group>
               <Button type="submit" varient="primary">
                 Update
               </Button>

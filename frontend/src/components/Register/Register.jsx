@@ -23,7 +23,7 @@ function Registerpage() {
 
   useEffect(() => {
     if (userInfo) {
-      navigate("/");
+      navigate("/Login");
 
       //history.push("/");
     }
