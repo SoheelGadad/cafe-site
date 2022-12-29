@@ -1,11 +1,9 @@
 body {
   font-family: ABeeZee, sans-serif;
+  background-image: url("../images/BGHome.jpg");
+  background-size: cover;
 }
 
-.nav-brand {
-  cursor: pointer;
-  font-size: 1.5rem;
-}
 
 @media (min-width: 768px) {
   .nav-brand {

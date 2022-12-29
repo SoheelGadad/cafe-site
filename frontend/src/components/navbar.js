@@ -2,6 +2,8 @@ import React, { useEffect } from "react";
 import { NavbarBrand, NavLink } from "reactstrap";
 import { Nav, Navbar, NavDropdown } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
+import "./navbarStyle.css";
+import { Container } from "react-bootstrap";
 
 import { logout } from "../actions/userActions";
 const Headers = (setSearch) => {
@@ -18,8 +20,10 @@ const Headers = (setSearch) => {
 
   const Rendermenu = () => {
     return (
-      <Nav>
-        <NavLink href="/">Home</NavLink>
+      <Nav className="me-auto">
+        <Nav.Link className="link" href="/">
+          Home
+        </Nav.Link>
         {userInfo ? (
           <>
             <NavLink href="/Book">Book A Table</NavLink>
@@ -43,31 +47,39 @@ const Headers = (setSearch) => {
                 Logout
               </NavDropdown.Item>
             </NavDropdown>
+
+            <NavLink className="link" href="/Book">
+              Book A Table
+            </NavLink>
+            <NavLink
+              className="link"
+              href="/userprofile"
+            >{`${userInfo.name}`}</NavLink>
+
+            <NavLink className="link" onClick={logoutHandler}>
+              Logout
+            </NavLink>
           </>
         ) : (
-          <NavLink href="/Login">Login</NavLink>
+          <NavLink className="link" href="/Login">
+            Login
+          </NavLink>
         )}
       </Nav>
     );
   };
   return (
-    <div className="header">
-      <Nav>
-        <Navbar>
-          <NavbarBrand className="nav-brand">
-            <NavLink href="/">cafe shop</NavLink>
-          </NavbarBrand>
-          <Navbar.Toggle aria-controls="basic-navbar-nav" />
-          <Navbar.Collapse
-            className="justify-content-end"
-            id="responsive-navbar-nav"
-          >
-            <Rendermenu />
-          </Navbar.Collapse>
-        </Navbar>
-      </Nav>
-      <hr></hr>
-    </div>
+    <Navbar bg="dark" expand="sm">
+      <Container>
+        <NavbarBrand className="nav-brand">
+          <NavLink href="/">Cafe shop</NavLink>
+        </NavbarBrand>
+        <Navbar.Toggle className="toggle" aria-controls="basic-navbar-nav" />
+        <Navbar.Collapse id="responsive-navbar-nav">
+          <Rendermenu />
+        </Navbar.Collapse>
+      </Container>
+    </Navbar>
   );
 };
 
