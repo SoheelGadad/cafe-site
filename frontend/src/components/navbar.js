@@ -28,13 +28,13 @@ const Headers = (setSearch) => {
               id="collasible-nav-dropdown"
             >
               <NavDropdown.Item href="/userprofile">
-                {/* <img
-                      alt=""
-                      src={`${userInfo.pic}`}
-                      width="25"
-                      height="25"
-                      style={{ marginRight: 10 }}
-                    /> */}
+                <img
+                  alt=""
+                  src={`${userInfo.pic}`}
+                  width="25"
+                  height="25"
+                  style={{ marginRight: 10 }}
+                />
                 My Profile
               </NavDropdown.Item>
 

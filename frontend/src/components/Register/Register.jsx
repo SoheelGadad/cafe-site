@@ -14,7 +14,11 @@ function Registerpage() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [message, setMessage] = useState(null);
 
+  const [pic, setPic] = useState(
+    "https://cdn-icons-png.flaticon.com/512/3177/3177440.png"
+  );
   // const [cpassword, setcPassword] = useState("");
   const dispatch = useDispatch();
 
@@ -31,7 +35,7 @@ function Registerpage() {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    dispatch(register(name, email, password));
+    dispatch(register(name, email, password, pic));
   };
 
   return (
@@ -42,6 +46,8 @@ function Registerpage() {
             <h1 className={Styles.h3}>Register</h1>
 
             {error && <ErrorMessage variant="danger">{error}</ErrorMessage>}
+            {message && <ErrorMessage variant="danger">{message}</ErrorMessage>}
+
             {loading && <Loading />}
             <input
               value={name}
@@ -59,6 +65,12 @@ function Registerpage() {
               placeholder="Email"
               className={Styles.input}
               required
+            />
+            <input
+              value={pic}
+              onChange={(e) => setPic(e.target.value)}
+              type="file"
+              className={Styles.inputx}
             />
             <br />
             <input
