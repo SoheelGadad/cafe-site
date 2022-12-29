@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Styles from "./styles.module.css";
 import { useDispatch, useSelector } from "react-redux";
-
 import { useNavigate } from "react-router-dom";
 import { login } from "../../actions/userActions";
 import MainScreen from "../../components/MainScreen";

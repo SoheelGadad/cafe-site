@@ -32,11 +32,23 @@ function Home() {
                 <p className="looking-for-cafe">
                   If you're looking for morring cafe
                 </p>
-                <Button color="none" className="book-table-btn" onClick="/book">
-                  Book a Table
-                </Button>
-
-                <Button onClick="/login">Login/signup</Button>
+                {userInfo ? (
+                  <Button
+                    color="none"
+                    className="book-table-btn"
+                    onClick="/book"
+                  >
+                    Book a Table
+                  </Button>
+                ) : (
+                  <Button
+                    color="none"
+                    className="book-table-btn"
+                    onClick="/login"
+                  >
+                    Login/signup
+                  </Button>
+                )}
               </div>
             </div>
           </div>

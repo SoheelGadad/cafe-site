@@ -11,7 +11,7 @@ var User = require("./models/userModel");
 var generateToken = require("./utils/generateToken");
 // MongoDB
 var mongoose = require("mongoose");
-mongoose.connect(process.env.MONGO_URL, {
+mongoose.connect(process.env.MONGO_URI, {
   useUnifiedTopology: true,
   useNewUrlParser: true,
 });
