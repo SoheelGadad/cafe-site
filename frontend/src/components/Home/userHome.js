@@ -1,5 +1,5 @@
 import React from "react";
-
+import '../Home.css'
 import MainScreen from "../../components/MainScreen";
 import { useSelector } from "react-redux";
 

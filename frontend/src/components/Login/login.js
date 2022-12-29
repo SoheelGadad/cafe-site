@@ -1,16 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import Styles from "./styles.module.css";
 import { useDispatch, useSelector } from "react-redux";
-
 import { useNavigate } from "react-router-dom";
 import { login } from "../../actions/userActions";
-import MainScreen from "../../components/MainScreen";
+import MainScreen from "../MainScreen";
+import Loading from "../Loading";
+import ErrorMessage from "../ErrorMessage";
 
-import Loading from "../../components/Loading";
-import ErrorMessage from "../../components/ErrorMessage";
-
-function loginpage() {
+function Loginpage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
@@ -33,10 +30,10 @@ function loginpage() {
   return (
     <MainScreen>
       <div className="Loginpage">
-        <form onSubmit={submitHandler} className={Styles.formsub}>
+        <form onSubmit={submitHandler} className="formsub">
           {error && <ErrorMessage variant="danger">{error}</ErrorMessage>}
           {loading && <Loading />}
-          <div className={Styles.h3}>
+          <div className="h3">
             <h3>Login</h3>
           </div>
           <input
@@ -44,7 +41,7 @@ function loginpage() {
             onChange={(e) => setEmail(e.target.value)}
             type="email"
             placeholder="Email"
-            className={Styles.input}
+            className="input"
           />
           <br />
           <input
@@ -52,10 +49,10 @@ function loginpage() {
             onChange={(e) => setPassword(e.target.value)}
             type="password"
             placeholder="Password"
-            className={Styles.input}
+            className="input"
           />
           <br />
-          <input type="submit" value="Login" className={Styles.button} />
+          <input type="submit" value="Login" className="button" />
           <Link
             style={{ textAlign: "center", display: "block", marginTop: "5px" }}
             to={"/ForgetPassword"}
@@ -75,4 +72,4 @@ function loginpage() {
   );
 }
 
-export default loginpage;
+export default Loginpage;
