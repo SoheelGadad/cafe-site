@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import Styles from "./styles.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { login } from "../../actions/userActions";
 import MainScreen from "../../components/MainScreen";
-
 import Loading from "../../components/Loading";
 import ErrorMessage from "../../components/ErrorMessage";
+import "./styles.css";
 
 function Loginpage() {
   const [email, setEmail] = useState("");
@@ -32,10 +31,10 @@ function Loginpage() {
   return (
     <MainScreen>
       <div className="Loginpage">
-        <form onSubmit={submitHandler} className={Styles.formsub}>
+        <form onSubmit={submitHandler} className="loginpage">
           {error && <ErrorMessage variant="danger">{error}</ErrorMessage>}
           {loading && <Loading />}
-          <div className={Styles.h3}>
+          <div className="h3">
             <h3>Login</h3>
           </div>
           <input
@@ -43,7 +42,6 @@ function Loginpage() {
             onChange={(e) => setEmail(e.target.value)}
             type="email"
             placeholder="Email"
-            className={Styles.input}
           />
           <br />
           <input
@@ -51,23 +49,38 @@ function Loginpage() {
             onChange={(e) => setPassword(e.target.value)}
             type="password"
             placeholder="Password"
-            className={Styles.input}
           />
+          <div className="forgetapage">
+            <Link
+              style={{
+                color: "#fff",
+                textAlign: "right",
+                display: "block",
+                marginTop: "5px",
+              }}
+              to={"/ForgetPassword"}
+            >
+              Forget Password
+            </Link>
+          </div>
+
+          <input type="submit" value="Login" className="button" />
+
           <br />
-          <input type="submit" value="Login" className={Styles.button} />
           <Link
-            style={{ textAlign: "center", display: "block", marginTop: "5px" }}
-            to={"/ForgetPassword"}
-          >
-            Forget Password
-          </Link>
-          <br />
-          <Link
-            style={{ textAlign: "center", display: "block", marginTop: "5px" }}
+            style={{
+              textAlign: "center",
+              display: "block",
+              marginTop: "5px",
+              color: "#fff",
+            }}
             to={"/register"}
           >
             become a new member
           </Link>
+          <div className="social-icon">
+            <p>---------------or--------------</p>
+          </div>
         </form>
       </div>
     </MainScreen>

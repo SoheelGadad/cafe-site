@@ -1,17 +1,15 @@
 import React, { useState, createContext } from "react";
 import { Routes, Route } from "react-router-dom";
 import Navbar from "./components/navbar";
-import Home from "./components/home";
-import Book from "./components/book";
-import ThankYou from "./components/thankYou";
-
-import Login from "./components/Login/login";
-import Register from "./components/Register/Register";
-import Dashboard from "./components/userdashbord/Dashboard";
-import ForgetPassword from "./components/Forgetpassword/ForgetPassword";
-import Userprofile from "./components/ProfileScreen/ProfileScreen";
-
-import NewSubmit from "./components/Forgetpassword/NewSubmit";
+import Home from "./Pages/Home/home";
+import Book from "./Pages/Booktable/book";
+import ThankYou from "./Pages/Booktable/thankYou";
+import Login from "./Pages/login&Register/login";
+import Register from "./Pages/login&Register/Register";
+import ForgetPassword from "./Pages/Forgetpassword/ForgetPassword";
+import Userprofile from "./Pages/ProfileScreen/ProfileScreen";
+import NewSubmit from "./Pages/Forgetpassword/NewSubmit";
+import Footer from "./components/Footer";
 
 export const UserContext = createContext();
 
@@ -27,7 +25,6 @@ const Routing = () => {
       <Route path="/ForgetPassword" element={<ForgetPassword />} />
       <Route path="/otp" element={<NewSubmit />} />
       <Route path="/userprofile" element={<Userprofile />} />
-      <Route path="/Dashboard" element={<Dashboard />} />
     </Routes>
   );
 };
@@ -39,7 +36,10 @@ const App = () => {
     <>
       <UserContext.Provider>
         <Navbar setSearch={(s) => setSearch(s)} />
+
         <Routing />
+
+        <Footer />
       </UserContext.Provider>
     </>
   );

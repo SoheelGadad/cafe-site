@@ -1,0 +1,26 @@
+body {
+  background-color: rgb(247, 114, 13);
+}
+img {
+  transform: translateY(-10%);
+}
+.home-text {
+  width: 100%;
+  text-align: center;
+}
+.book-table-btn {
+  background-color: coral;
+  border-radius: 30px;
+  font-size: 20px;
+  font-family: "Times New Roman", Times, serif;
+  font-weight: 800;
+  color: white;
+  width: 200px;
+  height: 60px;
+  border: none;
+}
+.book-table-btn:hover {
+  background-color: greenyellow;
+  color: black;
+  transition: 0.8s;
+}
