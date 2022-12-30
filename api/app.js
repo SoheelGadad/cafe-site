@@ -9,9 +9,11 @@ var bcrypt = require("bcryptjs");
 var User = require("./models/userModel");
 //import asyncHandler from "express-async-handler";
 var generateToken = require("./utils/generateToken");
+
+var { protect } = require("./middleware/authMiddleware.js");
 // MongoDB
 var mongoose = require("mongoose");
-mongoose.connect(process.env.MONGO_URI, {
+mongoose.connect(process.env.MONGO_URL, {
   useUnifiedTopology: true,
   useNewUrlParser: true,
 });
@@ -28,6 +30,11 @@ app.use(cookieParser());
 // Routes
 app.use("/availability", require("./routes/availabilityRoute"));
 app.use("/reserve", require("./routes/reservationRoute"));
+
+//app.use("/api/login", require("./Controller/User"));
+//app.use("/api/register", require("./Controller/User"));
+//app.use("/api/profile", require("./Controller/User"));
+//app.use("/api/login", require("./Controller/User"));
 
 //login---------------------------------------------
 
@@ -88,7 +95,7 @@ app.post("/api/register", async (req, res) => {
 // @desc    GET user profile
 // @access  Private
 
-app.post("/api/profile", async (req, res) => {
+app.post("/api/profile", protect, async (req, res) => {
   const user = await User.findById(req.user._id);
 
   if (user) {
@@ -105,6 +112,7 @@ app.post("/api/profile", async (req, res) => {
       _id: updatedUser._id,
       name: updatedUser.name,
       email: updatedUser.email,
+
       pic: updatedUser.pic,
       token: generateToken(updatedUser._id),
     });
