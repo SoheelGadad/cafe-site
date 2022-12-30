@@ -16,10 +16,7 @@ function Registerpage() {
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState(null);
 
-  const [pic, setPic] = useState(
-    "https://cdn-icons-png.flaticon.com/512/3177/3177440.png"
-  );
-  // const [cpassword, setcPassword] = useState("");
+  const [confirmpassword, setConfirmPassword] = useState("");
   const dispatch = useDispatch();
 
   const userRegister = useSelector((state) => state.userRegister);
@@ -28,14 +25,14 @@ function Registerpage() {
   useEffect(() => {
     if (userInfo) {
       navigate("/Login");
-
-      //history.push("/");
     }
-  }, [userInfo]);
+  }, [navigate, userInfo]);
 
   const submitHandler = (e) => {
     e.preventDefault();
-    dispatch(register(name, email, password, pic));
+    if (password !== confirmpassword) {
+      setMessage("Passwords do not match");
+    } else dispatch(register(name, email, password));
   };
 
   return (
@@ -44,7 +41,6 @@ function Registerpage() {
         <div className="container">
           <form onSubmit={submitHandler} className={Styles.formsub}>
             <h1 className={Styles.h3}>Register</h1>
-
             {error && <ErrorMessage variant="danger">{error}</ErrorMessage>}
             {message && <ErrorMessage variant="danger">{message}</ErrorMessage>}
 
@@ -66,16 +62,17 @@ function Registerpage() {
               className={Styles.input}
               required
             />
-            <input
-              value={pic}
-              onChange={(e) => setPic(e.target.value)}
-              type="file"
-              className={Styles.inputx}
-            />
             <br />
             <input
               value={password}
               onChange={(e) => setPassword(e.target.value)}
+              type="password"
+              placeholder="Password"
+              className={Styles.input}
+            />
+            <input
+              value={confirmpassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
               type="password"
               placeholder="Password"
               className={Styles.input}
