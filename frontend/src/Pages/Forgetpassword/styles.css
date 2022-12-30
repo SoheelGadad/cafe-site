@@ -29,17 +29,23 @@ input {
   display: block;
   height: 50px;
   width: 100%;
-  background-color: rgba(255, 255, 255, 0.07);
   border-radius: 3px;
   padding: 0 10px;
   margin-top: 8px;
   font-size: 14px;
   font-weight: 300;
+  background-color: rgb(245 239 239 / 64%);
 }
 ::placeholder {
   color: #000000;
 }
-button {
+input:hover {
+  border-style: solid;
+  border-radius: 5px;
+  color: #fffcfc;
+  border-color: #000000;
+}
+.button {
   margin-top: 50px;
   width: 100%;
   background-color: #1f1919;
@@ -50,7 +56,22 @@ button {
   border-radius: 5px;
   cursor: pointer;
 }
-button:hover {
+.button:hover {
   background-color: #ffffff;
   color: #080710;
+}
+.subnode {
+  text-align: center;
+  display: block;
+  margin-top: 5px;
+  color: #fdfdfd;
+}
+
+.subnode a:hover {
+  color: #ffffff;
+}
+.social-icon p {
+  text-align: center;
+  font-size: 25px;
+  color: #ffffff;
 }

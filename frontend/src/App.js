@@ -9,6 +9,7 @@ import Register from "./Pages/login&Register/Register";
 import ForgetPassword from "./Pages/Forgetpassword/ForgetPassword";
 import Userprofile from "./Pages/ProfileScreen/ProfileScreen";
 import NewSubmit from "./Pages/Forgetpassword/NewSubmit";
+import Footer from "./components/Footer";
 
 export const UserContext = createContext();
 
@@ -35,7 +36,10 @@ const App = () => {
     <>
       <UserContext.Provider>
         <Navbar setSearch={(s) => setSearch(s)} />
+
         <Routing />
+
+        <Footer />
       </UserContext.Provider>
     </>
   );

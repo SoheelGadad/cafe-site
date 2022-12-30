@@ -4,7 +4,6 @@ body {
   background-size: cover;
 }
 
-
 @media (min-width: 768px) {
   .nav-brand {
     font-size: 1.8rem;
@@ -285,4 +284,21 @@ section {
   font-size: 4rem;
   font-weight: 700;
   margin-bottom: 1rem;
+}
+footer {
+  color: aliceblue;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: auto;
+  padding-top: 40px;
+}
+.footer-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
 }

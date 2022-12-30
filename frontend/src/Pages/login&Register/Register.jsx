@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import MainScreen from "../../components/MainScreen";
 import Loading from "../../components/Loading";
 import ErrorMessage from "../../components/ErrorMessage";
-import "./Login&Register.css";
+import "./styles.css";
 
 function Registerpage() {
   const navigate = useNavigate();
@@ -28,9 +28,7 @@ function Registerpage() {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    if (password !== confirmpassword) {
-      setMessage("Passwords do not match");
-    } else dispatch(register(name, email, password));
+    dispatch(register(name, email, password));
   };
 
   return (
@@ -64,23 +62,13 @@ function Registerpage() {
             type="password"
             placeholder="Password"
           />
-          <br />
-          <input
-            value={confirmpassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}
-            type="password"
-            placeholder="ConfirmPassword"
-          />
-          <br />
+
           <input type="submit" value="Register" className="button" />
-          <div
-            style={{
-              textAlign: "center",
-              display: "block",
-              marginTop: "5px",
-            }}
-          >
+          <div className="subnode">
             Already have an account?<a href="/Login">Sign In.</a>
+          </div>
+          <div className="social-icon">
+            <p>---------------or--------------</p>
           </div>
         </form>
       </div>

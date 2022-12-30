@@ -6,7 +6,7 @@ import { login } from "../../actions/userActions";
 import MainScreen from "../../components/MainScreen";
 import Loading from "../../components/Loading";
 import ErrorMessage from "../../components/ErrorMessage";
-import "./Login&Register.css";
+import "./styles.css";
 
 function Loginpage() {
   const [email, setEmail] = useState("");
@@ -50,21 +50,37 @@ function Loginpage() {
             type="password"
             placeholder="Password"
           />
-          <br />
+          <div className="forgetapage">
+            <Link
+              style={{
+                color: "#fff",
+                textAlign: "right",
+                display: "block",
+                marginTop: "5px",
+              }}
+              to={"/ForgetPassword"}
+            >
+              Forget Password
+            </Link>
+          </div>
+
           <input type="submit" value="Login" className="button" />
-          <Link
-            style={{ textAlign: "center", display: "block", marginTop: "5px" }}
-            to={"/ForgetPassword"}
-          >
-            Forget Password
-          </Link>
+
           <br />
           <Link
-            style={{ textAlign: "center", display: "block", marginTop: "5px" }}
+            style={{
+              textAlign: "center",
+              display: "block",
+              marginTop: "5px",
+              color: "#fff",
+            }}
             to={"/register"}
           >
             become a new member
           </Link>
+          <div className="social-icon">
+            <p>---------------or--------------</p>
+          </div>
         </form>
       </div>
     </MainScreen>
