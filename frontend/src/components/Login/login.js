@@ -5,9 +5,6 @@ import { useNavigate } from "react-router-dom";
 import { login } from "../../actions/userActions";
 import MainScreen from "../MainScreen";
 import Loading from "../Loading";
-import ErrorMessage from "../ErrorMessage";
-
-import Loading from "../../components/Loading";
 import ErrorMessage from "../../components/ErrorMessage";
 
 function Loginpage() {
