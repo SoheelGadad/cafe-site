@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
-
+import { Button } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import MainScreen from "./MainScreen";
-import './Home.css'
+import MainScreen from "../../components/MainScreen";
+import "./Home.css";
 
 function Home() {
   const navigate = useNavigate();
@@ -46,9 +46,6 @@ function Home() {
                     Login/signup
                   </Button>
                 )}
-                <button className="btnReg" onClick="/register">
-                  Signup
-                </button>
               </div>
             </div>
           </div>

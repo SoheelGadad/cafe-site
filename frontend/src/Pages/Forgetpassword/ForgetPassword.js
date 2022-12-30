@@ -1,7 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import styles from "./styles.module.css";
 
 function ForgetPassword() {
   const navigate = useNavigate();
@@ -29,23 +28,18 @@ function ForgetPassword() {
   return (
     <>
       <div>
-        <form onSubmit={handleSubmit} className={styles.formsub}>
-          <div className={styles.h3}>Forget Password</div>
+        <form onSubmit={handleSubmit}>
+          <h3>Forget Password</h3>
           <br />
           <input
             value={email}
             onChange={(e) => {
               setEmail(e.target.value);
             }}
-            className={styles.input}
             type="email"
             placeholder="Email"
           />
-          <input
-            type="submit"
-            value="Forget Password"
-            className={styles.button}
-          />
+          <input type="submit" value="Forget Password" className="button" />
         </form>
       </div>
     </>

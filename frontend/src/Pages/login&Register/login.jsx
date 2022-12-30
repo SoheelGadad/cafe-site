@@ -3,9 +3,10 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { login } from "../../actions/userActions";
-import MainScreen from "../MainScreen";
-import Loading from "../Loading";
+import MainScreen from "../../components/MainScreen";
+import Loading from "../../components/Loading";
 import ErrorMessage from "../../components/ErrorMessage";
+import "./Login&Register.css";
 
 function Loginpage() {
   const [email, setEmail] = useState("");
@@ -30,7 +31,7 @@ function Loginpage() {
   return (
     <MainScreen>
       <div className="Loginpage">
-        <form onSubmit={submitHandler} className="formsub">
+        <form onSubmit={submitHandler} className="loginpage">
           {error && <ErrorMessage variant="danger">{error}</ErrorMessage>}
           {loading && <Loading />}
           <div className="h3">
@@ -41,7 +42,6 @@ function Loginpage() {
             onChange={(e) => setEmail(e.target.value)}
             type="email"
             placeholder="Email"
-            className="input"
           />
           <br />
           <input
@@ -49,7 +49,6 @@ function Loginpage() {
             onChange={(e) => setPassword(e.target.value)}
             type="password"
             placeholder="Password"
-            className="input"
           />
           <br />
           <input type="submit" value="Login" className="button" />

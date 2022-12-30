@@ -18,7 +18,7 @@ export default (_) => {
     <div>
       <Row noGutters className="text-center">
         <Col>
-          <img alt="thankyou" src={require("../images/verified.gif")} />
+          <img alt="thankyou" src={require("../../images/verified.gif")} />
           <p className="thanks-header">Thank You!</p>
           <i className="fas fa-pizza-slice thank-you-pizza"></i>
           <p className="thanks-subtext">
