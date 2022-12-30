@@ -69,7 +69,7 @@ function Registerpage() {
             <input
               value={pic}
               onChange={(e) => setPic(e.target.value)}
-              type="file"
+              type="image"
               className={Styles.inputx}
             />
             <br />
