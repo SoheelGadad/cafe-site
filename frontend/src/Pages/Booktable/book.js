@@ -454,7 +454,9 @@ export default (props) => {
               <Button
                 color="none"
                 className="book-table-btn"
-                onClick="/ThankYou"
+                onClick={(_) => {
+                  reserve();
+                }}
               >
                 Book Now
               </Button>

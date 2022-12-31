@@ -4,8 +4,6 @@ var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 var cors = require("cors");
-var jwt = require("jsonwebtoken");
-var bcrypt = require("bcryptjs");
 var User = require("./models/userModel");
 //import asyncHandler from "express-async-handler";
 var generateToken = require("./utils/generateToken");
