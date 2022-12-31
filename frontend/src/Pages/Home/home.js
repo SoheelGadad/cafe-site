@@ -15,7 +15,7 @@ function Home() {
       // history.push("/Dashboard");
       navigate("/");
     }
-  }, [userInfo]);
+  }, [navigate, userInfo]);
 
   return (
     <MainScreen>
@@ -30,19 +30,11 @@ function Home() {
                 </p>
 
                 {userInfo ? (
-                  <Button
-                    color="none"
-                    className="book-table-btn"
-                    onClick="/book"
-                  >
+                  <Button color="none" className="book-table-btn" href="/Book">
                     Book a Table
                   </Button>
                 ) : (
-                  <Button
-                    color="none"
-                    className="book-table-btn"
-                    onClick="/login"
-                  >
+                  <Button color="none" className="book-table-btn" href="/Login">
                     Login/signup
                   </Button>
                 )}

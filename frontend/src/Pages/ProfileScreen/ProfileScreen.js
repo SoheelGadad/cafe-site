@@ -66,7 +66,7 @@ const ProfileScreen = () => {
   };
 
   return (
-    <MainScreen title="EDIT PROFILE">
+    <MainScreen>
       <div>
         <Row className="profileContainer">
           <Col md={6}>
@@ -78,6 +78,7 @@ const ProfileScreen = () => {
                 </ErrorMessage>
               )}
               {error && <ErrorMessage variant="danger">{error}</ErrorMessage>}
+              <h1>EDIT PROFILE</h1>
               <Form.Group controlId="name">
                 <Form.Label>Name</Form.Label>
                 <Form.Control

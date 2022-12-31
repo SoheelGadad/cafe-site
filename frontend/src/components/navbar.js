@@ -26,10 +26,13 @@ const Headers = (setSearch) => {
         </Nav.Link>
         {userInfo ? (
           <>
-            <NavLink href="/Book">Book A Table</NavLink>
+            <NavLink href="/Book" className="link">
+              Book A Table
+            </NavLink>
             <NavDropdown
               title={`${userInfo.name}`}
               id="collasible-nav-dropdown"
+              className="link"
             >
               <NavDropdown.Item href="/userprofile">
                 <img
@@ -47,18 +50,6 @@ const Headers = (setSearch) => {
                 Logout
               </NavDropdown.Item>
             </NavDropdown>
-
-            <NavLink className="link" href="/Book">
-              Book A Table
-            </NavLink>
-            <NavLink
-              className="link"
-              href="/userprofile"
-            >{`${userInfo.name}`}</NavLink>
-
-            <NavLink className="link" onClick={logoutHandler}>
-              Logout
-            </NavLink>
           </>
         ) : (
           <NavLink className="link" href="/Login">
