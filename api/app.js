@@ -5,9 +5,9 @@ var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 var cors = require("cors");
 var User = require("./models/userModel");
-//import asyncHandler from "express-async-handler";
 var generateToken = require("./utils/generateToken");
 
+//var { errorHandler, notFound } = require("./middleware/errorMiddleware");
 var { protect } = require("./middleware/authMiddleware.js");
 // MongoDB
 var mongoose = require("mongoose");
@@ -25,14 +25,11 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
+//app.use(notFound);
+//app.use(errorHandler);
 // Routes
 app.use("/availability", require("./routes/availabilityRoute"));
 app.use("/reserve", require("./routes/reservationRoute"));
-
-//app.use("/api/login", require("./Controller/User"));
-//app.use("/api/register", require("./Controller/User"));
-//app.use("/api/profile", require("./Controller/User"));
-//app.use("/api/login", require("./Controller/User"));
 
 //login---------------------------------------------
 
