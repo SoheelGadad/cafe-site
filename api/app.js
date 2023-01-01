@@ -1,21 +1,22 @@
 require("dotenv").config();
-var express = require("express");
-var path = require("path");
-var cookieParser = require("cookie-parser");
-var logger = require("morgan");
-var cors = require("cors");
-var User = require("./models/userModel");
-var generateToken = require("./utils/generateToken");
+const express = require("express");
+const path = require("path");
+const cookieParser = require("cookie-parser");
+const logger = require("morgan");
+const cors = require("cors");
+const User = require("./models/userModel");
+const generateToken = require("./utils/generateToken");
 
 //var { errorHandler, notFound } = require("./middleware/errorMiddleware");
-var { protect } = require("./middleware/authMiddleware.js");
+
+const { protect } = require("./middleware/authMiddleware.js");
 // MongoDB
-var mongoose = require("mongoose");
+const mongoose = require("mongoose");
 mongoose.connect(process.env.MONGO_URL, {
   useUnifiedTopology: true,
   useNewUrlParser: true,
 });
-var db = mongoose.connection;
+const db = mongoose.connection;
 
 // Express
 var app = express();
