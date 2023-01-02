@@ -7,12 +7,12 @@ const cors = require("cors");
 const User = require("./models/userModel");
 const generateToken = require("./utils/generateToken");
 
-//var { errorHandler, notFound } = require("./middleware/errorMiddleware");
+var { errorHandler } = require("./middleware/errorMiddleware");
 
 const { protect } = require("./middleware/authMiddleware.js");
 // MongoDB
 const mongoose = require("mongoose");
-mongoose.connect(process.env.MONGO_URL, {
+mongoose.connect(process.env.MONGO_URI, {
   useUnifiedTopology: true,
   useNewUrlParser: true,
 });
@@ -27,7 +27,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 //app.use(notFound);
-//app.use(errorHandler);
+app.use(errorHandler);
 // Routes
 app.use("/availability", require("./routes/availabilityRoute"));
 app.use("/reserve", require("./routes/reservationRoute"));

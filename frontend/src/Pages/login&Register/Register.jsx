@@ -4,6 +4,7 @@ import { register } from "../../actions/userActions";
 import { useDispatch, useSelector } from "react-redux";
 import MainScreen from "../../components/MainScreen";
 import Loading from "../../components/Loading";
+
 import ErrorMessage from "../../components/ErrorMessage";
 import "./styles.css";
 
@@ -28,7 +29,9 @@ function Registerpage() {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    dispatch(register(name, email, password));
+    if (password.length >= 8) {
+      setMessage("Passwords should be 8ch");
+    } else dispatch(register(name, email, password));
   };
 
   return (
