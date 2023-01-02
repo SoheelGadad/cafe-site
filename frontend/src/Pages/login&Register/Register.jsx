@@ -15,7 +15,7 @@ function Registerpage() {
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState(null);
 
-  const [confirmpassword, setConfirmPassword] = useState("");
+  // const [confirmpassword, setConfirmPassword] = useState("");
   const dispatch = useDispatch();
 
   const userRegister = useSelector((state) => state.userRegister);
