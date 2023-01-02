@@ -35,7 +35,7 @@ function Loginpage() {
           {error && <ErrorMessage variant="danger">{error}</ErrorMessage>}
           {loading && <Loading />}
           <div className="h3">
-            <h3>Login</h3>
+            <h1>Login</h1>
           </div>
           <input
             value={email}
@@ -76,7 +76,7 @@ function Loginpage() {
             }}
             to={"/register"}
           >
-            become a new member
+            Become a new member
           </Link>
           <div className="social-icon">
             <p>---------------or--------------</p>

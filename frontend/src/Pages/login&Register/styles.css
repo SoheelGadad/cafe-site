@@ -2,15 +2,16 @@
   height: 520px;
   width: 400px;
   margin-top: 105px;
-  background-color: rgba(255, 255, 255, 0.13);
+  background-color: rgba(255, 255, 255, 0.9);
   position: absolute;
   transform: translate(-50%, -50%);
   top: 50%;
   left: 50%;
   border-radius: 10px;
   border: 2px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);
+  box-shadow: 0 0 40px rgba(8, 7, 16, 0.9);
   padding: 50px 35px;
+  
 }
 form * {
   font-family: "Poppins", sans-serif;
@@ -19,9 +20,10 @@ form * {
   outline: none;
   border: none;
 }
-h3 {
+h1 {
   font-size: 32px;
-  font-weight: 500;
+  font-weight: 700;
+  font-family: 'Times New Roman', Times, serif;
   line-height: 42px;
   text-align: center;
 }
@@ -29,22 +31,14 @@ input {
   display: block;
   height: 50px;
   width: 100%;
+  color: #000000;
   border-radius: 3px;
   padding: 0 10px;
   margin-top: 8px;
   font-size: 14px;
   font-weight: 300;
-  background-color: rgb(245 239 239 / 64%);
 }
-::placeholder {
-  color: #000000;
-}
-input:hover {
-  border-style: solid;
-  border-radius: 5px;
-  color: #fffcfc;
-  border-color: #000000;
-}
+
 .button {
   margin-top: 50px;
   width: 100%;
@@ -68,7 +62,7 @@ input:hover {
 }
 
 .subnode a:hover {
-  color: #ffffff;
+  color: #0f0e0e;
 }
 .social-icon p {
   text-align: center;

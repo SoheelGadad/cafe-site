@@ -34,8 +34,8 @@ function Home() {
                     Book a Table
                   </Button>
                 ) : (
-                  <Button color="none" className="book-table-btn" href="/Login">
-                    Login/signup
+                  <Button color="none" className="book-table-btn" href="/login">
+                    Signup
                   </Button>
                 )}
               </div>
