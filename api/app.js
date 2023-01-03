@@ -7,7 +7,10 @@ var cors = require("cors");
 var jwt = require("jsonwebtoken");
 var bcrypt = require("bcryptjs");
 var User = require("./models/userModel");
+//import asyncHandler from "express-async-handler";
 var generateToken = require("./utils/generateToken");
+
+var { protect } = require("./middleware/authMiddleware.js");
 // MongoDB
 var mongoose = require("mongoose");
 mongoose.connect(process.env.MONGO_URL, {
@@ -28,85 +31,98 @@ app.use(cookieParser());
 app.use("/availability", require("./routes/availabilityRoute"));
 app.use("/reserve", require("./routes/reservationRoute"));
 
-//controller
+//app.use("/api/login", require("./Controller/User"));
+//app.use("/api/register", require("./Controller/User"));
+//app.use("/api/profile", require("./Controller/User"));
+//app.use("/api/login", require("./Controller/User"));
 
-//register Api
-app.post("/api/register", async (req, res) => {
-  console.log(req.body);
-  try {
-    const newPassword = await bcrypt.hash(req.body.password, 10);
-    await User.create({
-      name: req.body.name,
-      email: req.body.email,
-      password: newPassword,
+//login---------------------------------------------
+
+//@description     Register new user
+//@access          Public
+app.post("/api/login", async (req, res) => {
+  const { email, password } = req.body;
+
+  const user = await User.findOne({ email });
+
+  if (user && (await user.matchPassword(password))) {
+    res.json({
+      _id: user._id,
+      name: user.name,
+      email: user.email,
+      pic: user.pic,
+      token: generateToken(user._id),
     });
-    res.json({ status: "ok" });
-  } catch (err) {
-    res.json({ status: "error", error: "Duplicate email" });
+  } else {
+    res.status(401);
+    throw new Error("Invalid Email or Password");
   }
 });
 
-//login page Api
-app.post("/api/login", async (req, res) => {
-  const user = await User.findOne({
-    email: req.body.email,
+//@description     Register new user
+//@access          Public
+app.post("/api/register", async (req, res) => {
+  const { name, email, password, pic } = req.body;
+
+  const userExists = await User.findOne({ email });
+
+  if (userExists) {
+    res.status(404);
+    throw new Error("User already exists");
+  }
+
+  const user = await User.create({
+    name,
+    email,
+    password,
+    pic,
   });
 
-  if (!user) {
-    return { status: "error", error: "Invalid login" };
-  }
-
-  const isPasswordValid = await bcrypt.compare(
-    req.body.password,
-    user.password
-  );
-
-  if (isPasswordValid) {
-    const token = jwt.sign(
-      {
-        name: user.name,
-        email: user.email,
-      },
-      "secret123"
-    );
-
-    return res.json({ status: "ok", user: token });
+  if (user) {
+    res.status(201).json({
+      _id: user._id,
+      name: user.name,
+      email: user.email,
+      pic: user.pic,
+      token: generateToken(user._id),
+    });
   } else {
-    return res.json({ status: "error", user: false });
+    res.status(400);
+    throw new Error("User not found");
   }
 });
 
-//Homepage after login Api
-app.get("/api/Home", async (req, res) => {
-  const token = req.headers["x-access-token"];
+// @desc    GET user profile
+// @access  Private
 
-  try {
-    const decoded = jwt.verify(token, "secret123");
-    const email = decoded.email;
-    const user = await User.findOne({ email: email });
+app.post("/api/profile", protect, async (req, res) => {
+  const user = await User.findById(req.user._id);
 
-    return res.json({ status: "ok", quote: user.quote });
-  } catch (error) {
-    console.log(error);
-    res.json({ status: "error", error: "invalid token" });
+  if (user) {
+    user.name = req.body.name || user.name;
+    user.email = req.body.email || user.email;
+    user.pic = req.body.pic || user.pic;
+    if (req.body.password) {
+      user.password = req.body.password;
+    }
+
+    const updatedUser = await user.save();
+
+    res.json({
+      _id: updatedUser._id,
+      name: updatedUser.name,
+      email: updatedUser.email,
+
+      pic: updatedUser.pic,
+      token: generateToken(updatedUser._id),
+    });
+  } else {
+    res.status(404);
+    throw new Error("User Not Found");
   }
 });
 
-app.post("/api/Home", async (req, res) => {
-  const token = req.headers["x-access-token"];
-
-  try {
-    const decoded = jwt.verify(token, "secret123");
-    const email = decoded.email;
-    await User.updateOne({ email: email }, { $set: { quote: req.body.quote } });
-
-    return res.json({ status: "ok" });
-  } catch (error) {
-    console.log(error);
-    res.json({ status: "error", error: "invalid token" });
-  }
-});
-
+//----------------------------------------------------------
 db.on("error", console.error.bind(console, "connection error:"));
 db.once("open", (_) => {
   console.log("Connected to DB");
