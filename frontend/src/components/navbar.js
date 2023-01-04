@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import { NavDropdown } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import "./navbarStyle.css";
 
 import { logout } from "../actions/userActions";
 const Headers = (setSearch) => {
@@ -27,7 +26,7 @@ const Headers = (setSearch) => {
       <ul className={click ? "nav-menu active" : "nav-menu"}>
         <li className="nav-item">
           <NavLink
-            href="/"
+            to="/"
             activeClassName="active"
             className="nav-links"
             onClick={click ? handleClick : null}
@@ -41,20 +40,21 @@ const Headers = (setSearch) => {
           <>
             <li className="nav-item">
               <NavLink
-                href="/Book"
+                to="/Book"
                 activeClassName="active"
                 className="nav-links"
                 onClick={click ? handleClick : null}
               >
+                <i className="fa fa-calendar-check-o"></i>
                 Book A Table
               </NavLink>
             </li>
             <NavDropdown
               title={`${userInfo.name}`}
               id="collasible-nav-dropdown"
-              className="link"
+              className="navdrop"
             >
-              <NavDropdown.Item href="/userprofile" className="li">
+              <NavDropdown.Item href="/userprofile">
                 <img
                   alt=""
                   src={`${userInfo.pic}`}
@@ -66,39 +66,44 @@ const Headers = (setSearch) => {
               </NavDropdown.Item>
 
               <NavDropdown.Divider />
-              <li className="nav-item">
+              <li className="nav-logout">
                 <NavLink
                   activeClassName="active"
-                  className="nav-links"
+                  className="nav-linkslogout"
                   onClick={logoutHandler}
                 >
+                  <i className="fa fa-sign-out"></i>
                   Logout
                 </NavLink>
               </li>
             </NavDropdown>
           </>
         ) : (
-          <li className="nav-item">
-            <NavLink
-              href="/Login"
-              activeClassName="active"
-              className="nav-links"
-              onClick={click ? handleClick : null}
-            >
-              Login
-            </NavLink>
-          </li>
+          <>
+            <li className="nav-item">
+              <NavLink
+                to="#"
+                activeClassName="active"
+                className="nav-links"
+                onClick={click ? handleClick : null}
+              >
+                <i class="fa fa-info-circle"></i>
+                About
+              </NavLink>
+            </li>
+            <li className="nav-item">
+              <NavLink
+                to="/Login"
+                activeClassName="active"
+                className="nav-links"
+                onClick={click ? handleClick : null}
+              >
+                <i className="fa fa-sign-in"></i>
+                Login
+              </NavLink>
+            </li>
+          </>
         )}
-        <li className="nav-item">
-          <NavLink
-            href="#"
-            activeClassName="active"
-            className="nav-links"
-            onClick={click ? handleClick : null}
-          >
-            about
-          </NavLink>
-        </li>
       </ul>
     );
   };

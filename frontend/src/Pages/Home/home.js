@@ -21,9 +21,10 @@ function Home() {
     <MainScreen>
       <div>
         <section class="mainphoto"></section>
+
         <div class="title">
           <h1>CafeERA</h1>
-          <p className="subtitle">If you're looking for morring cafe</p>
+          <sub className="subtitle">If you're looking for morring cafe</sub>
           {userInfo ? (
             <Button color="none" className="book-table-btn" href="/Book">
               Book a Table
