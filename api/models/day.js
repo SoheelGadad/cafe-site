@@ -3,8 +3,9 @@ const tableSchema = require("./table").schema;
 
 var daySchema = new mongoose.Schema({
   date: Date,
-  tables: [tableSchema]
+  tables: [tableSchema],
 });
+
 var Day = mongoose.model("Day", daySchema);
 
 module.exports.model = Day;

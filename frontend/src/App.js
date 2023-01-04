@@ -10,6 +10,7 @@ import ForgetPassword from "./Pages/Forgetpassword/ForgetPassword";
 import Userprofile from "./Pages/ProfileScreen/ProfileScreen";
 import NewSubmit from "./Pages/Forgetpassword/NewSubmit";
 import Footer from "./components/Footer";
+import AboutUs from "./Pages/Aboutuspage/Aboutus";
 
 export const UserContext = createContext();
 
@@ -20,11 +21,12 @@ const Routing = () => {
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
       <Route path="/Book" element={<Book />} />
-      <Route path="/ThankYou" element={<ThankYou />} />
+      <Route path="/UserHome" element={<ThankYou />} />
 
       <Route path="/ForgetPassword" element={<ForgetPassword />} />
       <Route path="/otp" element={<NewSubmit />} />
       <Route path="/userprofile" element={<Userprofile />} />
+      <Route path="/aboutus" element={<AboutUs />} />
     </Routes>
   );
 };
@@ -36,9 +38,9 @@ const App = () => {
     <>
       <UserContext.Provider>
         <Navbar setSearch={(s) => setSearch(s)} />
-
+        <br />
         <Routing />
-
+        <br />
         <Footer />
       </UserContext.Provider>
     </>

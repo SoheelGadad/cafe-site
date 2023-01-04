@@ -1,23 +1,22 @@
 require("dotenv").config();
-var express = require("express");
-var path = require("path");
-var cookieParser = require("cookie-parser");
-var logger = require("morgan");
-var cors = require("cors");
-var jwt = require("jsonwebtoken");
-var bcrypt = require("bcryptjs");
-var User = require("./models/userModel");
-//import asyncHandler from "express-async-handler";
-var generateToken = require("./utils/generateToken");
+const express = require("express");
+const path = require("path");
+const cookieParser = require("cookie-parser");
+const logger = require("morgan");
+const cors = require("cors");
+const User = require("./models/userModel");
+const generateToken = require("./utils/generateToken");
 
-var { protect } = require("./middleware/authMiddleware.js");
+var { errorHandler } = require("./middleware/errorMiddleware");
+
+const { protect } = require("./middleware/authMiddleware.js");
 // MongoDB
-var mongoose = require("mongoose");
-mongoose.connect(process.env.MONGO_URL, {
+const mongoose = require("mongoose");
+mongoose.connect(process.env.MONGO_URI, {
   useUnifiedTopology: true,
   useNewUrlParser: true,
 });
-var db = mongoose.connection;
+const db = mongoose.connection;
 
 // Express
 var app = express();
@@ -27,14 +26,11 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
+//app.use(notFound);
+app.use(errorHandler);
 // Routes
 app.use("/availability", require("./routes/availabilityRoute"));
 app.use("/reserve", require("./routes/reservationRoute"));
-
-//app.use("/api/login", require("./Controller/User"));
-//app.use("/api/register", require("./Controller/User"));
-//app.use("/api/profile", require("./Controller/User"));
-//app.use("/api/login", require("./Controller/User"));
 
 //login---------------------------------------------
 
