@@ -37,8 +37,8 @@ function Registerpage() {
   return (
     <MainScreen>
       <div className="wrapper">
+        <h1>Create Account</h1>
         <form onSubmit={submitHandler}>
-          <h1>Register</h1>
           {error && <ErrorMessage variant="danger">{error}</ErrorMessage>}
           {message && <ErrorMessage variant="danger">{message}</ErrorMessage>}
 
@@ -69,16 +69,16 @@ function Registerpage() {
           <button type="submit" value="Register">
             Sign up
           </button>
-          <div className="subnode">
-            Already have an account?<a href="/Login">Sign In.</a>
-          </div>
           <p className="or">----- or continue with -----</p>
           <div className="icons">
-            <i className="fab fa-google"></i>
-            <i className="fab fa-github"></i>
-            <i className="fab fa-facebook"></i>
+            <i className="fa fa-google"></i>
+            <i className="fa fa-linkedin-square"></i>
+            <i className="fa fa-facebook"></i>
           </div>
         </form>
+        <div className="not-member">
+          Already a user? <a href="/Login">LOGIN</a>
+        </div>
       </div>
     </MainScreen>
   );

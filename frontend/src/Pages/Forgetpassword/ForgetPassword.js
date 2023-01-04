@@ -44,6 +44,9 @@ function ForgetPassword() {
             Forget Password
           </button>
         </form>
+        <div className="not-member">
+          Return to? <a href="/Login">LOGIN</a>
+        </div>
       </div>
     </>
   );

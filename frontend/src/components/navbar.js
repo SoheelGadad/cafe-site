@@ -82,7 +82,7 @@ const Headers = (setSearch) => {
           <>
             <li className="nav-item">
               <NavLink
-                to="#"
+                to="/aboutus"
                 activeClassName="active"
                 className="nav-links"
                 onClick={click ? handleClick : null}

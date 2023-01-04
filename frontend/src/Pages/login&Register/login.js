@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { login } from "../../actions/userActions";
@@ -21,7 +20,7 @@ function Loginpage() {
     if (userInfo) {
       navigate("/");
     }
-  }, [userInfo]);
+  }, [navigate, userInfo]);
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -54,15 +53,16 @@ function Loginpage() {
             <p class="recover">
               <a href="/ForgetPassword">Recover Password</a>
             </p>
+
+            <button type="submit" value="Login">
+              Sign in
+            </button>
           </form>
-          <button type="submit" value="Login">
-            Sign in
-          </button>
           <p className="or">----- or continue with -----</p>
           <div className="icons">
-            <i className="fab fa-google"></i>
-            <i className="fab fa-github"></i>
-            <i className="fab fa-facebook"></i>
+            <i className="fa fa-google"></i>
+            <i className="fa fa-linkedin-square"></i>
+            <i className="fa fa-facebook"></i>
           </div>
           <div className="not-member">
             Not a member? <a href="/register">Register Now</a>
