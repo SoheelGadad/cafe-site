@@ -36,9 +36,7 @@ const App = () => {
     <>
       <UserContext.Provider>
         <Navbar setSearch={(s) => setSearch(s)} />
-
         <Routing />
-
         <Footer />
       </UserContext.Provider>
     </>

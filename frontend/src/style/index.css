@@ -1,10 +1,5 @@
 body {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
   font-family: ABeeZee, sans-serif;
-  background-image: url("../images/BGHome.jpg");
-  background-size: cover;
 }
 
 @media (min-width: 768px) {
@@ -24,42 +19,6 @@ body {
   padding-bottom: 1.8%;
   padding-right: 3%;
   padding-left: 3%;
-}
-
-.book-table-btn {
-  color: white;
-  font-size: 1.2rem;
-  padding: 2% 8%;
-  border-radius: 25px;
-  background-color: #e74c3c;
-  border: 2px white solid;
-  font-family: ABeeZee, sans-serif;
-}
-.book-table-btn:hover {
-  color: #e74c3c;
-  background-color: white !important;
-  border: 2px solid black !important;
-}
-
-@media (min-width: 768px) {
-  .book-table-btn {
-    font-size: 1.4rem;
-    padding: 0.5% 5%;
-  }
-}
-.big-img-container {
-  padding: 10% 0;
-}
-
-@media (min-width: 768px) {
-  .big-img-container {
-    padding: 4% 0;
-  }
-}
-.big-img {
-  width: 96%;
-  border-radius: 25px;
-  border-bottom-left-radius: 25px;
 }
 
 .selected-table {
