@@ -8,17 +8,17 @@ for (i = 1; i < numTables; i++) {
   const chairs = Math.floor(Math.random() * 6) + 2; // 2-8 (exclusive)
   const name = `Table ${i}`;
   // const availability = [true, false][Math.round(Math.random())];
-  const location = ["Patio", "Inside", "Bar"][Math.floor(Math.random() * 3)]; // 0-3 (exclusive)
+  const location = ["Inside", "Outside"][Math.floor(Math.random() * 2)]; // 0-3 (exclusive)
   fakeTables.push({
     name: name,
     capacity: chairs,
     // isAvailable: availability,
     isAvailable: true,
-    location: location
+    location: location,
   });
 }
 
 let data = JSON.stringify({
-  tables: fakeTables
+  tables: fakeTables,
 });
 fs.writeFileSync(__dirname + "/allTables.json", data);

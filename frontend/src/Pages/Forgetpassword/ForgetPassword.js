@@ -1,7 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import "./styles.css";
+import "../pages-style/style.css";
 
 function ForgetPassword() {
   const navigate = useNavigate();
@@ -28,7 +28,7 @@ function ForgetPassword() {
 
   return (
     <>
-      <div>
+      <div className="wrapper">
         <form onSubmit={handleSubmit}>
           <h3>Forget Password</h3>
           <br />
@@ -40,8 +40,13 @@ function ForgetPassword() {
             type="email"
             placeholder="Email"
           />
-          <input type="submit" value="Forget Password" className="button" />
+          <button type="submit" value="Forget Password">
+            Forget Password
+          </button>
         </form>
+        <div className="not-member">
+          Return to? <a href="/Login">LOGIN</a>
+        </div>
       </div>
     </>
   );
