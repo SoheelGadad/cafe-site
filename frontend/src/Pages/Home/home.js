@@ -20,29 +20,21 @@ function Home() {
   return (
     <MainScreen>
       <div>
-        <div class="home swiper" id="home">
-          <div class="swiper-wrapper">
-            <div class="swiper-slide container">
-              <div class="home-text">
-                <h1>CafeERA</h1>
-                <p className="looking-for-cafe">
-                  If you're looking for morring cafe
-                </p>
+        <section class="mainphoto"></section>
 
-                {userInfo ? (
-                  <Button color="none" className="book-table-btn" href="/Book">
-                    Book a Table
-                  </Button>
-                ) : (
-                  <Button color="none" className="book-table-btn" href="/Login">
-                    Login/signup
-                  </Button>
-                )}
-              </div>
-            </div>
-          </div>
+        <div class="title">
+          <h1>CafeERA</h1>
+          <sub className="subtitle">If you're looking for morring cafe</sub>
+          {userInfo ? (
+            <Button color="none" className="book-table-btn" href="/Book">
+              Book a Table
+            </Button>
+          ) : (
+            <Button color="none" className="book-table-btn" href="/Login">
+              Login/signup
+            </Button>
+          )}
         </div>
-        <div class="swiper"></div>
       </div>
     </MainScreen>
   );

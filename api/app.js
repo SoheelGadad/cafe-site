@@ -32,6 +32,9 @@ app.use(errorHandler);
 app.use("/availability", require("./routes/availabilityRoute"));
 app.use("/reserve", require("./routes/reservationRoute"));
 
+//app.use("/api/send-otp", require("./Controller/user"));
+//app.use("/api/submit-otp", require("./Controller/User"));
+
 //login---------------------------------------------
 
 //@description     Register new user

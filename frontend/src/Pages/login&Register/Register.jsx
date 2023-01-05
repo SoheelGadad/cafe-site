@@ -6,7 +6,7 @@ import MainScreen from "../../components/MainScreen";
 import Loading from "../../components/Loading";
 
 import ErrorMessage from "../../components/ErrorMessage";
-import "./styles.css";
+import "../pages-style/style.css";
 
 function Registerpage() {
   const navigate = useNavigate();
@@ -29,16 +29,16 @@ function Registerpage() {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    if (password.length >= 8) {
+    if (password.length <= 8) {
       setMessage("Passwords should be 8ch");
     } else dispatch(register(name, email, password));
   };
 
   return (
     <MainScreen>
-      <div className="register">
+      <div className="wrapper">
+        <h1>Create Account</h1>
         <form onSubmit={submitHandler}>
-          <h1>Register</h1>
           {error && <ErrorMessage variant="danger">{error}</ErrorMessage>}
           {message && <ErrorMessage variant="danger">{message}</ErrorMessage>}
 
@@ -66,14 +66,19 @@ function Registerpage() {
             placeholder="Password"
           />
 
-          <input type="submit" value="Register" className="button" />
-          <div className="subnode">
-            Already have an account?<a href="/Login">Sign In.</a>
-          </div>
-          <div className="social-icon">
-            <p>---------------or--------------</p>
+          <button type="submit" value="Register">
+            Sign up
+          </button>
+          <p className="or">----- or continue with -----</p>
+          <div className="icons">
+            <i className="fa fa-google"></i>
+            <i className="fa fa-linkedin-square"></i>
+            <i className="fa fa-facebook"></i>
           </div>
         </form>
+        <div className="not-member">
+          Already a user? <a href="/Login">LOGIN</a>
+        </div>
       </div>
     </MainScreen>
   );
