@@ -54,7 +54,7 @@ const Headers = (setSearch) => {
               id="collasible-nav-dropdown"
               className="navdrop"
             >
-              <NavDropdown.Item href="/userprofile">
+              <NavDropdown.Item href="/viewprofile">
                 <img
                   alt=""
                   src={`${userInfo.pic}`}
