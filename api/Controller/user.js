@@ -12,14 +12,16 @@ const nodemailer = require("nodemailer");
     res.send({ code: 500, message: "user not found" });
   }
 
-  let testAccount = await nodemailer.createTestAccount();
+  //let User = await nodemailer.createTestAccount();
 
   let transporter = nodemailer.createTransport({
     service:`gmail`,
     host:`smtp.gmail.com`,
+    port:465,
+    secure:true,
     auth: {
-      user: testAccount.user,
-      pass: testAccount.pass,
+      user: User.name,
+      pass: User.password,
     },
   });
 
@@ -58,14 +60,19 @@ const submitotp = (req, res) => {
 
       User.updateOne({ email: result.email }, { password: req.body.password })
         .then((result) => {
-          res.send({ code: 200, message: "Password updated" });
+          res.status(200);
+    throw new Error("Password updated");
+         
         })
         .catch((err) => {
-          res.send({ code: 500, message: "Server err" });
+          res.status(404);
+    throw new Error("Server err");
+         
         });
     })
     .catch((err) => {
-      res.send({ code: 500, message: "otp is wrong" });
+      res.status(500);
+    throw new Error("otp is wrong");
     });
 };
 module.exports = {sendotp,submitotp};
