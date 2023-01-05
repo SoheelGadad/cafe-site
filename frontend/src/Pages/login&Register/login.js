@@ -6,6 +6,7 @@ import MainScreen from "../../components/MainScreen";
 import Loading from "../../components/Loading";
 import ErrorMessage from "../../components/ErrorMessage";
 import "../pages-style/style.css";
+import backgroundVideo from '../../images/LoginbackgroundVideo.mp4'
 
 function Loginpage() {
   const [email, setEmail] = useState("");
@@ -30,7 +31,9 @@ function Loginpage() {
   return (
     <MainScreen>
       <>
-        <div className="wrapper">
+      <div>
+      
+      <div className="wrapper">
           <h1>Hello Again!</h1>
           <p>
             Welcome back you've <br /> been missed!
@@ -68,6 +71,8 @@ function Loginpage() {
             Not a member? <a href="/register">Register Now</a>
           </div>
         </div>
+      </div>
+        
       </>
     </MainScreen>
   );
