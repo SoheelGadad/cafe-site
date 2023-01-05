@@ -1,8 +1,8 @@
-const User = require("../models/userModel");
+const User = require("../models/userModule");
 
 const nodemailer = require("nodemailer");
 
- const sendotp = async (req, res) => {
+module.exports.sendotp = async (req, res) => {
   console.log(req.body);
   const _otp = Math.floor(100000 + Math.random() * 900000);
   console.log(_otp);
@@ -50,7 +50,7 @@ const nodemailer = require("nodemailer");
   }
 };
 
-const submitotp = (req, res) => {
+module.exports.submitotp = (req, res) => {
   console.log(req.body);
 
   User.findOne({ otp: req.body.otp })
@@ -69,4 +69,3 @@ const submitotp = (req, res) => {
       res.send({ code: 500, message: "otp is wrong" });
     });
 };
-module.exports = {sendotp,sendotp};
