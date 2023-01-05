@@ -6,10 +6,9 @@ const logger = require("morgan");
 const cors = require("cors");
 const User = require("./models/userModel");
 const generateToken = require("./utils/generateToken");
-
 var { errorHandler } = require("./middleware/errorMiddleware");
-
 const { protect } = require("./middleware/authMiddleware.js");
+const userController =require("./Controller/user")
 // MongoDB
 const mongoose = require("mongoose");
 mongoose.connect(process.env.MONGO_URI, {
@@ -32,8 +31,8 @@ app.use(errorHandler);
 app.use("/availability", require("./routes/availabilityRoute"));
 app.use("/reserve", require("./routes/reservationRoute"));
 
-//app.use("/api/send-otp", require("./Controller/user"));
-//app.use("/api/submit-otp", require("./Controller/User"));
+app.use("/send-otp", userController.sendotp);
+app.use("/submit-otp", userController.submitotp);
 
 //login---------------------------------------------
 

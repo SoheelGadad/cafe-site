@@ -15,9 +15,8 @@ const nodemailer = require("nodemailer");
   let testAccount = await nodemailer.createTestAccount();
 
   let transporter = nodemailer.createTransport({
-    host: "smtp.ethereal.email",
-    port: 587,
-    secure: false,
+    service:`gmail`,
+    host:`smtp.gmail.com`,
     auth: {
       user: testAccount.user,
       pass: testAccount.pass,
@@ -69,4 +68,4 @@ const submitotp = (req, res) => {
       res.send({ code: 500, message: "otp is wrong" });
     });
 };
-module.exports = {sendotp,sendotp};
+module.exports = {sendotp,submitotp};
