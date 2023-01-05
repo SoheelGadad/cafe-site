@@ -29,7 +29,7 @@ function Registerpage() {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    if (password.length >= 8) {
+    if (password.length <= 8) {
       setMessage("Passwords should be 8ch");
     } else dispatch(register(name, email, password));
   };
