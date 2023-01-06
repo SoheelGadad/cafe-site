@@ -1,3 +1,5 @@
+const dotenv = require("dotenv");
+dotenv.config();
 const User = require("../models/userModel");
 
 const nodemailer = require("nodemailer");
@@ -12,16 +14,15 @@ const sendotp = async (req, res) => {
     res.send({ code: 500, message: "user not found" });
   }
 
-  //let User = await nodemailer.createTestAccount();
-
   let transporter = nodemailer.createTransport({
     service: `gmail`,
     host: `smtp.gmail.com`,
     port: 465,
     secure: true,
     auth: {
-      user: User.name,
-      pass: User.password,
+      type: "OAuth2",
+      user: process.env.EMAIL_USERNAME,
+      pass: process.env.EMAIL_PASSWORD,
     },
   });
 
@@ -60,17 +61,14 @@ const submitotp = (req, res) => {
 
       User.updateOne({ email: result.email }, { password: req.body.password })
         .then((result) => {
-          res.status(200);
-          throw new Error("Password updated");
+          res.send({ code: 200, message: "Password updated" });
         })
         .catch((err) => {
-          res.status(404);
-          throw new Error("Server err");
+          res.send({ code: 404, message: "Server err" });
         });
     })
     .catch((err) => {
-      res.status(500);
-      throw new Error("otp is wrong");
+      res.send({ code: 500, message: "otp is wrong" });
     });
 };
 module.exports = { sendotp, submitotp };
