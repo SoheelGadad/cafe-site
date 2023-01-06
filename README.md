@@ -1,7 +1,14 @@
-# cafe-site
+# cafeTbale-Booking-using-MERN-stack
 
-pKbdcd4e40-a359-42f4-9206-2bc32c5f39ef
+cafeEra App
 
-Save API Key Information
-Public Key
-amosdgjk
+# Functionalities
+
+Authentication on login and register
+
+User upload profile
+User update profile
+user delete profile
+
+view Availablity of table
+chacking reservation of table
