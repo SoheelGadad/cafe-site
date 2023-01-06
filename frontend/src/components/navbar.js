@@ -54,7 +54,7 @@ const Headers = (setSearch) => {
               id="collasible-nav-dropdown"
               className="navdrop"
             >
-              <NavDropdown.Item href="/viewprofile">
+              <NavDropdown.Item href="/userprofile">
                 <img
                   alt=""
                   src={`${userInfo.pic}`}
@@ -98,7 +98,7 @@ const Headers = (setSearch) => {
                 className="nav-links"
                 onClick={click ? handleClick : null}
               >
-                <i class="log" className="fa fa-sign-in"></i>
+                <i className="fa fa-sign-in"></i>
                 Login
               </NavLink>
             </li>
@@ -111,7 +111,7 @@ const Headers = (setSearch) => {
     <>
       <div className={click ? "main-container" : ""} onClick={() => Close()} />
       <nav className="navbar" onClick={(e) => e.stopPropagation()}>
-        
+        <div className="nav-container">
           <NavLink href="/" className="nav-logo">
             CafeERA
             <i className="fa fa-coffee"></i>
@@ -119,7 +119,7 @@ const Headers = (setSearch) => {
           <Rendermenu />
           <div className="nav-icon" onClick={handleClick}>
             <i className={click ? "fa fa-times" : "fa fa-bars"}></i>
-          
+          </div>
         </div>
       </nav>
     </>

@@ -11,7 +11,6 @@ import Userprofile from "./Pages/ProfileScreen/ProfileScreen";
 import NewSubmit from "./Pages/Forgetpassword/NewSubmit";
 import Footer from "./components/Footer";
 import AboutUs from "./Pages/Aboutuspage/Aboutus";
-import Viewprofile from "./Pages/ProfileScreen/viewpeofile";
 
 export const UserContext = createContext();
 
@@ -28,7 +27,6 @@ const Routing = () => {
       <Route path="/otp" element={<NewSubmit />} />
       <Route path="/userprofile" element={<Userprofile />} />
       <Route path="/aboutus" element={<AboutUs />} />
-      <Route path="/viewprofile" element={<Viewprofile />} />
     </Routes>
   );
 };
