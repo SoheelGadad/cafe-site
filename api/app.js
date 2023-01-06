@@ -31,14 +31,6 @@ app.use(errorHandler);
 app.use("/availability", require("./routes/availabilityRoute"));
 app.use("/reserve", require("./routes/reservationRoute"));
 
- 
-app.use("/api/send-otp", require("./Controller/User"));
-app.use("/api/submit-otp", require("./Controller/User"));
- 
-//app.use("/api/send-otp", require("./Controller/User"));
-//app.use("/api/submit-otp", require("./Controller/User"));
- 
-
 app.use("/send-otp", userController.sendotp);
 app.use("/submit-otp", userController.submitotp);
 
