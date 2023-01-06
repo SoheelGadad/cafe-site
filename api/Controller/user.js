@@ -9,20 +9,32 @@ const sendotp = async (req, res) => {
   const _otp = Math.floor(100000 + Math.random() * 900000);
   console.log(_otp);
   let user = await User.findOne({ email: req.body.email });
+
   // send to user mail
   if (!user) {
     res.send({ code: 500, message: "user not found" });
   }
 
+  // let transporter = nodemailer.createTransport({
+  //   service: `gmail`,
+  //  host: `smtp.gmail.com`,
+  //  port: 465,
+  //  secure: true,
+  //  auth: {
+  //    type: "OAuth2",
+  //   user: process.env.EMAIL_USERNAME,
+  //   pass: process.env.EMAIL_PASSWORD,
+  // },
+  //  });
+  let testAccount = await nodemailer.createTestAccount();
+
   let transporter = nodemailer.createTransport({
-    service: `gmail`,
-    host: `smtp.gmail.com`,
-    port: 465,
-    secure: true,
+    host: "smtp.ethereal.email",
+    port: 587,
+    secure: false,
     auth: {
-      type: "OAuth2",
-      user: process.env.EMAIL_USERNAME,
-      pass: process.env.EMAIL_PASSWORD,
+      user: testAccount.user,
+      pass: testAccount.pass,
     },
   });
 
@@ -42,7 +54,7 @@ const sendotp = async (req, res) => {
     console.log(info, 84);
     User.updateOne({ email: req.body.email }, { otp: _otp })
       .then((result) => {
-        res.send({ code: 200, message: "otp send" });
+        res.send({ code: 200, message: "otp send", otp: _otp });
       })
       .catch((err) => {
         res.send({ code: 500, message: "Server err" });

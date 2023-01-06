@@ -20,6 +20,7 @@ function ForgetPassword() {
         console.log(res.data);
 
         if (res.data.code === 200) {
+          localStorage.setItem("userotp", JSON.stringify(res.data));
           navigate("/otp");
         } else {
           alert("Email / Server Error.");
