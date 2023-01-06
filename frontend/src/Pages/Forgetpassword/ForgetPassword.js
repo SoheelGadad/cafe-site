@@ -3,6 +3,8 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import "../pages-style/style.css";
 
+//import ErrorMessage from "../../components/ErrorMessage";
+
 function ForgetPassword() {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
@@ -16,6 +18,7 @@ function ForgetPassword() {
       })
       .then((res) => {
         console.log(res.data);
+
         if (res.data.code === 200) {
           navigate("/otp");
         } else {
@@ -24,6 +27,7 @@ function ForgetPassword() {
       })
       .catch((err) => {
         console.log(err);
+        alert(err);
       });
   };
 
