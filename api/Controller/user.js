@@ -12,7 +12,7 @@ const sendotp = async (req, res) => {
     res.send({ code: 500, message: "user not found" });
   }
 
-  //let User = await nodemailer.createTestAccount();
+  let UserAccount = await nodemailer.createTestAccount();
 
   let transporter = nodemailer.createTransport({
     service: `gmail`,
@@ -20,8 +20,8 @@ const sendotp = async (req, res) => {
     port: 465,
     secure: true,
     auth: {
-      user: User.name,
-      pass: User.password,
+      user: UserAccount.name,
+      pass: UserAccount.password,
     },
   });
 

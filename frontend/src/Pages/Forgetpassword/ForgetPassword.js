@@ -11,7 +11,7 @@ function ForgetPassword() {
     e.preventDefault();
     console.log(email);
     axios
-      .post("http://localhost:3005/send-otp", {
+      .post("/send-otp", {
         email: email,
       })
       .then((res) => {
