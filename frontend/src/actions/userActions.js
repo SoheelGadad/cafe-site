@@ -9,6 +9,9 @@ import {
   USER_UPDATE_FAIL,
   USER_UPDATE_REQUEST,
   USER_UPDATE_SUCCESS,
+  USER_PASSWORD_RECOVERY,
+  USER_PASSWORD_RECOVERY_SUCCESS,
+  USER_PASSWORD_RECOVERY_FAIL,
 } from "../constants/userConstants";
 import axios from "axios";
 
@@ -104,6 +107,32 @@ export const updateProfile = (user) => async (dispatch, getState) => {
   } catch (error) {
     dispatch({
       type: USER_UPDATE_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
+};
+
+export const ForgetPassword = (email) => async (dispatch) => {
+  try {
+    dispatch({ type: USER_PASSWORD_RECOVERY });
+
+    const config = {
+      headers: {
+        "Content-type": "application/json",
+      },
+    };
+
+    const { data } = await axios.post("/send-otp", { email }, config);
+
+    dispatch({ type: USER_PASSWORD_RECOVERY_SUCCESS, payload: data });
+
+    localStorage.setItem("userInfop", JSON.stringify(data));
+  } catch (error) {
+    dispatch({
+      type: USER_PASSWORD_RECOVERY_FAIL,
       payload:
         error.response && error.response.data.message
           ? error.response.data.message
