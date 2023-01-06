@@ -7,7 +7,8 @@ function ForgetPassword() {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
 
-  const handleSubmit = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
     console.log(email);
     axios
       .post("http://localhost:3005/send-otp", {

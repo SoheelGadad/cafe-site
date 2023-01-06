@@ -2,7 +2,7 @@ const User = require("../models/userModel");
 
 const nodemailer = require("nodemailer");
 
- const sendotp = async (req, res) => {
+const sendotp = async (req, res) => {
   console.log(req.body);
   const _otp = Math.floor(100000 + Math.random() * 900000);
   console.log(_otp);
@@ -75,4 +75,4 @@ const submitotp = (req, res) => {
     throw new Error("otp is wrong");
     });
 };
-module.exports = {sendotp,submitotp};
+module.exports = { sendotp, submitotp };
