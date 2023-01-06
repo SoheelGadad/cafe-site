@@ -1,3 +1,6 @@
+body{
+  margin-top: 50px;
+}
 .wrapper {
   width: 330px;
   padding: 1rem 0 1rem 0;
@@ -9,7 +12,7 @@
   );
   border-radius: 10px;
   text-align: center;
-  box-shadow: 0 20px 35px rgba(0, 0, 0, 0.151);
+  box-shadow: 4px 20px 35px rgba(0, 0, 0, 0.151);
 }
 h1 {
   line-height: 60px;

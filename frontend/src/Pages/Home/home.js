@@ -24,14 +24,14 @@ function Home() {
 
         <div class="title">
           <h1>CafeERA</h1>
-          <sub className="subtitle">If you're looking for morring cafe</sub>
+          <h3 className="h3">If you're looking for morring cafe</h3>
           {userInfo ? (
             <Button color="none" className="book-table-btn" href="/Book">
               Book a Table
             </Button>
           ) : (
-            <Button color="none" className="book-table-btn" href="/Login">
-              Login/signup
+            <Button color="none" className="book-table-btn" href="/register">
+              Signup
             </Button>
           )}
         </div>
