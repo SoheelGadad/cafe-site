@@ -1,0 +1,58 @@
+.About-header {
+  margin: 0;
+  font-family: "Montserrat", sans-serif;
+  font-size: 4em;
+  color: #333;
+  word-spacing: 16px;
+}
+
+.About-subtext {
+  font-family: "Open Sans", sans-serif;
+  font-size: 1.4em;
+  font-weight: bold;
+  color: #222;
+  text-shadow: 0 0 40px #ffffff, 0 0 30px #ffffff, 0 0 20px #ffffff;
+}
+
+.About-container {
+  margin-bottom: 50px;
+  margin-top: 100px;
+}
+
+.About-wrapper {
+  width: 100%;
+  min-height: 100%;
+  height: auto;
+  display: table;
+}
+
+.About-content {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.About-item {
+  width: auto;
+  height: auto;
+  margin: 0 auto;
+  text-align: center;
+  padding: 8px;
+}
+
+@media only screen and (min-width: 800px) {
+  .About-header {
+    font-size: 6em;
+  }
+  .About-subtext {
+    font-size: 1.6em;
+  }
+}
+
+@media only screen and (max-width: 320px) {
+  .About-header {
+    font-size: 2em;
+  }
+  .About-subtext {
+    font-size: 1.2em;
+  }
+}

@@ -9,6 +9,9 @@ import {
   USER_UPDATE_FAIL,
   USER_UPDATE_REQUEST,
   USER_UPDATE_SUCCESS,
+  USER_PASSWORD_RECOVERY,
+  USER_PASSWORD_RECOVERY_SUCCESS,
+  USER_PASSWORD_RECOVERY_FAIL,
 } from "../constants/userConstants";
 import axios from "axios";
 
@@ -23,7 +26,7 @@ export const login = (email, password) => async (dispatch) => {
     };
 
     const { data } = await axios.post(
-      "http://localhost:3005/api/login",
+      "/api/login",
       { email, password },
       config
     );
@@ -58,7 +61,7 @@ export const register = (name, email, password) => async (dispatch) => {
     };
 
     const { data } = await axios.post(
-      "http://localhost:3005/api/register",
+      "/api/register",
       { name, email, password },
       config
     );
@@ -94,11 +97,7 @@ export const updateProfile = (user) => async (dispatch, getState) => {
       },
     };
 
-    const { data } = await axios.post(
-      "http://localhost:3005/api/profile",
-      user,
-      config
-    );
+    const { data } = await axios.post("/api/profile", user, config);
 
     dispatch({ type: USER_UPDATE_SUCCESS, payload: data });
 
@@ -108,6 +107,36 @@ export const updateProfile = (user) => async (dispatch, getState) => {
   } catch (error) {
     dispatch({
       type: USER_UPDATE_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
+};
+
+export const ForgetPassword = (email) => async (dispatch) => {
+  try {
+    dispatch({ type: USER_PASSWORD_RECOVERY });
+
+    const config = {
+      headers: {
+        "Content-type": "application/json",
+      },
+    };
+
+    const { data } = await axios.post(
+      "/send-otp",
+      { email },
+      config
+    );
+
+    dispatch({ type: USER_PASSWORD_RECOVERY_SUCCESS, payload: data });
+
+    localStorage.setItem("userInfop", JSON.stringify(data));
+  } catch (error) {
+    dispatch({
+      type: USER_PASSWORD_RECOVERY_FAIL,
       payload:
         error.response && error.response.data.message
           ? error.response.data.message

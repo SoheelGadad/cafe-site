@@ -1,26 +1,60 @@
-body {
-  background-color: rgb(247, 114, 13);
+.mainphoto {
+  margin-top: 25px;
+  background: url(../../images/1.jpg) no-repeat;
+  background-size: cover;
+  height: calc(85vh - 85px);
+  border-radius: 14px;
 }
-img {
-  transform: translateY(-10%);
-}
-.home-text {
-  width: 100%;
+.title {
+  font-family: 'Times New Roman', Times, serif;
+  color: white;
   text-align: center;
+  font-size: 25px;
+  position: absolute;
+  font-variant: small-caps;
+  top: 55%;
+  left: 50%;
+  font-weight: 800;
+  transform: translate(-50%, -55%);
+  line-height: 60px;
+  letter-spacing: 0px;
+}
+.title h1 {
+  color: gold;
+  font-size: 60px;
+}
+.h3 {
+  color: rgb(96, 253, 18);
+  
 }
 .book-table-btn {
-  background-color: coral;
-  border-radius: 30px;
-  font-size: 20px;
-  font-family: "Times New Roman", Times, serif;
-  font-weight: 800;
   color: white;
-  width: 200px;
-  height: 60px;
-  border: none;
+  font-size: 1.2rem;
+  padding: 2% 8%;
+  border-radius: 25px;
+  background-color: gold;
+  border: 2px white solid;
+  font-family: ABeeZee, sans-serif;
+  transform: translate(0,90%);
 }
 .book-table-btn:hover {
-  background-color: greenyellow;
-  color: black;
-  transition: 0.8s;
+  text-decoration: none;
+  color: gold;
+  background-color: white !important;
+  border: 2px solid black !important;
+}
+
+.big-img {
+  width: 100%;
+  border-radius: 25px;
+  border-bottom-left-radius: 20px;
+}
+@media (min-width: 768px) {
+  .book-table-btn {
+    font-size: 1.4rem;
+    padding: 0.5% 5%;
+  }
+}
+.big-img-container {
+  padding: 10% 0;
 }

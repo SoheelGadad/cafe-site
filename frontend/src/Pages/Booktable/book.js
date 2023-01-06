@@ -47,7 +47,7 @@ export default (props) => {
   });
 
   // List of potential locations
-  const [locations] = useState(["Any Location", "Patio", "Inside", "Bar"]);
+  const [locations] = useState(["Any Location", "Inside", "Outside"]);
   const [times] = useState([
     "9AM",
     "10AM",
@@ -277,19 +277,19 @@ export default (props) => {
 
   return (
     <div>
-      <Row noGutters className="text-center align-items-center pizza-cta">
+      <Row noGutters className="text-center align-items-center coffee-cta">
         <Col>
-          <p className="looking-for-cafe">
+          <p className="booking-table">
             {!selection.table.id ? "Book a Table" : "Confirm Reservation"}
             <i
               className={
                 !selection.table.id
-                  ? "fas fa-chair pizza-slice"
-                  : "fas fa-clipboard-check pizza-slice"
+                  ? "fa fa-coffee coffee"
+                  : "fa fa-clipboard-check coffee-cta"
               }
             ></i>
           </p>
-          <p className="selected-table">
+          <p className="selected-book-table">
             {selection.table.id
               ? "You are booking table " + selection.table.name
               : null}
@@ -454,7 +454,9 @@ export default (props) => {
               <Button
                 color="none"
                 className="book-table-btn"
-                onClick="/ThankYou"
+                onClick={(_) => {
+                  reserve();
+                }}
               >
                 Book Now
               </Button>

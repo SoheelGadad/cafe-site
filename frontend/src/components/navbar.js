@@ -1,9 +1,7 @@
 import React, { useEffect } from "react";
-import { NavbarBrand, NavLink } from "reactstrap";
-import { Nav, Navbar, NavDropdown } from "react-bootstrap";
+import { NavLink } from "react-router-dom";
+import { NavDropdown } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import "./navbarStyle.css";
-import { Container } from "react-bootstrap";
 
 import { logout } from "../actions/userActions";
 const Headers = (setSearch) => {
@@ -18,20 +16,45 @@ const Headers = (setSearch) => {
 
   useEffect(() => {}, [userInfo]);
 
+  const [click, setClick] = React.useState(false);
+
+  const handleClick = () => setClick(!click);
+  const Close = () => setClick(false);
+
   const Rendermenu = () => {
     return (
-      <Nav className="me-auto">
-        <Nav.Link className="link" href="/">
-          Home
-        </Nav.Link>
+      <ul className={click ? "nav-menu active" : "nav-menu"}>
+        <li className="nav-item">
+          <NavLink
+            to="/"
+            activeClassName="active"
+            className="nav-links"
+            onClick={click ? handleClick : null}
+          >
+            <i className="fa fa-home"></i>
+            Home
+          </NavLink>
+        </li>
+
         {userInfo ? (
           <>
-            <NavLink href="/Book">Book A Table</NavLink>
+            <li className="nav-item">
+              <NavLink
+                to="/Book"
+                activeClassName="active"
+                className="nav-links"
+                onClick={click ? handleClick : null}
+              >
+                <i className="fa fa-calendar-check-o"></i>
+                Book A Table
+              </NavLink>
+            </li>
             <NavDropdown
               title={`${userInfo.name}`}
               id="collasible-nav-dropdown"
+              className="navdrop"
             >
-              <NavDropdown.Item href="/userprofile">
+              <NavDropdown.Item href="/viewprofile">
                 <img
                   alt=""
                   src={`${userInfo.pic}`}
@@ -43,43 +66,63 @@ const Headers = (setSearch) => {
               </NavDropdown.Item>
 
               <NavDropdown.Divider />
-              <NavDropdown.Item onClick={logoutHandler}>
-                Logout
-              </NavDropdown.Item>
+              <li className="nav-logout">
+                <NavLink
+                  activeClassName="active"
+                  className="nav-linkslogout"
+                  onClick={logoutHandler}
+                >
+                  <i className="fa fa-sign-out"></i>
+                  Logout
+                </NavLink>
+              </li>
             </NavDropdown>
-
-            <NavLink className="link" href="/Book">
-              Book A Table
-            </NavLink>
-            <NavLink
-              className="link"
-              href="/userprofile"
-            >{`${userInfo.name}`}</NavLink>
-
-            <NavLink className="link" onClick={logoutHandler}>
-              Logout
-            </NavLink>
           </>
         ) : (
-          <NavLink className="link" href="/Login">
-            Login
-          </NavLink>
+          <>
+            <li className="nav-item">
+              <NavLink
+                to="/aboutus"
+                activeClassName="active"
+                className="nav-links"
+                onClick={click ? handleClick : null}
+              >
+                <i class="fa fa-info-circle"></i>
+                About
+              </NavLink>
+            </li>
+            <li className="nav-item">
+              <NavLink
+                to="/Login"
+                activeClassName="active"
+                className="nav-links"
+                onClick={click ? handleClick : null}
+              >
+                <i class="log" className="fa fa-sign-in"></i>
+                Login
+              </NavLink>
+            </li>
+          </>
         )}
-      </Nav>
+      </ul>
     );
   };
   return (
-    <Navbar bg="dark" expand="sm">
-      <Container>
-        <NavbarBrand className="nav-brand">
-          <NavLink href="/">Cafe shop</NavLink>
-        </NavbarBrand>
-        <Navbar.Toggle className="toggle" aria-controls="basic-navbar-nav" />
-        <Navbar.Collapse id="responsive-navbar-nav">
+    <>
+      <div className={click ? "main-container" : ""} onClick={() => Close()} />
+      <nav className="navbar" onClick={(e) => e.stopPropagation()}>
+        
+          <NavLink href="/" className="nav-logo">
+            CafeERA
+            <i className="fa fa-coffee"></i>
+          </NavLink>
           <Rendermenu />
-        </Navbar.Collapse>
-      </Container>
-    </Navbar>
+          <div className="nav-icon" onClick={handleClick}>
+            <i className={click ? "fa fa-times" : "fa fa-bars"}></i>
+          
+        </div>
+      </nav>
+    </>
   );
 };
 

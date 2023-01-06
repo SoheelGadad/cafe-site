@@ -1,9 +1,180 @@
+*{
+  margin: 0;
+  padding: 0;
+}
 body {
   font-family: ABeeZee, sans-serif;
-  background-image: url("../images/BGHome.jpg");
-  background-size: cover;
+
+}
+/*------------------------------Navbar---------------------------------*/
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  background-color: white;
+  align-items: center;
+  padding: 0 30px;
+  box-shadow: 0 5px 15px 0 rgba(0, 0, 0, .25);
+  width: 95%;
+  height: 80px;
+  border-radius: 14px;
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translate(-50%);
+  z-index: 9999;
 }
 
+.main-container {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+.nav-logo {
+  color: #f5b921;
+  align-items: center;
+  font-weight: 600;
+  margin-left: 20px;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 2rem;
+  flex-grow: 1;
+}
+.nav-logo:hover{
+  color: #f5b921;
+  text-decoration: none;
+}
+
+.nav-menu {
+  display: grid;
+  grid-template-columns: repeat(4,auto);
+  background-color: white;
+  list-style: none;
+  text-align: center;
+  margin-top: 16px;
+  margin-right: 1rem;
+  transition: 1.5s all ease-in-out;
+}
+
+.nav-links {
+  font-family: 'Times New Roman', Times, serif;
+  color: #f5b921;
+  text-decoration: none;
+  font-weight: 600;
+  padding:  2rem;
+  align-items: center;
+  border-bottom: 3px solid transparent;
+}
+.fa {
+  padding: 10px;
+}
+.nav-links:hover {
+  color: #f5b921;
+  text-decoration: none;
+}
+
+.nav-item {
+  line-height: 40px;
+  margin-right: 1rem;
+}
+
+.nav-item:after {
+  content: "";
+  display: block;
+  height: 3px;
+  width: 0;
+  transition: 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.nav-item:hover:after {
+  color: #ffdd40;
+  width:auto;
+  background: #ffdd40;
+}
+
+.nav-item.active {
+  color: #ffdd40;
+  border: 1px solid #ffdd40;
+}
+.log{
+  color:  #f5b921;
+}
+
+.nav-icon {
+  display: none;
+}
+
+@media screen and (max-width: 960px) {
+  .navbar{
+    z-index: 99;
+    border-radius: 14px;
+  }
+  .nav-menu {
+    display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        background-color: white;
+        width: 100%;
+        height: auto;
+        position: absolute;
+        top: 0;
+        left: -100%;
+        border-radius: 14px;
+        opacity: 0;
+        align-items: stretch;
+        padding: 80px 0 30px 0;
+        margin: 0;
+        transition: 1s all ease-in-out;
+  }
+
+  .nav-menu.active {
+    background:  white;
+    left: 0;
+    opacity: 1;
+    z-index: -1;
+    transition: 1 all ease-in-out;
+  }
+  .nav-item .active {
+    color: #0f0f0e;
+    border: none;
+    
+  }
+
+  .nav-links {
+    padding: 1.5rem;
+    width: 100%;
+    display: table;
+  }
+
+  .nav-icon {
+    display: block;
+    font-size: 1.8rem;
+    cursor: pointer;
+    color: #ffdd40;
+  }
+  .nav-icon:hover{
+    color: #f4ca0c;
+  }
+
+}
+.navdrop {
+  color:#ffdd40;
+  
+}
+.nav-linkslogout {
+  color: black;
+  padding: 15px 35px;
+  text-decoration: none;
+}
+.nav-linkslogout:hover {
+  color: #000000;
+  background-color: #ddd;
+}
+
+/*--------------------------------------------------------------------*/
 @media (min-width: 768px) {
   .nav-brand {
     font-size: 1.8rem;
@@ -15,53 +186,21 @@ body {
   }
 }
 
-.looking-for-cafe {
-  color: white;
+.booking-table {
+  color: rgb(2, 2, 2);
   font-size: 2.5rem;
   padding-bottom: 1.8%;
   padding-right: 3%;
   padding-left: 3%;
 }
 
-.book-table-btn {
-  color: white;
-  font-size: 1.2rem;
-  padding: 2% 8%;
-  border-radius: 25px;
-  background-color: #e74c3c;
-  border: 2px white solid;
-  font-family: ABeeZee, sans-serif;
-}
-.book-table-btn:hover {
-  color: #e74c3c;
-  background-color: white !important;
-  border: 2px solid black !important;
-}
-
-@media (min-width: 768px) {
-  .book-table-btn {
-    font-size: 1.4rem;
-    padding: 0.5% 5%;
-  }
-}
-.big-img-container {
-  padding: 10% 0;
-}
-
-@media (min-width: 768px) {
-  .big-img-container {
-    padding: 4% 0;
-  }
-}
-.big-img {
-  width: 96%;
-  border-radius: 25px;
-  border-bottom-left-radius: 25px;
-}
-
 .selected-table {
   font-size: 1.25rem;
-  padding-bottom: 2%;
+  padding-bottom: 0%;
+}
+.selected-book-table {
+  font-size: 1.25rem;
+  padding-bottom: 5%;
 }
 
 input[type="date"]::-webkit-inner-spin-button {
@@ -222,13 +361,6 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   font-size: 1.2rem;
   padding: 2%;
 }
-
-.thank-you-pizza {
-  font-size: 4rem;
-  color: #e74c3c;
-  padding-bottom: 8%;
-}
-
 @media (min-width: 768px) {
   .thanks-header {
     font-size: 5.5rem;
@@ -236,11 +368,6 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
   .thanks-subtext {
     font-size: 2.2rem;
-  }
-
-  .thank-you-pizza {
-    font-size: 7rem;
-    padding-bottom: 4%;
   }
 }
 
@@ -252,7 +379,6 @@ section {
 
 .swiper-slide {
   width: 100%;
-  min-height: 640px;
   position: relative;
   display: flex;
   align-items: center;
@@ -285,20 +411,179 @@ section {
   font-weight: 700;
   margin-bottom: 1rem;
 }
-footer {
-  color: aliceblue;
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
+/*--------------------------Footer----------------------------*/
+.footer-distributed {
+  background: rgb(0, 0, 0);
+  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.12);
+  box-sizing: border-box;
   width: 100%;
-  height: auto;
-  padding-top: 40px;
+  text-align: left;
+  font: bold 16px sans-serif;
+  padding: 50px 50px;
 }
-.footer-content {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
+
+.footer-distributed .footer-left,
+.footer-distributed .footer-center,
+.footer-distributed .footer-right {
+  display: inline-block;
+  vertical-align: top;
+}
+
+/* Footer left */
+
+.footer-distributed .footer-left {
+  width: 40%;
+}
+
+/* The company logo */
+
+.footer-distributed h3 {
+  color: gold;
+  font: normal 30px "Open Sans", cursive;
+  margin: 0;
+}
+
+/* Footer links */
+
+.footer-distributed .footer-links {
+  color: gold;
+  margin: 20px 0 12px;
+  padding: 0;
+}
+
+.footer-distributed .footer-links a {
+  display: inline-block;
+  line-height: 1.8;
+  font-weight: 400;
+  text-decoration: none;
+  color: inherit;
+}
+
+.footer-distributed .footer-company-name {
+  color: gold;
+  font-size: 14px;
+  font-weight: normal;
+  margin: 0;
+}
+
+/* Footer Center */
+
+.footer-distributed .footer-center {
+  width: 35%;
+}
+
+.footer-distributed .footer-center i {
+  background-color: #33383b;
+  color: gold;
+  font-size: 25px;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
   text-align: center;
+  line-height: 42px;
+  margin: 10px 15px;
+  vertical-align: middle;
+}
+
+.footer-distributed .footer-center i.fa-envelope {
+  font-size: 17px;
+  line-height: 38px;
+}
+
+.footer-distributed .footer-center p {
+  display: inline-block;
+  color:gold;
+  font-weight: 400;
+  vertical-align: middle;
+  margin: 0;
+}
+
+.footer-distributed .footer-center p span {
+  display: block;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 2;
+}
+
+.footer-distributed .footer-center p a {
+  color: gold;
+  text-decoration: none;
+}
+
+.footer-distributed .footer-links a:before {
+  content: "|";
+  font-weight: 300;
+  font-size: 20px;
+  color: gold;
+  display: inline-block;
+  padding-right: 5px;
+  padding-left: 5px;
+}
+
+.footer-distributed .footer-links .link-1:before {
+  content: none;
+}
+
+/* Footer Right */
+
+.footer-distributed .footer-right {
+  width: 20%;
+}
+
+.footer-distributed .footer-company-about {
+  line-height: 20px;
+  color: gold;
+  font-size: 13px;
+  font-weight: normal;
+  margin: 0;
+}
+
+.footer-distributed .footer-company-about span {
+  display: block;
+  color: gold;;
+  font-size: 14px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.footer-distributed .footer-icons {
+  margin-top: 25px;
+}
+
+.footer-distributed .footer-icons a {
+  display: inline-block;
+  width: 35px;
+  height: 35px;
+  cursor: pointer;
+  background-color: #33383b;
+  border-radius: 2px;
+
+  font-size: 20px;
+  color: #1ed75c;
+  text-align: center;
+  line-height: 35px;
+
+  margin-right: 3px;
+  margin-bottom: 5px;
+}
+
+/* If you don't want the footer to be responsive, remove these media queries */
+
+@media (max-width: 880px) {
+  .footer-distributed {
+    font: bold 14px sans-serif;
+  }
+
+  .footer-distributed .footer-left,
+  .footer-distributed .footer-center,
+  .footer-distributed .footer-right {
+    display: block;
+    width: 100%;
+    margin-bottom: 40px;
+    text-align: center;
+  }
+
+  .footer-distributed .footer-center i {
+    margin-left: 0;
+  }
 }
