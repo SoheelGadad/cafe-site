@@ -8,7 +8,7 @@ const User = require("./models/userModel");
 const generateToken = require("./utils/generateToken");
 var { errorHandler } = require("./middleware/errorMiddleware");
 const { protect } = require("./middleware/authMiddleware.js");
-const userController =require("./Controller/user")
+const userController = require("./Controller/user");
 // MongoDB
 const mongoose = require("mongoose");
 mongoose.connect(process.env.MONGO_URI, {

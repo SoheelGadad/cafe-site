@@ -125,11 +125,7 @@ export const ForgetPassword = (email) => async (dispatch) => {
       },
     };
 
-    const { data } = await axios.post(
-      "/send-otp",
-      { email },
-      config
-    );
+    const { data } = await axios.post("/send-otp", { email }, config);
 
     dispatch({ type: USER_PASSWORD_RECOVERY_SUCCESS, payload: data });
 

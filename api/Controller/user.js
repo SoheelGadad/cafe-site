@@ -2,7 +2,7 @@ const User = require("../models/userModel");
 
 const nodemailer = require("nodemailer");
 
- const sendotp = async (req, res) => {
+const sendotp = async (req, res) => {
   console.log(req.body);
   const _otp = Math.floor(100000 + Math.random() * 900000);
   console.log(_otp);
@@ -15,10 +15,10 @@ const nodemailer = require("nodemailer");
   //let User = await nodemailer.createTestAccount();
 
   let transporter = nodemailer.createTransport({
-    service:`gmail`,
-    host:`smtp.gmail.com`,
-    port:465,
-    secure:true,
+    service: `gmail`,
+    host: `smtp.gmail.com`,
+    port: 465,
+    secure: true,
     auth: {
       user: User.name,
       pass: User.password,
@@ -61,18 +61,16 @@ const submitotp = (req, res) => {
       User.updateOne({ email: result.email }, { password: req.body.password })
         .then((result) => {
           res.status(200);
-    throw new Error("Password updated");
-         
+          throw new Error("Password updated");
         })
         .catch((err) => {
           res.status(404);
-    throw new Error("Server err");
-         
+          throw new Error("Server err");
         });
     })
     .catch((err) => {
       res.status(500);
-    throw new Error("otp is wrong");
+      throw new Error("otp is wrong");
     });
 };
-module.exports = {sendotp,submitotp};
+module.exports = { sendotp, submitotp };
