@@ -1,12 +1,12 @@
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import "../pages-style/style.css";
 
 function NewSubmit() {
   const navigate = useNavigate();
   const [otp, setOtp] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmpassword, setConfirmPassword] = useState("");
 
   const handleSubmit = () => {
     console.log(otp, password);
@@ -17,9 +17,10 @@ function NewSubmit() {
       })
       .then((res) => {
         console.log(res.data);
-        if (res.data.code === 200) {
-          navigate("/login");
+        if (password === confirmpassword && res.data.code === 200) {
           alert("Password Updated.");
+          navigate("/Login");
+          localStorage.removeItem("userotp");
         } else {
           alert("server err / wrong OTP");
         }
@@ -31,32 +32,40 @@ function NewSubmit() {
 
   return (
     <>
-      <h1 className="center"> FORGET PASSWORD </h1>
+      <div className="wrapper">
+        <form onSubmit={handleSubmit}>
+          <h3> FORGET PASSWORD </h3>
 
-      <div className="outcard">
-        OTP
-        <input
-          style={{ marginBottom: "15px" }}
-          onChange={(e) => {
-            setOtp(e.target.value);
-          }}
-          value={otp}
-          className="inputs"
-          type="text"
-        />
-        New Password
-        <input
-          style={{ marginBottom: "20px" }}
-          value={password}
-          onChange={(e) => {
-            setPassword(e.target.value);
-          }}
-          className="inputs"
-          type="text"
-        />
-        <button onClick={handleSubmit} className="btns">
-          CHANGE PASSWORD
-        </button>
+          <input
+            style={{ marginBottom: "15px" }}
+            onChange={(e) => {
+              setOtp(e.target.value);
+            }}
+            value={otp}
+            type="text"
+            placeholder="Enter OTP"
+          />
+
+          <input
+            style={{ marginBottom: "20px" }}
+            value={password}
+            onChange={(e) => {
+              setPassword(e.target.value);
+            }}
+            type="text"
+            placeholder="Enter New password"
+          />
+          <input
+            style={{ marginBottom: "20px" }}
+            value={confirmpassword}
+            onChange={(e) => {
+              setConfirmPassword(e.target.value);
+            }}
+            type="text"
+            placeholder="Enter confirm password"
+          />
+          <button type="submit">CHANGE PASSWORD</button>
+        </form>
       </div>
     </>
   );
