@@ -25,7 +25,7 @@ const Routing = () => {
       <Route path="/UserHome" element={<ThankYou />} />
 
       <Route path="/ForgetPassword" element={<ForgetPassword />} />
-      <Route path="/otp" element={<NewSubmit />} />
+      <Route path="/reset-password/:id/:token" element={<NewSubmit />} />
       <Route path="/userprofile" element={<Userprofile />} />
       <Route path="/aboutus" element={<AboutUs />} />
       <Route path="/viewprofile" element={<Viewprofile />} />
