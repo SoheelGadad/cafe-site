@@ -7,11 +7,18 @@ import "../pages-style/style.css";
 
 //import ErrorMessage from "../../components/ErrorMessage";
 
+//import { useNavigate } from "react-router-dom";
+import Loading from "../../components/Loading";
+
 function ForgetPassword() {
   const [email, setEmail] = useState("");
+  const [msg, setMsg] = useState("");
+  const [error, setError] = useState("");
+  const [loading, setloading] = useState("");
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+
     console.log(email);
     axios
       .post("/api/forget-password", {
@@ -33,12 +40,32 @@ function ForgetPassword() {
         console.log(err);
         alert(err);
       });
+
+    try {
+      const url = `/api/forget-password`;
+      const { data } = await axios.post(url, { email });
+      setMsg(data.message);
+      setError("");
+      setloading("");
+    } catch (error) {
+      if (
+        error.response &&
+        error.response.status >= 400 &&
+        error.response.status <= 500
+      ) {
+        setError(error.response.data.message);
+        setMsg("");
+      }
+    }
   };
 
   return (
     <>
       <div className="wrapper">
         <form onSubmit={handleSubmit}>
+          {error && <div className="error_msg">{error}</div>}
+          {msg && <div className="success_msg">{msg}</div>}
+          {loading && <Loading />}
           <h3>Forget Password</h3>
           <br />
           <input
