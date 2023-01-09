@@ -1,18 +1,20 @@
 import { useState } from "react";
 import axios from "axios";
+
 import { useNavigate } from "react-router-dom";
+
+import "../pages-style/style.css";
 
 //import ErrorMessage from "../../components/ErrorMessage";
 
 function ForgetPassword() {
-  const navigate = useNavigate();
   const [email, setEmail] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(email);
     axios
-      .post("/send-otp", {
+      .post("/api/forget-password", {
         email: email,
       })
       .then((res) => {
@@ -21,6 +23,8 @@ function ForgetPassword() {
         if (res.data.code === 200) {
           localStorage.setItem("userotp", JSON.stringify(res.data));
           navigate("/otp");
+
+          alert("Email is send");
         } else {
           alert("Email / Server Error.");
         }

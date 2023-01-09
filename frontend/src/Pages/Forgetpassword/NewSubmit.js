@@ -1,28 +1,36 @@
 import { useState } from "react";
 import axios from "axios";
+
 import { useNavigate } from "react-router-dom";
 
 function NewSubmit() {
-  const navigate = useNavigate();
-  const [otp, setOtp] = useState("");
   const [password, setPassword] = useState("");
   const [confirmpassword, setConfirmPassword] = useState("");
 
-  const handleSubmit = () => {
-    console.log(otp, password);
+  const url = `http://localhost:3005/reset-password/:id/:token`;
+
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    console.log(password);
     axios
-      .post("http://localhost:3005/submit-otp", {
-        otp: otp,
+      .post(url, {
         password: password,
       })
       .then((res) => {
         console.log(res.data);
+
         if (password === confirmpassword && res.data.code === 200) {
           alert("Password Updated.");
           navigate("/Login");
           localStorage.removeItem("userotp");
+
+        if (res.data.code === 200) {
+          alert("Password Updated.");
+          window.location = "/login";
+
         } else {
-          alert("server err / wrong OTP");
+          alert("server err");
         }
       })
       .catch((err) => {
@@ -37,6 +45,7 @@ function NewSubmit() {
           <h3> FORGET PASSWORD </h3>
 
           <input
+
             style={{ marginBottom: "15px" }}
             onChange={(e) => {
               setOtp(e.target.value);
