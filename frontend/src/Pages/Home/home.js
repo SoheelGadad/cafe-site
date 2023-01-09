@@ -20,9 +20,9 @@ function Home() {
   return (
     <MainScreen>
       <div>
-        <section class="mainphoto"></section>
+        <section className="mainphoto"></section>
 
-        <div class="title">
+        <div className="title">
           <h1>CafeERA</h1>
           <sub className="subtitle">If you're looking for morring cafe</sub>
           {userInfo ? (
