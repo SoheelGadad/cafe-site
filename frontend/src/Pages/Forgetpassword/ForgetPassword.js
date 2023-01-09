@@ -13,29 +13,6 @@ function ForgetPassword() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    console.log(email);
-    axios
-      .post("/api/forget-password", {
-        email: email,
-      })
-      .then((res) => {
-        console.log(res.data);
-
-        if (res.data.code === 200) {
-          localStorage.setItem("userotp", JSON.stringify(res.data));
-          navigate("/otp");
-
-          alert("Email is send");
-        } else {
-          alert("Email / Server Error.");
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-        alert(err);
-      });
-
     try {
       const url = `/api/forget-password`;
       const { data } = await axios.post(url, { email });

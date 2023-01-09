@@ -143,8 +143,8 @@ app.post("/api/forget-password", async (req, res) => {
       expiresIn: "10m",
     });
     const url = `http://localhost:3000/reset-password/${olduser.id}/${token}`;
-    // await sendEmail(olduser.email, "Password Reset", url);
-    console.log(url);
+    await sendEmail(olduser.email, "Password Reset", url);
+    // console.log(url);
     res
       .status(200)
       .send({ message: "Password reset link sent to your email account" });
