@@ -39,6 +39,9 @@ app.set("view engine", "ejs");
 app.use("/availability", require("./routes/availabilityRoute"));
 app.use("/reserve", require("./routes/reservationRoute"));
 
+app.get("/", (req, res) => {
+  res.sendStatus(200);
+});
 //login---------------------------------------------
 
 //@description     Register new user
