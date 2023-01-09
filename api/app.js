@@ -7,8 +7,8 @@ const logger = require("morgan");
 
 const User = require("./models/userModel");
 const generateToken = require("./utils/generateToken");
-var { notFound, errorHandler } = require("./middleware/errorMiddleware");
-const { protect } = require("./middleware/authMiddleware.js");
+var { notFound, errorHandler } = require("./middleware/authmiddleware");
+const { protect } = require("./middleware/authmiddleware");
 
 const sendEmail = require("./utils/sendEmail");
 var jwt = require("jsonwebtoken");
