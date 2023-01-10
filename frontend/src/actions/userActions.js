@@ -27,7 +27,7 @@ export const login = (email, password) => async (dispatch) => {
     };
 
     const { data } = await axios.post(
-      `${process.env.REST_api}/api/login`,
+      `${REST_api}/api/login`,
       { email, password },
       config
     );
