@@ -9,7 +9,7 @@ function NewSubmit() {
   const [msg, setMsg] = useState("");
   const [error, setError] = useState("");
   const param = useParams();
-  const url = `http://localhost:3005/reset-password/${param.id}/${param.token}`;
+  const url = `http://localhost:3005/api/reset-password/${param.id}/${param.token}`;
 
   useEffect(() => {
     const verifyUrl = async () => {
