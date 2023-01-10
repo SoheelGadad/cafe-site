@@ -120,16 +120,14 @@ export const ForgetPassword = (email) => async (dispatch) => {
     dispatch({ type: USER_PASSWORD_RECOVERY });
 
     const config = {
-      headers: {
-        "Content-type": "application/json",
-      },
+      email: email,
     };
 
     const { data } = await axios.post("/send-otp", { email }, config);
 
     dispatch({ type: USER_PASSWORD_RECOVERY_SUCCESS, payload: data });
 
-    localStorage.setItem("userInfop", JSON.stringify(data));
+    localStorage.setItem("userotp", JSON.stringify(data));
   } catch (error) {
     dispatch({
       type: USER_PASSWORD_RECOVERY_FAIL,

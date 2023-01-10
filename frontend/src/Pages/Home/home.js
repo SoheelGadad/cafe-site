@@ -20,18 +20,18 @@ function Home() {
   return (
     <MainScreen>
       <div>
-        <section class="mainphoto"></section>
+        <section className="mainphoto"></section>
 
-        <div class="title">
+        <div className="title">
           <h1>CafeERA</h1>
-          <h3 className="h3">If you're looking for morring cafe</h3>
+          <sub className="subtitle">If you're looking for morring cafe</sub>
           {userInfo ? (
             <Button color="none" className="book-table-btn" href="/Book">
               Book a Table
             </Button>
           ) : (
-            <Button color="none" className="book-table-btn" href="/register">
-              Signup
+            <Button color="none" className="book-table-btn" href="/Login">
+              Login/signup
             </Button>
           )}
         </div>
