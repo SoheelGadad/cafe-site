@@ -22,6 +22,7 @@ const Routing = () => {
       <Route path="*" element={<NotFound />} />
 
       <Route exact path="/" element={<Home />} />
+      <Route exact path="https://client-9x38.onrender.com" element={<Home />} />
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
       <Route path="/Book" element={<Book />} />
