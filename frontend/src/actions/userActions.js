@@ -26,7 +26,7 @@ export const login = (email, password) => async (dispatch) => {
     };
 
     const { data } = await axios.post(
-      "/api/login",
+      "http://localhost:3005/api/login",
       { email, password },
       config
     );

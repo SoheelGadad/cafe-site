@@ -1,7 +1,7 @@
 {
   "name": "frontend",
   "homepage": "https://client-9x38.onrender.com",
-  "proxy": "http://127.0.0.1:3005",
+  "allowedHosts": "all",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -19,6 +19,7 @@
     "bootstrap": "^5.2.3",
     "buffer": "^6.0.3",
     "crypto-browserify": "^3.12.0",
+    "http-proxy-middleware": "^2.0.6",
     "mdb-react-ui-kit": "^5.1.0",
     "react": "^18.2.0",
     "react-bootstrap": "^2.7.0",

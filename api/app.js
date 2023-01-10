@@ -39,10 +39,6 @@ app.set("view engine", "ejs");
 app.use("/availability", require("./routes/availabilityRoute"));
 app.use("/reserve", require("./routes/reservationRoute"));
 
-app.get("/", (req, res) => {
-  res.sendStatus(200);
-});
-
 //login---------------------------------------------
 
 //@description     Register new user
@@ -196,13 +192,18 @@ app.post("/api/reset-password/:id/:token", async (req, res) => {
 app.use(notFound);
 app.use(errorHandler);
 //--------------------------------------------------------
+__dirname = path.resolve();
 if (process.env.NODE_ENV === "production") {
   //*Set static folder up in production
   app.use(express.static("frontend/build"));
-
   app.get("*", (req, res) =>
     res.sendFile(path.resolve(__dirname, "frontend", "build", "index.html"))
   );
+} else {
+  app.get("/"),
+    (req, res) => {
+      res.send("API is running..");
+    };
 }
 //----------------------------------------------------------
 db.on("error", console.error.bind(console, "connection error:"));
