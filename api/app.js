@@ -146,7 +146,7 @@ app.post("/api/forget-password", async (req, res) => {
     const token = jwt.sign({ email: olduser.email, id: olduser._id }, secret, {
       expiresIn: "10m",
     });
-    const url = `http://localhost:3000/reset-password/${olduser.id}/${token}`;
+    const url = `http://localhost:3000/api/reset-password/${olduser.id}/${token}`;
     await sendEmail(olduser.email, "Password Reset", url);
     // console.log(url);
     res
@@ -157,7 +157,7 @@ app.post("/api/forget-password", async (req, res) => {
   }
 });
 
-app.get("/reset-password/:id/:token", async (req, res) => {
+app.get("/api/reset-password/:id/:token", async (req, res) => {
   const { id, token } = req.params;
   const olduser = await User.findOne({ _id: id });
   if (!olduser) {
@@ -171,7 +171,7 @@ app.get("/reset-password/:id/:token", async (req, res) => {
     res.status(500).send({ message: "Internal Server Error" });
   }
 });
-app.post("/reset-password/:id/:token", async (req, res) => {
+app.post("/api/reset-password/:id/:token", async (req, res) => {
   const { id, token } = req.params;
   const { password } = req.body;
 
