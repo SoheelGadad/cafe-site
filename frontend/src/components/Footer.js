@@ -6,7 +6,7 @@ const Footer = () => {
   return (
     <footer class="footer-distributed">
       <div class="footer-left">
-        <NavLink href="/" className="nav-logo">
+        <NavLink href="/" className="nav-logo1">
           <h3>
             CafeERA
             <i className="fa fa-coffee"></i>
