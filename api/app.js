@@ -26,12 +26,17 @@ const db = mongoose.connection;
 
 // Express
 var app = express();
-app.use(cors());
+//app.use(cors());
 app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
+app.use(
+  cors({
+    origin: ["https://localhost:3000", "https://client-9x38.onrender.com"],
+  })
+);
 app.set("views", "./views");
 app.set("view engine", "ejs");
 

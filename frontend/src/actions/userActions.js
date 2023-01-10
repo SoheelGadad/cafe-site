@@ -26,7 +26,7 @@ export const login = (email, password) => async (dispatch) => {
     };
 
     const { data } = await axios.post(
-      "http://localhost:3005/api/login",
+      "https://cafeera.onrender.com/api/login",
       { email, password },
       config
     );
