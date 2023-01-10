@@ -1,16 +1,23 @@
 require("dotenv").config();
 const express = require("express");
+const cors = require("cors");
 const path = require("path");
 const cookieParser = require("cookie-parser");
 const logger = require("morgan");
-const cors = require("cors");
+
 const User = require("./models/userModel");
 const generateToken = require("./utils/generateToken");
-var { errorHandler } = require("./middleware/errorMiddleware");
-const { protect } = require("./middleware/authMiddleware.js");
-const userController = require("./Controller/user");
+var { notFound, errorHandler } = require("./middleware/errorMiddleware");
+const { protect } = require("./middleware/authmiddleware");
+
+const sendEmail = require("./utils/sendEmail");
+var jwt = require("jsonwebtoken");
+var bcrypt = require("bcryptjs");
+var asyncHandler = require("express-async-handler");
+
 // MongoDB
 const mongoose = require("mongoose");
+const { Verify } = require("crypto");
 mongoose.connect(process.env.MONGO_URI, {
   useUnifiedTopology: true,
   useNewUrlParser: true,
@@ -25,70 +32,78 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
-//app.use(notFound);
-app.use(errorHandler);
+app.set("views", "./views");
+app.set("view engine", "ejs");
+
 // Routes
 app.use("/availability", require("./routes/availabilityRoute"));
 app.use("/reserve", require("./routes/reservationRoute"));
 
-app.use("/send-otp", userController.sendotp);
-app.use("/submit-otp", userController.submitotp);
+app.get("/", (req, res) => {
+  res.sendStatus(200);
+});
 
 //login---------------------------------------------
 
 //@description     Register new user
 //@access          Public
-app.post("/api/login", async (req, res) => {
-  const { email, password } = req.body;
+app.post(
+  "/api/login",
+  asyncHandler(async (req, res) => {
+    const { email, password } = req.body;
 
-  const user = await User.findOne({ email });
+    const user = await User.findOne({ email });
 
-  if (user && (await user.matchPassword(password))) {
-    res.json({
-      _id: user._id,
-      name: user.name,
-      email: user.email,
-      pic: user.pic,
-      token: generateToken(user._id),
-    });
-  } else {
-    res.status(401);
-    throw new Error("Invalid Email or Password");
-  }
-});
+    if (user && (await user.matchPassword(password))) {
+      res.json({
+        _id: user._id,
+        name: user.name,
+        email: user.email,
+        pic: user.pic,
+        token: generateToken(user._id),
+      });
+    } else {
+      res.status(401);
+      throw new Error("Invalid Email or Password");
+    }
+  })
+);
 
 //@description     Register new user
 //@access          Public
-app.post("/api/register", async (req, res) => {
-  const { name, email, password, pic } = req.body;
+app.post(
+  "/api/register",
+  asyncHandler(async (req, res) => {
+    const { name, email, password, pic } = req.body;
 
-  const userExists = await User.findOne({ email });
+    const userExists = await User.findOne({ email });
 
-  if (userExists) {
-    res.status(404);
-    throw new Error("User already exists");
-  }
+    if (userExists) {
+      res.status(404);
+      throw new Error("User already exists");
+    }
 
-  const user = await User.create({
-    name,
-    email,
-    password,
-    pic,
-  });
-
-  if (user) {
-    res.status(201).json({
-      _id: user._id,
-      name: user.name,
-      email: user.email,
-      pic: user.pic,
-      token: generateToken(user._id),
+    const user = await User.create({
+      name,
+      email,
+      password,
+      pic,
     });
-  } else {
-    res.status(400);
-    throw new Error("User not found");
-  }
-});
+
+    if (user) {
+      res.status(201).json({
+        _id: user._id,
+        name: user.name,
+        email: user.email,
+        pic: user.pic,
+        token: generateToken(user._id),
+      });
+    } else {
+      res.status(400);
+      throw new Error("User not found");
+    }
+  })
+);
 
 // @desc    GET user profile
 // @access  Private
@@ -110,7 +125,6 @@ app.post("/api/profile", protect, async (req, res) => {
       _id: updatedUser._id,
       name: updatedUser.name,
       email: updatedUser.email,
-
       pic: updatedUser.pic,
       token: generateToken(updatedUser._id),
     });
@@ -119,7 +133,77 @@ app.post("/api/profile", protect, async (req, res) => {
     throw new Error("User Not Found");
   }
 });
+app.post("/api/forget-password", async (req, res) => {
+  const { email } = req.body;
+  try {
+    const olduser = await User.findOne({ email });
+    if (!olduser) {
+      return res
+        .status(409)
+        .send({ message: "User with given email does not exist!" });
+    }
+    const secret = process.env.JWT_SECRET + olduser.password;
+    const token = jwt.sign({ email: olduser.email, id: olduser._id }, secret, {
+      expiresIn: "10m",
+    });
+    const url = `http://localhost:3000/api/reset-password/${olduser.id}/${token}`;
+    await sendEmail(olduser.email, "Password Reset", url);
+    // console.log(url);
+    res
+      .status(200)
+      .send({ message: "Password reset link sent to your email account" });
+  } catch (error) {
+    res.status(500).send({ message: "Internal Server Error" });
+  }
+});
 
+app.get("/api/reset-password/:id/:token", async (req, res) => {
+  const { id, token } = req.params;
+  const olduser = await User.findOne({ _id: id });
+  if (!olduser) {
+    return res.status(400).send({ message: "Invalid link" });
+  }
+  const secret = process.env.JWT_SECRET + olduser.password;
+  try {
+    const verify = jwt.verify(token, secret);
+    res.status(200).send("Valid Url");
+  } catch (error) {
+    res.status(500).send({ message: "Internal Server Error" });
+  }
+});
+app.post("/api/reset-password/:id/:token", async (req, res) => {
+  const { id, token } = req.params;
+  const { password } = req.body;
+
+  const olduser = await User.findOne({ _id: id });
+  if (!olduser) {
+    return res.status(400).send({ message: "Invalid link" });
+  }
+  const secret = process.env.JWT_SECRET + olduser.password;
+  try {
+    const verify = jwt.verify(token, secret);
+    const salt = await bcrypt.genSalt(10);
+    const hashPassword = await bcrypt.hash(password, salt);
+    olduser.password = hashPassword;
+    await User.updateOne({ _id: id }, { password: hashPassword });
+
+    res.status(200).send({ message: "Password reset successfully" });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({ message: "Internal Server Error" });
+  }
+});
+app.use(notFound);
+app.use(errorHandler);
+//--------------------------------------------------------
+if (process.env.NODE_ENV === "production") {
+  //*Set static folder up in production
+  app.use(express.static("frontend/build"));
+
+  app.get("*", (req, res) =>
+    res.sendFile(path.resolve(__dirname, "frontend", "build", "index.html"))
+  );
+}
 //----------------------------------------------------------
 db.on("error", console.error.bind(console, "connection error:"));
 db.once("open", (_) => {
