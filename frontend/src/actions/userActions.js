@@ -14,6 +14,7 @@ import {
   USER_PASSWORD_RECOVERY_FAIL,
 } from "../constants/userConstants";
 import axios from "axios";
+
 const REST_api = "https://cafeera.onrender.com";
 
 export const login = (email, password) => async (dispatch) => {
@@ -62,7 +63,7 @@ export const register = (name, email, password) => async (dispatch) => {
     };
 
     const { data } = await axios.post(
-      "/api/register",
+      `${REST_api}/api/register`,
       { name, email, password },
       config
     );
@@ -98,7 +99,7 @@ export const updateProfile = (user) => async (dispatch, getState) => {
       },
     };
 
-    const { data } = await axios.post("/api/profile", user, config);
+    const { data } = await axios.post(`${REST_api}/api/profile`, user, config);
 
     dispatch({ type: USER_UPDATE_SUCCESS, payload: data });
 
