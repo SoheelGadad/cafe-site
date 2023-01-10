@@ -61,7 +61,7 @@ export const register = (name, email, password) => async (dispatch) => {
     };
 
     const { data } = await axios.post(
-      "/api/register",
+      "https://cafeera.onrender.com/api/register",
       { name, email, password },
       config
     );
