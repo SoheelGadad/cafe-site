@@ -14,7 +14,7 @@ function ForgetPassword() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const url = `https://cafeera.onrender.com/api/forget-password`;
+      const url = `/api/forget-password`;
       const { data } = await axios.post(url, { email });
       setMsg(data.message);
       setError("");
