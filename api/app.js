@@ -42,6 +42,7 @@ app.use("/reserve", require("./routes/reservationRoute"));
 app.get("/", (req, res) => {
   res.sendStatus(200);
 });
+
 //login---------------------------------------------
 
 //@description     Register new user
@@ -194,7 +195,15 @@ app.post("/reset-password/:id/:token", async (req, res) => {
 });
 app.use(notFound);
 app.use(errorHandler);
+//--------------------------------------------------------
+if (process.env.NODE_ENV === "production") {
+  //*Set static folder up in production
+  app.use(express.static("frontend/build"));
 
+  app.get("*", (req, res) =>
+    res.sendFile(path.resolve(__dirname, "frontend", "build", "index.html"))
+  );
+}
 //----------------------------------------------------------
 db.on("error", console.error.bind(console, "connection error:"));
 db.once("open", (_) => {
