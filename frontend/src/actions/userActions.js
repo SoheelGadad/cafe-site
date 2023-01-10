@@ -26,7 +26,7 @@ export const login = (email, password) => async (dispatch) => {
     };
 
     const { data } = await axios.post(
-      "https://cafeera.onrender.com/api/login",
+      "/api/login",
       { email, password },
       config
     );
@@ -61,7 +61,7 @@ export const register = (name, email, password) => async (dispatch) => {
     };
 
     const { data } = await axios.post(
-      "https://cafeera.onrender.com/api/register",
+      "/api/register",
       { name, email, password },
       config
     );
