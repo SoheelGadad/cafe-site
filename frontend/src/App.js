@@ -18,9 +18,11 @@ export const UserContext = createContext();
 
 const Routing = () => {
   return (
+    <>
+    
+    
     <Routes>
       <Route path="*" element={<NotFound />} />
-
       <Route exact path="/" element={<Home />} />
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
@@ -32,7 +34,10 @@ const Routing = () => {
       <Route path="/aboutus" element={<AboutUs />} />
       <Route path="/viewprofile" element={<Viewprofile />} />
       <Route path="/reset-password/:id/:token" element={<ResetPassword />} />
+  
     </Routes>
+    
+    </>
   );
 };
 const App = () => {
