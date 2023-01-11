@@ -13,6 +13,7 @@ import Footer from "./components/Footer";
 import AboutUs from "./Pages/Aboutuspage/Aboutus";
 import Viewprofile from "./Pages/ProfileScreen/viewprofile";
 import NotFound from "./Pages/NotFound/NotFound";
+import ConstructionPages from "./Pages/comingsoonpages/comingsoonpages";
 
 export const UserContext = createContext();
 
@@ -26,6 +27,7 @@ const Routing = () => {
       <Route path="/register" element={<Register />} />
       <Route path="/Book" element={<Book />} />
       <Route path="/UserHome" element={<ThankYou />} />
+      <Route path="/comingsoonPages" element={<ConstructionPages />} />
 
       <Route path="/ForgetPassword" element={<ForgetPassword />} />
       <Route path="/userprofile" element={<Userprofile />} />

@@ -69,7 +69,7 @@ function Registerpage() {
             className="input-field"
           />
 
-          <button type="submit" value="Register">
+          <button type="submit" value="Register" className="button">
             Sign up
           </button>
           <p className="or">----- or continue with -----</p>

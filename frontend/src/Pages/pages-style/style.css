@@ -52,7 +52,7 @@ form .input {
   text-decoration: none;
   color: #07001f;
 }
-button {
+.button {
   font-size: 1.1rem;
   margin-top: 1rem;
   padding: 8px 0;
@@ -70,7 +70,7 @@ button {
   cursor: pointer;
 }
 /* background: tomato;*/
-button:hover {
+.button:hover {
   color: #dfe9f5;
   background: linear-gradient(
     50deg,

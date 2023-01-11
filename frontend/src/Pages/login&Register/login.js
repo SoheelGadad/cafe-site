@@ -80,7 +80,7 @@ function Loginpage() {
                 <a href="/ForgetPassword">Forgot Password?</a>
               </p>
 
-              <button type="submit" value="Login">
+              <button type="submit" value="Login" className="button">
                 Sign in
               </button>
             </form>

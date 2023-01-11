@@ -36,10 +36,10 @@
   width: 100%;
   margin: 20px;
 }
-.book-table-btn {
+.book-button {
   color: white;
   font-size: 1.2rem;
-  padding: 2% 8%;
+  padding: 10px 45px;
   position: absolute;
   transform: translate(-50%, 40%);
   border-radius: 25px;
@@ -52,7 +52,7 @@
   border: 2px white none;
   font-family: ABeeZee, sans-serif;
 }
-.book-table-btn:hover {
+.book-button:hover {
   text-decoration: none;
   color: #040404;
   background: linear-gradient(

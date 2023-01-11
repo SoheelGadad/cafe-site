@@ -14,17 +14,17 @@ const Footer = () => {
         </NavLink>
 
         <p class="footer-links">
-          <a href="#" class="link-1">
+          <a href="/" class="link-1">
             Home
           </a>
 
-          <a href="#">Blog</a>
+          <a href="/comingsoonPages">Blog</a>
 
-          <a href="#">About</a>
+          <a href="/about">About</a>
 
-          <a href="#">Faq</a>
+          <a href="/comingsoonPages">Faq</a>
 
-          <a href="#">Contact</a>
+          <a href="/comingsoonPages">Contact</a>
         </p>
       </div>
 

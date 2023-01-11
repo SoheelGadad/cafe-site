@@ -30,11 +30,11 @@ function Home() {
             <sub className="subtitle">Lets's Book Your Next Table</sub>
             <br />
             {userInfo ? (
-              <Button color="none" className="book-table-btn" href="/Book">
+              <Button color="none" className="book-button" href="/Book">
                 Book a Table
               </Button>
             ) : (
-              <Button color="none" className="book-table-btn" href="/Login">
+              <Button color="none" className="book-button" href="/Login">
                 Signup
               </Button>
             )}

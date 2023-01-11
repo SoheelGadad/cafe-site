@@ -72,7 +72,9 @@ function NewSubmit() {
               placeholder="Enter confirm password"
               className="input-field"
             />
-            <button type="submit">CHANGE PASSWORD</button>
+            <button type="submit" className="button">
+              CHANGE PASSWORD
+            </button>
           </form>
         ) : (
           <h1>404 Not Found</h1>
