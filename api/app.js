@@ -26,17 +26,12 @@ const db = mongoose.connection;
 
 // Express
 var app = express();
-//app.use(cors());
+app.use(cors());
 app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
-app.use(
-  cors({
-    origin: ["https://localhost:3000", "https://client-9x38.onrender.com"],
-  })
-);
 app.set("views", "./views");
 app.set("view engine", "ejs");
 
@@ -147,9 +142,9 @@ app.post("/api/forget-password", async (req, res) => {
     const token = jwt.sign({ email: olduser.email, id: olduser._id }, secret, {
       expiresIn: "10m",
     });
-    const url = `https://cafeera.onrender.com/reset-password/${olduser.id}/${token}`;
-    await sendEmail(olduser.email, "Password Reset", url);
-    // console.log(url);
+    const url = `${process.env.REACT_APP_BASE_URI}/reset-password/${olduser.id}/${token}`;
+    //await sendEmail(olduser.email, "Password Reset", url);
+    console.log(url);
     res
       .status(200)
       .send({ message: "Password reset link sent to your email account" });
@@ -194,8 +189,7 @@ app.post("/reset-password/:id/:token", async (req, res) => {
     res.status(500).send({ message: "Internal Server Error" });
   }
 });
-app.use(notFound);
-app.use(errorHandler);
+
 //--------------------------------------------------------
 __dirname = path.resolve();
 if (process.env.NODE_ENV === "production") {
@@ -210,6 +204,8 @@ if (process.env.NODE_ENV === "production") {
       res.send("API is running..");
     };
 }
+app.use(notFound);
+app.use(errorHandler);
 //----------------------------------------------------------
 db.on("error", console.error.bind(console, "connection error:"));
 db.once("open", (_) => {

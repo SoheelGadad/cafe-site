@@ -15,7 +15,7 @@ import {
 } from "../constants/userConstants";
 import axios from "axios";
 
-const REST_api = "https://cafeera.onrender.com";
+//const REST_api = "https://cafeera.onrender.com";
 
 export const login = (email, password) => async (dispatch) => {
   try {
@@ -28,7 +28,7 @@ export const login = (email, password) => async (dispatch) => {
     };
 
     const { data } = await axios.post(
-      `${REST_api}/api/login`,
+      `${process.env.REACT_APP_BASE_URI}/api/login`,
       { email, password },
       config
     );
@@ -63,7 +63,7 @@ export const register = (name, email, password) => async (dispatch) => {
     };
 
     const { data } = await axios.post(
-      `${REST_api}/api/register`,
+      `${process.env.REACT_APP_BASE_URI}/api/register`,
       { name, email, password },
       config
     );
@@ -99,7 +99,11 @@ export const updateProfile = (user) => async (dispatch, getState) => {
       },
     };
 
-    const { data } = await axios.post(`${REST_api}/api/profile`, user, config);
+    const { data } = await axios.post(
+      `${process.env.REACT_APP_BASE_URI}/api/profile`,
+      user,
+      config
+    );
 
     dispatch({ type: USER_UPDATE_SUCCESS, payload: data });
 

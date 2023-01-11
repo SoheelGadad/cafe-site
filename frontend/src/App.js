@@ -32,7 +32,7 @@ const Routing = () => {
       <Route path="/userprofile" element={<Userprofile />} />
       <Route path="/aboutus" element={<AboutUs />} />
       <Route path="/viewprofile" element={<Viewprofile />} />
-      <Route path="/api/reset-password/:id/:token" element={<ResetPassword />} />
+      <Route path="/reset-password/:id/:token" element={<ResetPassword />} />
     </Routes>
   );
 };
