@@ -47,12 +47,23 @@ button {
   outline: none;
   border: none;
   width: 85%;
-  background: tomato;
+  background: rgb(251, 255, 0);
+  background: linear-gradient(
+    50deg,
+    rgba(255, 148, 0, 1) 54%,
+    rgb(249, 180, 6) 54%
+  );
   color: #fff;
   cursor: pointer;
 }
+/* background: tomato;*/
 button:hover {
-  background: rgba(122, 30, 30, 0.767);
+  color: #dfe9f5;
+  background: linear-gradient(
+    50deg,
+    rgb(249, 180, 6) 54%,
+    rgba(255, 148, 0, 1) 54%
+  );
 }
 .or {
   font-size: 0.8rem;

@@ -23,17 +23,22 @@ function Home() {
         <section className="mainphoto"></section>
 
         <div className="title">
-          <h1>CafeERA</h1>
-          <sub className="subtitle">If you're looking for morring cafe</sub>
-          {userInfo ? (
-            <Button color="none" className="book-table-btn" href="/Book">
-              Book a Table
-            </Button>
-          ) : (
-            <Button color="none" className="book-table-btn" href="/Login">
-              Login/signup
-            </Button>
-          )}
+          <div className="title_container">
+            <h2>
+              Welcome to our<h1>CafeERA</h1>
+            </h2>
+            <sub className="subtitle">Lets's Book Your Next Table</sub>
+            <br />
+            {userInfo ? (
+              <Button color="none" className="book-table-btn" href="/Book">
+                Book a Table
+              </Button>
+            ) : (
+              <Button color="none" className="book-table-btn" href="/Login">
+                Signup
+              </Button>
+            )}
+          </div>
         </div>
       </div>
     </MainScreen>
