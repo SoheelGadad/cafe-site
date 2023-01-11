@@ -49,23 +49,26 @@ const Headers = (setSearch) => {
                 Book A Table
               </NavLink>
             </li>
+           
             <NavDropdown
               title={`${userInfo.name}`}
               id="collasible-nav-dropdown"
               className="navdrop"
             >
-              <NavDropdown.Item href="/viewprofile">
+              
+              <NavDropdown.Item href="/viewprofile"  className="drop-bg">
                 <img
                   alt=""
                   src={`${userInfo.pic}`}
                   width="25"
                   height="25"
                   style={{ marginRight: 10 }}
+                  className='profile-img'
                 />
                 My Profile
-              </NavDropdown.Item>
-
-              <NavDropdown.Divider />
+             </NavDropdown.Item>
+             <NavDropdown.Divider/>
+              
               <li className="nav-logout">
                 <NavLink
                   activeClassName="active"
@@ -76,7 +79,9 @@ const Headers = (setSearch) => {
                   Logout
                 </NavLink>
               </li>
+             
             </NavDropdown>
+            
           </>
         ) : (
           <>

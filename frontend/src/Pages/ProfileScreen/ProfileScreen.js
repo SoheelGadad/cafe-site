@@ -80,7 +80,7 @@ const ProfileScreen = () => {
               {error && <ErrorMessage variant="danger">{error}</ErrorMessage>}
               <h1>EDIT PROFILE</h1>
               <Form.Group controlId="name">
-                <Form.Label>Name</Form.Label>
+                <Form.Label className="label-text">Name</Form.Label>
                 <Form.Control
                   type="text"
                   placeholder="Enter Name"
@@ -89,7 +89,7 @@ const ProfileScreen = () => {
                 ></Form.Control>
               </Form.Group>
               <Form.Group controlId="email">
-                <Form.Label>Email Address</Form.Label>
+                <Form.Label className="label-text">Email Address</Form.Label>
                 <Form.Control
                   type="email"
                   placeholder="Enter Email"
@@ -98,7 +98,7 @@ const ProfileScreen = () => {
                 ></Form.Control>
               </Form.Group>
               <Form.Group controlId="password">
-                <Form.Label>Password</Form.Label>
+                <Form.Label className="label-text">Password</Form.Label>
                 <Form.Control
                   type="password"
                   placeholder="Enter Password"
@@ -106,7 +106,7 @@ const ProfileScreen = () => {
                   onChange={(e) => setPassword(e.target.value)}
                 ></Form.Control>
                 <Form.Group controlId="confirmPassword">
-                  <Form.Label>Confirm Password</Form.Label>
+                  <Form.Label className="label-text">Confirm Password</Form.Label>
                   <Form.Control
                     type="password"
                     placeholder="Confirm Password"
@@ -118,7 +118,7 @@ const ProfileScreen = () => {
                   <ErrorMessage variant="danger">{picMessage}</ErrorMessage>
                 )}
                 <Form.Group controlId="pic">
-                  <Form.Label>Change Profile Picture</Form.Label>
+                  <Form.Label className="label-text">Change Profile Picture</Form.Label>
                   <Form.Control
                     type="file"
                     onChange={(e) => postDetails(e.target.files[0])}
@@ -127,20 +127,21 @@ const ProfileScreen = () => {
                 </Form.Group>
               </Form.Group>
 
-              <Button type="submit" varient="primary">
+              <Button type="submit" varient="primary" className="btn-upt">
                 Update
               </Button>
             </Form>
           </Col>
-          <Col
+          <div
             style={{
               display: "flex",
               alignItems: "center",
-              justifyContent: "center",
+              justifyContent: "center"
             }}
+            className='col'
           >
             <img src={pic} alt={name} className="profilePic" />
-          </Col>
+          </div>
         </Row>
       </div>
     </MainScreen>

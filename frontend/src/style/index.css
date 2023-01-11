@@ -175,22 +175,29 @@ body {
   font-family: 'Times New Roman', Times, serif;
   font-variant:small-caps;
   color: #fff;
-  background: rgb(251, 255, 0);
-  background: linear-gradient(
-    50deg,
-    rgba(255, 148, 0, 1) 54%,
-    rgb(249, 180, 6) 54%
-  );
 }
-.nav-linkslogout {
+/* .nav-linkslogout {
+  justify-content: space-between;
   color: black;
   padding: 15px 35px;
   text-decoration: none;
+  background-color: #050505;
 }
 .nav-linkslogout:hover {
-  color: #000000;
+  color: #f8f7f7;
   background-color: rgb(17, 16, 16);
+} */
+.profile-img{
+  border-radius: 14px;
 }
+.nav-linkslogout{
+  margin-left: 20px;
+  color: #000000;
+  background-color:white;
+  font-size: large;
+  font-family: 'Times New Roman', Times, serif;
+}
+
 
 /*--------------------------------------------------------------------*/
 @media (min-width: 768px) {

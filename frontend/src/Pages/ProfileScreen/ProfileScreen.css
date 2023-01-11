@@ -3,26 +3,66 @@
   display: flex;
   align-items: center;
   padding: 20px;
+  border-radius: 55%;
 }
+
 .profileContainer {
+  z-index: 0;
+  background-color: #d8d8d8;
   display: flex;
-  margin: 20px;
+  margin: 30px;
+  color: white;
+  font-weight: 800;
+  font-family: 'Times New Roman', Times, serif;
+  font-variant: small-caps;
+  border-top: 5px black solid;
+  border-right: 5px black solid;
+  border-left: 5px black solid;
+  border-bottom: 5px black solid;
+  background-image:url(https://media.discordapp.net/attachments/1006694916631576616/1020269952835518494/IMG_2651.gif);
+  /* background: rgb(251, 255, 0);
+  background: linear-gradient(
+    50deg,
+    rgba(255, 148, 0, 1) 54%,
+    rgb(249, 180, 6) 54%
+  ); */
+  
+  border-radius: 30px;
+}
+.label-text{
+  margin-top: 20px;
+  margin-bottom: 0;
+}
+.btn-upt{
+  margin-left: 30%;
+  margin-top: 30px;
+  margin-bottom: 20px;
+  width: 40%;
 }
 @media only screen and (max-width: 768px) {
   .profileContainer {
     flex-direction: column-reverse;
   }
 }
+.profileContainer h1{
+  color: white;
+  font-weight: 800;
+  align-content: center;
+  font-family: 'Times New Roman', Times, serif;
 
+}
 
 
 .box{
-  background: linear-gradient(to right, #fc5c7d, #6a82fb);
+ background-image:url(https://media1.giphy.com/media/BHNfhgU63qrks/giphy.gif?cid=ecf05e47gnxkkp4enhqw8on7yj52jfyo4875tgzfcr1ha2sl&rid=giphy.gif&ct=g);   
+  background-repeat: no-repeat;
+  background-size: cover;
 	width: 450px;
 	padding: 40px;
 	text-align: center;
+  letter-spacing: 1px;
 	margin: auto;
-	color: white;
+	color: rgb(255, 255, 255);
 	font-family: 'centure gothic',sans-serif;
   border-radius: 40px;
 }
@@ -31,18 +71,25 @@
   font-family:'Times New Roman', Times, serif;
 }
 .box h1{
-  color: white;
-	font-size: 40px;
+  color: rgb(251, 251, 251);
+	font-size: 70px;
+  font-variant: small-caps;
+  margin-bottom: 20px;
 	letter-spacing: 4px;
-	font-weight: 100;
+	font-weight: 800;
 }
 .box h5{
-	font-size: 25px;
 	letter-spacing: 3px;
-	font-weight: 100;
+	font-weight: 800;
+  font-size: 70px;
+  font-variant: small-caps;
+  margin-bottom: 20px;
 }
 .box p{
 	text-align: justify;
+  font-size: 15px;
+  font-variant: small-caps;
+  margin-bottom: 20px;
 }
 .box-img{
   width: 150px;
@@ -56,4 +103,5 @@
 .Button{
   display: flex;
   justify-content: space-between;
+  
 }
