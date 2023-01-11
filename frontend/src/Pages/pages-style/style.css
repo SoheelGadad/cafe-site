@@ -21,8 +21,9 @@ p {
   margin-bottom: 1.7rem;
 }
 form .input-field {
+  
   letter-spacing: 0px;
-  width: 85%;
+  width: 75%;
   outline: none;
   border: none;
   background: #dfe9f5;
@@ -63,6 +64,12 @@ button {
   color: #fff;
   cursor: pointer;
 }
+.eyeIcon{
+  position: absolute;
+  transform: translate(-190%,50%);
+  cursor: pointer;
+}
+
 /* background: tomato;*/
 button:hover {
   color: #dfe9f5;

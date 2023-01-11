@@ -37,7 +37,7 @@ body {
   align-items: center;
   position: absolute;
   top: 20%;
-  left: 1%;
+  left: 3%;
   cursor: pointer;
   text-decoration: none;
   font-size: 2rem;
@@ -77,7 +77,7 @@ body {
 }
 .nav-links:hover {
   text-decoration: none;
-  color: #f5b921;
+  color: #050505;
 }
 .fa-code {
   margin-left: 1rem;
@@ -170,8 +170,17 @@ body {
   }
 }
 .navdrop {
+  font-weight: 800;
+  font-size: xx-large;
+  font-family: 'Times New Roman', Times, serif;
+  font-variant:small-caps;
   color: #fff;
-  background-color: #000000;
+  background: rgb(251, 255, 0);
+  background: linear-gradient(
+    50deg,
+    rgba(255, 148, 0, 1) 54%,
+    rgb(249, 180, 6) 54%
+  );
 }
 .nav-linkslogout {
   color: black;
@@ -180,7 +189,7 @@ body {
 }
 .nav-linkslogout:hover {
   color: #000000;
-  background-color: #ddd;
+  background-color: rgb(17, 16, 16);
 }
 
 /*--------------------------------------------------------------------*/

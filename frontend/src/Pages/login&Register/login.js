@@ -61,18 +61,19 @@ function Loginpage() {
                 className="input-field"
               />
 
-              <div className="input-field">
+             
                 <input
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   type={type}
                   placeholder="Password"
                   className="input-field"
+
                 />
                 <span>
-                  <Icon onClick={handleToggle} icon={icon} size={20} />
+                  <Icon onClick={handleToggle} icon={icon} size={20} className='eyeIcon'/>
                 </span>
-              </div>
+              
               <p class="recover">
                 <a href="/ForgetPassword">Forgot Password?</a>
               </p>
