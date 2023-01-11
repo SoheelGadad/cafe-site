@@ -8,7 +8,7 @@ const logger = require("morgan");
 const User = require("./models/userModel");
 const generateToken = require("./utils/generateToken");
 var { notFound, errorHandler } = require("./middleware/errorMiddleware");
-const { protect } = require("./middleware/authMiddleware.js");
+const { protect } = require("./middleware/authmiddleware");
 
 const sendEmail = require("./utils/sendEmail");
 var jwt = require("jsonwebtoken");
@@ -142,9 +142,9 @@ app.post("/api/forget-password", async (req, res) => {
     const token = jwt.sign({ email: olduser.email, id: olduser._id }, secret, {
       expiresIn: "10m",
     });
-    const url = `http://localhost:3000/reset-password/${olduser.id}/${token}`;
-    // await sendEmail(olduser.email, "Password Reset", url);
-    console.log(url);
+    const url = `${process.env.REACT_APP_BASE_URI}/reset-password/${olduser.id}/${token}`;
+    await sendEmail(olduser.email, "Password Reset", url);
+    //console.log(url);
     res
       .status(200)
       .send({ message: "Password reset link sent to your email account" });
@@ -189,9 +189,23 @@ app.post("/reset-password/:id/:token", async (req, res) => {
     res.status(500).send({ message: "Internal Server Error" });
   }
 });
+
+//--------------------------------------------------------
+__dirname = path.resolve();
+if (process.env.NODE_ENV === "production") {
+  //*Set static folder up in production
+  app.use(express.static("frontend/build"));
+  app.get("*", (req, res) =>
+    res.sendFile(path.resolve(__dirname, "frontend", "build", "index.html"))
+  );
+} else {
+  app.get("/"),
+    (req, res) => {
+      res.send("API is running..");
+    };
+}
 app.use(notFound);
 app.use(errorHandler);
-
 //----------------------------------------------------------
 db.on("error", console.error.bind(console, "connection error:"));
 db.once("open", (_) => {

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
-//import { useNavigate } from "react-router-dom";
+import "../pages-style/style.css";
+
 import Loading from "../../components/Loading";
 
 function ForgetPassword() {
@@ -12,7 +13,7 @@ function ForgetPassword() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const url = `/api/forget-password`;
+      const url = `${process.env.REACT_APP_BASE_URI}/api/forget-password`;
       const { data } = await axios.post(url, { email });
       setMsg(data.message);
       setError("");

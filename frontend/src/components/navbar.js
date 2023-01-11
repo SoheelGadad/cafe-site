@@ -112,7 +112,7 @@ const Headers = (setSearch) => {
       <div className={click ? "main-container" : ""} onClick={() => Close()} />
       <nav className="navbar" onClick={(e) => e.stopPropagation()}>
         <div className="nav-container">
-          <NavLink href="/" className="nav-logo">
+          <NavLink to="/" className="nav-logo">
             CafeERA
             <i className="fa fa-coffee"></i>
           </NavLink>
