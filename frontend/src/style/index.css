@@ -76,8 +76,8 @@ body {
   padding: 10px;
 }
 .nav-links:hover {
-  color: #050505;
   text-decoration: none;
+  color: #f5b921;
 }
 .fa-code {
   margin-left: 1rem;
@@ -85,6 +85,7 @@ body {
 .nav-item {
   line-height: 40px;
   margin-right: 1rem;
+  text-decoration: none;
 }
 
 .nav-item:after {
@@ -103,8 +104,9 @@ body {
 }
 
 .nav-item.active {
-  color: #0c0c0c;
-  border: 1px solid #080808;
+  color: #ffdd40;
+  border: 1px solid #ffdd40;
+  text-decoration: none;
 }
 
 .nav-icon {
