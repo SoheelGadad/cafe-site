@@ -22,7 +22,6 @@ const Routing = () => {
       <Route path="*" element={<NotFound />} />
 
       <Route exact path="/" element={<Home />} />
-      <Route exact path="https://client-9x38.onrender.com" element={<Home />} />
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
       <Route path="/Book" element={<Book />} />
@@ -32,7 +31,7 @@ const Routing = () => {
       <Route path="/userprofile" element={<Userprofile />} />
       <Route path="/aboutus" element={<AboutUs />} />
       <Route path="/viewprofile" element={<Viewprofile />} />
-      <Route path="/api/reset-password/:id/:token" element={<ResetPassword />} />
+      <Route path="/reset-password/:id/:token" element={<ResetPassword />} />
     </Routes>
   );
 };

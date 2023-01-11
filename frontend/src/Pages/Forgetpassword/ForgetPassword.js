@@ -13,7 +13,8 @@ function ForgetPassword() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const url = `/api/forget-password`;
+      const url = `${process.env.REACT_APP_BASE_URI}/api/forget-password`;
+
       const { data } = await axios.post(url, { email });
       setMsg(data.message);
       setError("");

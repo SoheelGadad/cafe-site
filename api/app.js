@@ -142,9 +142,10 @@ app.post("/api/forget-password", async (req, res) => {
     const token = jwt.sign({ email: olduser.email, id: olduser._id }, secret, {
       expiresIn: "10m",
     });
-    const url = `${process.env.REST_api}/${olduser.id}/${token}`;
-    await sendEmail(olduser.email, "Password Reset", url);
-    // console.log(url);
+
+    const url = `${process.env.REACT_APP_BASE_URI}/reset-password/${olduser.id}/${token}`;
+ await sendEmail(olduser.email, "Password Reset", url);
+    //console.log(url);
     res
       .status(200)
       .send({ message: "Password reset link sent to your email account" });
@@ -189,8 +190,7 @@ app.post(`/reset-password/:id/:token`, async (req, res) => {
     res.status(500).send({ message: "Internal Server Error" });
   }
 });
-app.use(notFound);
-app.use(errorHandler);
+
 //--------------------------------------------------------
 __dirname = path.resolve();
 if (process.env.NODE_ENV === "production") {
@@ -205,6 +205,8 @@ if (process.env.NODE_ENV === "production") {
       res.send("API is running..");
     };
 }
+app.use(notFound);
+app.use(errorHandler);
 //----------------------------------------------------------
 db.on("error", console.error.bind(console, "connection error:"));
 db.once("open", (_) => {
