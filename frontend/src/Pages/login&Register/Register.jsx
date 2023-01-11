@@ -49,6 +49,7 @@ function Registerpage() {
             type="text"
             placeholder="Name"
             required
+            className="input-field"
           />
           <br />
           <input
@@ -57,6 +58,7 @@ function Registerpage() {
             type="email"
             placeholder="Email"
             required
+            className="input-field"
           />
           <br />
           <input
@@ -64,6 +66,7 @@ function Registerpage() {
             onChange={(e) => setPassword(e.target.value)}
             type="password"
             placeholder="Password"
+            className="input-field"
           />
 
           <button type="submit" value="Register">
