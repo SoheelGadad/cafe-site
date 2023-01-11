@@ -100,15 +100,18 @@ export default (props) => {
     if (selection.time && selection.date) {
       (async (_) => {
         let datetime = getDate();
-        let res = await fetch("http://localhost:3005/availability", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            date: datetime,
-          }),
-        });
+        let res = await fetch(
+          `${process.env.REACT_APP_BASE_URI}/availability`,
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              date: datetime,
+            }),
+          }
+        );
         res = await res.json();
         // Filter available tables with location and group size criteria
         let tables = res.tables.filter(
@@ -135,7 +138,7 @@ export default (props) => {
       setReservationError(true);
     } else {
       const datetime = getDate();
-      let res = await fetch("http://localhost:3005/reserve", {
+      let res = await fetch(`${process.env.REACT_APP_BASE_URI}/reserve`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
