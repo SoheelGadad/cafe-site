@@ -26,7 +26,7 @@ export const login = (email, password) => async (dispatch) => {
     };
 
     const { data } = await axios.post(
-      "/api/login",
+      `${process.env.REACT_APP_BASE_URI}/api/login`,
       { email, password },
       config
     );
@@ -61,7 +61,7 @@ export const register = (name, email, password) => async (dispatch) => {
     };
 
     const { data } = await axios.post(
-      "/api/register",
+      `${process.env.REACT_APP_BASE_URI}/api/register`,
       { name, email, password },
       config
     );
@@ -97,7 +97,11 @@ export const updateProfile = (user) => async (dispatch, getState) => {
       },
     };
 
-    const { data } = await axios.post("/api/profile", user, config);
+    const { data } = await axios.post(
+      `${process.env.REACT_APP_BASE_URI}/api/profile`,
+      user,
+      config
+    );
 
     dispatch({ type: USER_UPDATE_SUCCESS, payload: data });
 
