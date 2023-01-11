@@ -19,24 +19,20 @@ export const UserContext = createContext();
 const Routing = () => {
   return (
     <>
-    
-    
-    <Routes>
-      <Route path="*" element={<NotFound />} />
-      <Route exact path="/" element={<Home />} />
-      <Route path="/login" element={<Login />} />
-      <Route path="/register" element={<Register />} />
-      <Route path="/Book" element={<Book />} />
-      <Route path="/UserHome" element={<ThankYou />} />
+      <Routes>
+        <Route path="*" element={<NotFound />} />
+        <Route exact path="/" element={<Home />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/Book" element={<Book />} />
+        <Route path="/UserHome" element={<ThankYou />} />
 
-      <Route path="/ForgetPassword" element={<ForgetPassword />} />
-      <Route path="/userprofile" element={<Userprofile />} />
-      <Route path="/aboutus" element={<AboutUs />} />
-      <Route path="/viewprofile" element={<Viewprofile />} />
-      <Route path="/reset-password/:id/:token" element={<ResetPassword />} />
-  
-    </Routes>
-    
+        <Route path="/ForgetPassword" element={<ForgetPassword />} />
+        <Route path="/userprofile" element={<Userprofile />} />
+        <Route path="/aboutus" element={<AboutUs />} />
+        <Route path="/viewprofile" element={<Viewprofile />} />
+        <Route path="/reset-password/:id/:token" element={<ResetPassword />} />
+      </Routes>
     </>
   );
 };
