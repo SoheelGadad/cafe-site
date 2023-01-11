@@ -4,8 +4,6 @@ import "../pages-style/style.css";
 
 import Loading from "../../components/Loading";
 
-const REST_api = "https://cafeera.onrender.com";
-
 function ForgetPassword() {
   const [email, setEmail] = useState("");
   const [msg, setMsg] = useState("");
@@ -15,7 +13,7 @@ function ForgetPassword() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const url = `${REST_api}/api/forget-password`;
+      const url = `/api/forget-password`;
       const { data } = await axios.post(url, { email });
       setMsg(data.message);
       setError("");

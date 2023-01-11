@@ -26,17 +26,12 @@ const db = mongoose.connection;
 
 // Express
 var app = express();
-//app.use(cors());
+app.use(cors());
 app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
-app.use(
-  cors({
-    origin: ["https://localhost:3000", "https://client-9x38.onrender.com"],
-  })
-);
 app.set("views", "./views");
 app.set("view engine", "ejs");
 
@@ -147,7 +142,7 @@ app.post("/api/forget-password", async (req, res) => {
     const token = jwt.sign({ email: olduser.email, id: olduser._id }, secret, {
       expiresIn: "10m",
     });
-    const url = `https://cafeera.onrender.com/reset-password/${olduser.id}/${token}`;
+    const url = `${process.env.REST_api}/${olduser.id}/${token}`;
     await sendEmail(olduser.email, "Password Reset", url);
     // console.log(url);
     res
@@ -158,7 +153,7 @@ app.post("/api/forget-password", async (req, res) => {
   }
 });
 
-app.get("/reset-password/:id/:token", async (req, res) => {
+app.get(`/reset-password/:id/:token`, async (req, res) => {
   const { id, token } = req.params;
   const olduser = await User.findOne({ _id: id });
   if (!olduser) {
@@ -172,7 +167,7 @@ app.get("/reset-password/:id/:token", async (req, res) => {
     res.status(500).send({ message: "Internal Server Error" });
   }
 });
-app.post("/reset-password/:id/:token", async (req, res) => {
+app.post(`/reset-password/:id/:token`, async (req, res) => {
   const { id, token } = req.params;
   const { password } = req.body;
 
