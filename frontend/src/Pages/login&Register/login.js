@@ -6,12 +6,17 @@ import MainScreen from "../../components/MainScreen";
 import Loading from "../../components/Loading";
 import ErrorMessage from "../../components/ErrorMessage";
 import "../pages-style/style.css";
-import backgroundVideo from "../../images/LoginbackgroundVideo.mp4";
+
+import { Icon } from "react-icons-kit";
+import { eyeOff } from "react-icons-kit/feather/eyeOff";
+import { eye } from "react-icons-kit/feather/eye";
 
 function Loginpage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
+  const [type, setType] = useState("password");
+  const [icon, setIcon] = useState(eyeOff);
   const dispatch = useDispatch();
 
   const userLogin = useSelector((state) => state.userLogin);
@@ -27,7 +32,15 @@ function Loginpage() {
     e.preventDefault();
     dispatch(login(email, password));
   };
-
+  const handleToggle = () => {
+    if (type === "password") {
+      setIcon(eye);
+      setType("text");
+    } else {
+      setIcon(eyeOff);
+      setType("password");
+    }
+  };
   return (
     <MainScreen>
       <>
@@ -45,13 +58,21 @@ function Loginpage() {
                 onChange={(e) => setEmail(e.target.value)}
                 type="email"
                 placeholder="Email"
+                className="input-field"
               />
-              <input
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                type="password"
-                placeholder="Password"
-              />
+
+              <div className="input-field">
+                <input
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  type={type}
+                  placeholder="Password"
+                  className="input-field"
+                />
+                <span>
+                  <Icon onClick={handleToggle} icon={icon} size={20} />
+                </span>
+              </div>
               <p class="recover">
                 <a href="/ForgetPassword">Forgot Password?</a>
               </p>

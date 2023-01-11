@@ -20,7 +20,7 @@ h1 {
 p {
   margin-bottom: 1.7rem;
 }
-form input {
+form .input-field {
   letter-spacing: 0px;
   width: 85%;
   outline: none;
@@ -29,6 +29,13 @@ form input {
   padding: 12px 14px;
   margin-bottom: 10px;
   border-radius: 10px;
+  outline: none;
+}
+form .input {
+  position: relative;
+  z-index: 2;
+  background: #dfe9f5;
+  cursor: pointer;
 }
 .recover {
   text-align: right;
@@ -100,6 +107,7 @@ button:hover {
 a:hover {
   text-decoration: underline;
 }
+
 .error_msg,
 .success_msg {
   width: 330px;
