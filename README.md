@@ -1,4 +1,4 @@
-# cafeTbale-Booking-using-MERN-stack
+# cafeTable-Booking-using-MERN-stack
 
 cafeEra App
 
