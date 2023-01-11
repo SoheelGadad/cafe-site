@@ -456,7 +456,7 @@ export default (props) => {
             <Col>
               <Button
                 color="none"
-                className="book-table-btn"
+                className="button"
                 onClick={(_) => {
                   reserve();
                 }}
