@@ -138,6 +138,18 @@ app.post("/api/profile", protect, async (req, res) => {
     throw new Error("User Not Found");
   }
 });
+app.delete(
+  "/api/delectUser",
+  asyncHandler(async (req, res) => {
+    try {
+      await User.findByIdAndDelete(req.user._id);
+      res.json({ message: "user Delected successfully" });
+    } catch (error) {
+      res.status(404);
+      throw new Error("Error while deleting user");
+    }
+  })
+);
 app.get(
   "/api/get-password",
   asyncHandler(async (req, res) => {

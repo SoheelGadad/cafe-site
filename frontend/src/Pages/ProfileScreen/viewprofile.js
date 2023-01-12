@@ -11,7 +11,6 @@ const ViewProfile = () => {
   const [Address, setAddress] = useState("");
   const [PhoneNo, setPhoneNo] = useState("");
   const [pic, setPic] = useState();
-
   const navigate = useNavigate();
 
   const userLogin = useSelector((state) => state.userLogin);
