@@ -55,6 +55,8 @@ app.post(
         _id: user._id,
         name: user.name,
         email: user.email,
+        Address: user.Address,
+        PhoneNo: user.PhoneNo,
         pic: user.pic,
         token: generateToken(user._id),
       });
@@ -82,6 +84,8 @@ app.post(
       name,
       email,
       password,
+      Address,
+      PhoneNo,
       pic,
     });
 
@@ -90,6 +94,8 @@ app.post(
         _id: user._id,
         name: user.name,
         email: user.email,
+        Address: user.Address,
+        PhoneNo: user.PhoneNo,
         pic: user.pic,
         token: generateToken(user._id),
       });
@@ -109,6 +115,8 @@ app.post("/api/profile", protect, async (req, res) => {
   if (user) {
     user.name = req.body.name || user.name;
     user.email = req.body.email || user.email;
+    user.Address = req.body.Address || user.Address;
+    user.PhoneNo = req.body.PhoneNo || user.PhoneNo;
     user.pic = req.body.pic || user.pic;
     if (req.body.password) {
       user.password = req.body.password;
@@ -120,6 +128,8 @@ app.post("/api/profile", protect, async (req, res) => {
       _id: updatedUser._id,
       name: updatedUser.name,
       email: updatedUser.email,
+      Address: updatedUser.Address,
+      PhoneNo: updatedUser.PhoneNo,
       pic: updatedUser.pic,
       token: generateToken(updatedUser._id),
     });

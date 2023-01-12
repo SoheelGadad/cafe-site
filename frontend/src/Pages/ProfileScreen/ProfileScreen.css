@@ -52,3 +52,7 @@
 .social-links a:hover {
   transform: translateY(-3px);
 }
+.Button {
+  display: flex;
+  justify-content: space-between;
+}
