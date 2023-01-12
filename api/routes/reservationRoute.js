@@ -26,13 +26,15 @@ router.post("/", function async(req, res, next) {
               name: req.body.name,
               phone: req.body.phone,
               email: req.body.email,
+              ExitTime: req.body.exittime,
             });
             table.isAvailable = false;
             day.save((err) => {
               if (err) {
                 console.log(err);
               } else {
-                const url = `Thank you ${req.body.name} Your table ID: ${table._id} and you given number ${req.body.phone}    Plz Don't share Your table ID to other`;
+                const url = `Thank you ${req.body.name} Your table ID: ${table._id} and you given number ${req.body.phone} you Exit time:${req.body.exittime}
+                 Plz Don't share Your table ID to other`;
                 //console.log(url);
                 sendEmail(req.body.email, "Reservation table", url);
                 res.status(200).send("Added Reservation");

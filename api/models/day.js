@@ -3,6 +3,7 @@ const tableSchema = require("./table").schema;
 
 var daySchema = new mongoose.Schema({
   date: Date,
+  ExitTime: String,
   tables: [tableSchema],
 });
 

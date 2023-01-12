@@ -44,21 +44,12 @@ export default (props) => {
     name: "",
     phone: "",
     email: "",
+    exittime: "",
   });
 
   // List of potential locations
   const [locations] = useState(["Any Location", "Inside", "Outside"]);
-  const [times] = useState([
-    "9AM",
-    "10AM",
-    "11AM",
-    "12PM",
-    "1PM",
-    "2PM",
-    "3PM",
-    "4PM",
-    "5PM",
-  ]);
+  const [times] = useState(["08:30AM to 12:30PM", "02:30PM to 05:00PM"]);
   // Basic reservation "validation"
   const [reservationError, setReservationError] = useState(false);
 
@@ -132,7 +123,8 @@ export default (props) => {
     if (
       (booking.name.length === 0) |
       (booking.phone.length === 0) |
-      (booking.email.length === 0)
+      (booking.email.length === 0) |
+      (booking.exittime.length === 0)
     ) {
       console.log("Incomplete Details");
       setReservationError(true);
@@ -219,7 +211,7 @@ export default (props) => {
     return newLocations;
   };
 
-  // Generate locations dropdown
+  // Generate TIme dropdown
   const getTimes = (_) => {
     let newTimes = [];
     times.forEach((time) => {
@@ -291,6 +283,10 @@ export default (props) => {
                   : "fa fa-clipboard-check coffee-cta"
               }
             ></i>
+            <p className="booking-table-sub">
+              <h3>You are Booking table between</h3> <h4> 8:30AM to 12:30PM</h4>{" "}
+              &<h4>2:30PM to 5:30PM</h4>
+            </p>
           </p>
           <p className="selected-book-table">
             {selection.table.id
@@ -447,6 +443,26 @@ export default (props) => {
                   setBooking({
                     ...booking,
                     email: e.target.value,
+                  });
+                }}
+              />
+            </Col>
+          </Row>
+          <Row
+            noGutters
+            className="text-center justify-content-center reservation-details-container"
+          >
+            <Col xs="12" sm="3" className="reservation-details">
+              <Input
+                type="time"
+                bsSize="lg"
+                placeholder="Enter Your Exit Time"
+                className="reservation-input"
+                value={booking.exittime}
+                onChange={(e) => {
+                  setBooking({
+                    ...booking,
+                    exittime: e.target.value,
                   });
                 }}
               />
