@@ -136,8 +136,7 @@ const ProfileScreen = () => {
                     multiple
                   />
                 </Form.Group>
-              </Form.Group>
-
+              </Form.Group><br/>
               <Button type="submit" varient="primary">
                 Update
               </Button>
