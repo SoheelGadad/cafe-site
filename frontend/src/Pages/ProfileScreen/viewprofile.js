@@ -48,7 +48,7 @@ const ViewProfile = () => {
                 </p>
 
                 <p className="mb-2">
-                  <i className="fa fa-map-marker-alt mr-2"></i> {Address}
+                  <i className="fa fa-map-marker mr-2"></i> {Address}
                 </p>
               </div>
 
