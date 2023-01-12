@@ -64,7 +64,6 @@ app.post(
     }
   })
 );
-
 //@description     Register new user
 //@access          Public
 app.post(
@@ -129,6 +128,21 @@ app.post("/api/profile", protect, async (req, res) => {
     throw new Error("User Not Found");
   }
 });
+app.get(
+  "/api/get-password",
+  asyncHandler(async (req, res) => {
+    const { password } = req.body;
+    const user = await User.findById(req.user._id);
+
+    if (user && (await user.matchPassword(password))) {
+      res.json({});
+    } else {
+      res.status(401);
+      throw new Error("Invalid Email or Password");
+    }
+  })
+);
+
 app.post("/api/forget-password", async (req, res) => {
   const { email } = req.body;
   try {

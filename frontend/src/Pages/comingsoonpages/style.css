@@ -1,0 +1,38 @@
+.bodys {
+  font-size: 110%;
+  color: #ecf0f1;
+  font-family: "Source Sans Pro", sans-serif;
+  background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+}
+.mains {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.contacts {
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.titles {
+  font-family: "Poiret One", cursive;
+  font-size: 4rem;
+  margin-bottom: 0.5rem;
+  width: 100%;
+}
+
+.sub-titles {
+  border-top: 0.1rem solid #fff;
+  padding: 1rem 4rem;
+  text-align: center;
+}

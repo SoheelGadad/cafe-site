@@ -60,6 +60,7 @@ body {
   padding: 10px;
 }
 .nav-links:hover {
+  text-decoration: none;
   color: #f5b921;
 }
 .fa-code {
@@ -68,6 +69,7 @@ body {
 .nav-item {
   line-height: 40px;
   margin-right: 1rem;
+  text-decoration: none;
 }
 
 .nav-item:after {
@@ -83,11 +85,13 @@ body {
   color: #ffff;
   width: 100%;
   background: #ffdd40;
+  text-decoration: none;
 }
 
 .nav-item.active {
   color: #ffdd40;
   border: 1px solid #ffdd40;
+  text-decoration: none;
 }
 
 .nav-icon {

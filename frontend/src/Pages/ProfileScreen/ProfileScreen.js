@@ -8,11 +8,14 @@ import Loading from "../../components/Loading";
 import ErrorMessage from "../../components/ErrorMessage";
 import { useNavigate } from "react-router-dom";
 
+import axios from "axios";
+
 const ProfileScreen = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [pic, setPic] = useState();
-  const [password, setPassword] = useState("");
+  const [currentpassword, setCurrentPassword] = useState("");
+  const [newpassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [picMessage, setPicMessage] = useState();
 
@@ -58,11 +61,10 @@ const ProfileScreen = () => {
       return setPicMessage("Please Select an Image");
     }
   };
-
   const submitHandler = (e) => {
     e.preventDefault();
-    if (password === confirmPassword)
-      dispatch(updateProfile({ name, email, password, pic }));
+    if (newpassword === confirmPassword)
+      dispatch(updateProfile({ name, email, newpassword, pic }));
   };
 
   return (
@@ -97,16 +99,25 @@ const ProfileScreen = () => {
                   onChange={(e) => setEmail(e.target.value)}
                 ></Form.Control>
               </Form.Group>
+              <Form.Group controlId="currentpassword">
+                <Form.Label>Enter Current Password</Form.Label>
+                <Form.Control
+                  type="password"
+                  placeholder="Enter Current Password"
+                  value={currentpassword}
+                  onChange={(e) => setCurrentPassword(e.target.value)}
+                ></Form.Control>
+              </Form.Group>
               <Form.Group controlId="password">
-                <Form.Label>Password</Form.Label>
+                <Form.Label>Enter New Password</Form.Label>
                 <Form.Control
                   type="password"
                   placeholder="Enter Password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
+                  value={newpassword}
+                  onChange={(e) => setNewPassword(e.target.value)}
                 ></Form.Control>
                 <Form.Group controlId="confirmPassword">
-                  <Form.Label>Confirm Password</Form.Label>
+                  <Form.Label>Confirm new Password</Form.Label>
                   <Form.Control
                     type="password"
                     placeholder="Confirm Password"

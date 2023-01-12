@@ -1,10 +1,10 @@
 var express = require("express");
 var router = express.Router();
 var mongoose = require("mongoose");
-
+const sendEmail = require("../utils/sendEmail");
 const Day = require("../models/day").model;
 const Reservation = require("../models/reservation").model;
-
+///const available = require("../models/table").model;
 // Parameters:
 // {
 //   "date": String ("Dec 02 2019 06:00"),
@@ -14,7 +14,7 @@ const Reservation = require("../models/reservation").model;
 // 	"email": String
 // }
 
-router.post("/", function (req, res, next) {
+router.post("/", function async(req, res, next) {
   Day.find({ date: req.body.date }, (err, days) => {
     if (!err) {
       if (days.length > 0) {
@@ -32,7 +32,9 @@ router.post("/", function (req, res, next) {
               if (err) {
                 console.log(err);
               } else {
-                console.log("Reserved");
+                const url = `Thank you ${req.body.name} Your table ID: ${table._id} and you given number ${req.body.phone}    Plz Don't share Your table ID to other`;
+                //console.log(url);
+                sendEmail(req.body.email, "Reservation table", url);
                 res.status(200).send("Added Reservation");
               }
             });

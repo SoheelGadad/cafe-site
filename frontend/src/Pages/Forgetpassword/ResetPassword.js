@@ -60,6 +60,7 @@ function NewSubmit() {
               }}
               type="text"
               placeholder="Enter New password"
+              className="input-field"
             />
             <input
               style={{ marginBottom: "20px" }}
@@ -69,8 +70,11 @@ function NewSubmit() {
               }}
               type="text"
               placeholder="Enter confirm password"
+              className="input-field"
             />
-            <button type="submit">CHANGE PASSWORD</button>
+            <button type="submit" className="button">
+              CHANGE PASSWORD
+            </button>
           </form>
         ) : (
           <h1>404 Not Found</h1>

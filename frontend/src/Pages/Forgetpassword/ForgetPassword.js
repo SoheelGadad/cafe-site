@@ -45,9 +45,10 @@ function ForgetPassword() {
               setEmail(e.target.value);
             }}
             type="email"
-            placeholder="Email"
+            placeholder="ENTER YOUR EMAIL"
+            className="input-field"
           />
-          <button type="submit" value="Forget Password">
+          <button type="submit" value="Forget Password" className="button">
             Forget Password
           </button>
         </form>
