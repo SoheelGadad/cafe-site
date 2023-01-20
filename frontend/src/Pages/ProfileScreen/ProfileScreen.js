@@ -13,6 +13,8 @@ import axios from "axios";
 const ProfileScreen = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
+  const [Address, setAddress] = useState("");
+  const [PhoneNo, setPhoneNo] = useState("");
   const [pic, setPic] = useState();
   const [currentpassword, setCurrentPassword] = useState("");
   const [newpassword, setNewPassword] = useState("");
@@ -34,6 +36,8 @@ const ProfileScreen = () => {
     } else {
       setName(userInfo.name);
       setEmail(userInfo.email);
+      setAddress(userInfo.Address);
+      setPhoneNo(userInfo.PhoneNo);
       setPic(userInfo.pic);
     }
   }, [navigate, userInfo]);
@@ -64,7 +68,9 @@ const ProfileScreen = () => {
   const submitHandler = (e) => {
     e.preventDefault();
     if (newpassword === confirmPassword)
-      dispatch(updateProfile({ name, email, newpassword, pic }));
+      dispatch(
+        updateProfile({ name, email, newpassword, pic, Address, PhoneNo })
+      );
   };
 
   return (
@@ -97,6 +103,24 @@ const ProfileScreen = () => {
                   placeholder="Enter Email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
+                ></Form.Control>
+              </Form.Group>
+              <Form.Group controlId="Address">
+                <Form.Label> Address</Form.Label>
+                <Form.Control
+                  type="text"
+                  placeholder="Enter Address"
+                  value={Address}
+                  onChange={(e) => setAddress(e.target.value)}
+                ></Form.Control>
+              </Form.Group>
+              <Form.Group controlId="PhoneNo">
+                <Form.Label>PhoneNo</Form.Label>
+                <Form.Control
+                  type="text"
+                  placeholder="Enter PhoneNo"
+                  value={PhoneNo}
+                  onChange={(e) => setPhoneNo(e.target.value)}
                 ></Form.Control>
               </Form.Group>
               <Form.Group controlId="currentpassword">
@@ -136,7 +160,8 @@ const ProfileScreen = () => {
                     multiple
                   />
                 </Form.Group>
-              </Form.Group><br/>
+              </Form.Group>
+              <br />
               <Button type="submit" varient="primary">
                 Update
               </Button>

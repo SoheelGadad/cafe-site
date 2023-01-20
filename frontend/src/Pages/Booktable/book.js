@@ -49,7 +49,18 @@ export default (props) => {
 
   // List of potential locations
   const [locations] = useState(["Any Location", "Inside", "Outside"]);
-  const [times] = useState(["08:30AM to 12:30PM", "02:30PM to 05:00PM"]);
+
+const [times] = useState([
+    "9AM",
+    "10AM",
+    "11AM",
+    "12PM",
+    "1PM",
+    "2PM",
+    "3PM",
+    "4PM",
+    "5PM",
+  ]);
   // Basic reservation "validation"
   const [reservationError, setReservationError] = useState(false);
 
@@ -68,7 +79,7 @@ export default (props) => {
       "November",
       "December",
     ];
-    const date =
+   const date =
       months[selection.date.getMonth()] +
       " " +
       selection.date.getDate() +
@@ -80,7 +91,6 @@ export default (props) => {
     const datetime = new Date(date + " " + time);
     return datetime;
   };
-
   const getEmptyTables = (_) => {
     let tables = totalTables.filter((table) => table.isAvailable);
     return tables.length;
