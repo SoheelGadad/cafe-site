@@ -88,7 +88,7 @@ const [times] = useState([
     console.log(time);
     const datetime = new Date(date + " " + time);
     return datetime;
-
+  };
   const getEmptyTables = (_) => {
     let tables = totalTables.filter((table) => table.isAvailable);
     return tables.length;
