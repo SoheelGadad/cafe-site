@@ -34,7 +34,7 @@ export default (props) => {
       id: null,
     },
     date: new Date(),
-    time: null,
+    time: "9AM",
     location: "Any Location",
     size: 0,
   });
@@ -49,18 +49,7 @@ export default (props) => {
 
   // List of potential locations
   const [locations] = useState(["Any Location", "Inside", "Outside"]);
-
-const [times] = useState([
-    "9AM",
-    "10AM",
-    "11AM",
-    "12PM",
-    "1PM",
-    "2PM",
-    "3PM",
-    "4PM",
-    "5PM",
-  ]);
+  // const [times] = useState(["9AM"]);
   // Basic reservation "validation"
   const [reservationError, setReservationError] = useState(false);
 
@@ -79,7 +68,7 @@ const [times] = useState([
       "November",
       "December",
     ];
-   const date =
+    const date =
       months[selection.date.getMonth()] +
       " " +
       selection.date.getDate() +
@@ -87,6 +76,7 @@ const [times] = useState([
       selection.date.getFullYear();
     let time = selection.time.slice(0, -2);
     time = selection.time > 12 ? time + 12 + ":00" : time + ":00";
+
     console.log(time);
     const datetime = new Date(date + " " + time);
     return datetime;
@@ -222,30 +212,6 @@ const [times] = useState([
   };
 
   // Generate TIme dropdown
-  const getTimes = (_) => {
-    let newTimes = [];
-    times.forEach((time) => {
-      newTimes.push(
-        <DropdownItem
-          key={time}
-          className="booking-dropdown-item"
-          onClick={(_) => {
-            let newSel = {
-              ...selection,
-              table: {
-                ...selection.table,
-              },
-              time: time,
-            };
-            setSelection(newSel);
-          }}
-        >
-          {time}
-        </DropdownItem>
-      );
-    });
-    return newTimes;
-  };
 
   // Generating tables from available tables state
   const getTables = (_) => {
@@ -293,10 +259,6 @@ const [times] = useState([
                   : "fa fa-clipboard-check coffee-cta"
               }
             ></i>
-            <p className="booking-table-sub">
-              <h3>You are Booking table between</h3> <h4> 8:30AM to 12:30PM</h4>{" "}
-              &<h4>2:30PM to 5:30PM</h4>
-            </p>
           </p>
           <p className="selected-book-table">
             {selection.table.id
@@ -345,16 +307,18 @@ const [times] = useState([
                 }}
               ></input>
             </Col>
+            {/* 
             <Col xs="12" sm="3">
               <UncontrolledDropdown>
                 <DropdownToggle color="none" caret className="booking-dropdown">
                   {selection.time === null ? "Select a Time" : selection.time}
                 </DropdownToggle>
-                <DropdownMenu right className="booking-dropdown-menu">
-                  {getTimes()}
-                </DropdownMenu>
+                <DropdownMenu
+                  right
+                  className="booking-dropdown-menu"
+                ></DropdownMenu>
               </UncontrolledDropdown>
-            </Col>
+            </Col>*/}
             <Col xs="12" sm="3">
               <UncontrolledDropdown>
                 <DropdownToggle color="none" caret className="booking-dropdown">
@@ -462,11 +426,13 @@ const [times] = useState([
             noGutters
             className="text-center justify-content-center reservation-details-container"
           >
+            {/* exit time */}
             <Col xs="12" sm="3" className="reservation-details">
+              <p>Enter your Exit Time</p>
               <Input
-                type="time"
+                type="text"
                 bsSize="lg"
-                placeholder="Enter Your Exit Time"
+                placeholder="00:00 am/pm"
                 className="reservation-input"
                 value={booking.exittime}
                 onChange={(e) => {
