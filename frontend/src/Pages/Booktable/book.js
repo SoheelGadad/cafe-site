@@ -48,17 +48,7 @@ export default (props) => {
 
   // List of potential locations
   const [locations] = useState(["Any Location", "Inside", "Outside"]);
-  const [times] = useState([
-    "9AM",
-    "10AM",
-    "11AM",
-    "12PM",
-    "1PM",
-    "2PM",
-    "3PM",
-    "4PM",
-    "5PM",
-  ]);
+  const [times] = useState(new Date());
   // Basic reservation "validation"
   const [reservationError, setReservationError] = useState(false);
 
@@ -84,7 +74,7 @@ export default (props) => {
       " " +
       selection.date.getFullYear();
     let time = selection.time.slice(0, -2);
-    time = selection.time > 12 ? time + 12 + ":00" : time + ":00";
+    time = setInterval(()=>setDate(new Date()),1000)
     console.log(time);
     const datetime = new Date(date + " " + time);
     return datetime;
