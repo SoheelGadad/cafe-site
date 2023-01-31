@@ -71,7 +71,7 @@ app.post(
 app.post(
   "/api/register",
   asyncHandler(async (req, res) => {
-    const { name, email, password, pic } = req.body;
+    const { name, email, password, pic, PhoneNo } = req.body;
 
     const userExists = await User.findOne({ email });
 
@@ -84,7 +84,6 @@ app.post(
       name,
       email,
       password,
-      Address,
       PhoneNo,
       pic,
     });
@@ -94,7 +93,6 @@ app.post(
         _id: user._id,
         name: user.name,
         email: user.email,
-        Address: user.Address,
         PhoneNo: user.PhoneNo,
         pic: user.pic,
         token: generateToken(user._id),

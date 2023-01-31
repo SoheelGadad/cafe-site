@@ -34,11 +34,7 @@ export default (props) => {
       id: null,
     },
     date: new Date(),
-    time: new Date().toLocaleString("en-IN", {
-      hour: "numeric",
-      minute: "numeric",
-      hour12: true,
-    }),
+    time: "9AM",
     location: "Any Location",
     size: 0,
   });
@@ -53,10 +49,10 @@ export default (props) => {
 
   // List of potential locations
   const [locations] = useState(["Any Location", "Inside", "Outside"]);
+  // const [times] = useState(["9AM"]);
   // Basic reservation "validation"
   const [reservationError, setReservationError] = useState(false);
 
-  // Function to get the formatted date and time
   const getDate = (_) => {
     const months = [
       "January",
@@ -85,18 +81,13 @@ export default (props) => {
     const datetime = new Date(date + " " + time);
     return datetime;
   };
-    const datetime = new Date(date + " " + time);
-    return datetime;
-  };
-
-  // Function to get the number of available tables
   const getEmptyTables = (_) => {
     let tables = totalTables.filter((table) => table.isAvailable);
     return tables.length;
   };
 
-  // Check availability of tables when a date and time is selected
   useEffect(() => {
+    // Check availability of tables from DB when a date and time is selected
     if (selection.time && selection.date) {
       (async (_) => {
         let datetime = getDate();
@@ -112,7 +103,6 @@ export default (props) => {
             }),
           }
         );
-
         res = await res.json();
         // Filter available tables with location and group size criteria
         let tables = res.tables.filter(
