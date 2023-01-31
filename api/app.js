@@ -71,7 +71,7 @@ app.post(
 app.post(
   "/api/register",
   asyncHandler(async (req, res) => {
-    const { name, email, password, pic } = req.body;
+    const { name, email, password, pic, Address, PhoneNo } = req.body;
 
     const userExists = await User.findOne({ email });
 
