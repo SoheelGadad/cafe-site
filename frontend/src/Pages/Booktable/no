@@ -34,11 +34,7 @@ export default (props) => {
       id: null,
     },
     date: new Date(),
-    time: new Date().toLocaleString("en-IN", {
-      hour: "numeric",
-      minute: "numeric",
-      hour12: true,
-    }),
+    time: new Date().toLocaleTimeString(),
     location: "Any Location",
     size: 0,
   });
@@ -78,13 +74,8 @@ export default (props) => {
       selection.date.getDate() +
       " " +
       selection.date.getFullYear();
-    let time = selection.time.slice(0, -2);
-    time = selection.time > 12 ? time + 12 + ":00" : time + ":00";
+    const time = selection.time;
 
-    console.log(time);
-    const datetime = new Date(date + " " + time);
-    return datetime;
-  };
     const datetime = new Date(date + " " + time);
     return datetime;
   };
