@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 const ViewProfile = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-  const [Address, setAddress] = useState("");
+  const [uAddress, setAddress] = useState("");
   const [PhoneNo, setPhoneNo] = useState("");
   const [pic, setPic] = useState();
   const navigate = useNavigate();
@@ -22,7 +22,7 @@ const ViewProfile = () => {
     } else {
       setName(userInfo.name);
       setEmail(userInfo.email);
-      setAddress(userInfo.Address);
+      setAddress(userInfo.uAddress);
       setPhoneNo(userInfo.PhoneNo);
       setPic(userInfo.pic);
     }
@@ -47,7 +47,7 @@ const ViewProfile = () => {
                 </p>
 
                 <p className="mb-2">
-                  <i className="fa fa-map-marker mr-2"></i> {Address}
+                  <i className="fa fa-map-marker mr-2"></i> {uAddress}
                 </p>
               </div>
 

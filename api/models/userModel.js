@@ -16,7 +16,7 @@ const userSchema = mongoose.Schema(
       type: String,
       required: true,
     },
-    Address: {
+    uAddress: {
       type: String,
       required: true,
       default: "Null",

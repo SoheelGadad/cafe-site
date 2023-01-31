@@ -13,7 +13,7 @@ import axios from "axios";
 const ProfileScreen = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-  const [Address, setAddress] = useState("");
+  const [uAddress, setAddress] = useState("");
   const [PhoneNo, setPhoneNo] = useState("");
   const [pic, setPic] = useState();
   const [currentpassword, setCurrentPassword] = useState("");
@@ -36,7 +36,7 @@ const ProfileScreen = () => {
     } else {
       setName(userInfo.name);
       setEmail(userInfo.email);
-      setAddress(userInfo.Address);
+      setAddress(userInfo.uAddress);
       setPhoneNo(userInfo.PhoneNo);
       setPic(userInfo.pic);
     }
@@ -69,7 +69,7 @@ const ProfileScreen = () => {
     e.preventDefault();
     if (newpassword === confirmPassword)
       dispatch(
-        updateProfile({ name, email, newpassword, pic, Address, PhoneNo })
+        updateProfile({ name, email, newpassword, pic, uAddress, PhoneNo })
       );
   };
 
@@ -110,7 +110,7 @@ const ProfileScreen = () => {
                 <Form.Control
                   type="text"
                   placeholder="Enter Address"
-                  value={Address}
+                  value={uAddress}
                   onChange={(e) => setAddress(e.target.value)}
                 ></Form.Control>
               </Form.Group>
