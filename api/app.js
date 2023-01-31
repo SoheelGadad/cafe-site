@@ -55,7 +55,7 @@ app.post(
         _id: user._id,
         name: user.name,
         email: user.email,
-        Address: user.Address,
+        uAddress: user.uAddress,
         PhoneNo: user.PhoneNo,
         pic: user.pic,
         token: generateToken(user._id),
@@ -71,7 +71,7 @@ app.post(
 app.post(
   "/api/register",
   asyncHandler(async (req, res) => {
-    const { name, email, password, pic, Address, PhoneNo } = req.body;
+    const { name, email, password, pic, uAddress, PhoneNo } = req.body;
 
     const userExists = await User.findOne({ email });
 
@@ -84,7 +84,7 @@ app.post(
       name,
       email,
       password,
-      Address,
+      uAddress,
       PhoneNo,
       pic,
     });
@@ -94,7 +94,7 @@ app.post(
         _id: user._id,
         name: user.name,
         email: user.email,
-        Address: user.Address,
+        uAddress: user.uAddress,
         PhoneNo: user.PhoneNo,
         pic: user.pic,
         token: generateToken(user._id),
@@ -115,7 +115,7 @@ app.post("/api/profile", protect, async (req, res) => {
   if (user) {
     user.name = req.body.name || user.name;
     user.email = req.body.email || user.email;
-    user.Address = req.body.Address || user.Address;
+    user.uAddress = req.body.uAddress || user.uAddress;
     user.PhoneNo = req.body.PhoneNo || user.PhoneNo;
     user.pic = req.body.pic || user.pic;
     if (req.body.password) {
@@ -128,7 +128,7 @@ app.post("/api/profile", protect, async (req, res) => {
       _id: updatedUser._id,
       name: updatedUser.name,
       email: updatedUser.email,
-      Address: updatedUser.Address,
+      uAddress: updatedUser.uAddress,
       PhoneNo: updatedUser.PhoneNo,
       pic: updatedUser.pic,
       token: generateToken(updatedUser._id),
